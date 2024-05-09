@@ -52,6 +52,7 @@ public class arduino123 : MonoBehaviour
                 if (int.TryParse(parts[0], out value1)) {
                     direction = -Mathf.Sign(value1);
                     speed = Mathf.Abs(value1);
+                    speed = speed / 1.2f;
                     if (speed <= 7.5f) {
                         speed = 0.0f;
                     }
@@ -60,6 +61,7 @@ public class arduino123 : MonoBehaviour
                 if (int.TryParse(parts[1], out value2)) {
                     direction2 = -Mathf.Sign(value2);
                     speed2 = Mathf.Abs(value2);
+                    speed2 = speed2 / 1.05f;
                     if (speed2 <= 7.5f) {
                         speed2 = 0.0f;
                     }
@@ -77,8 +79,8 @@ public class arduino123 : MonoBehaviour
                 if (speed <= 7.5f) {
                     speed = 0.0f;
                 }*/
-                Debug.Log("Horizontal Input: " + direction + ", Speed: " + speed);
-                Debug.Log("Horizontal Input2: " + direction2 + ", Speed2: " + speed2 );
+                //Debug.Log("Horizontal Input: " + direction + ", Speed: " + speed);
+                //Debug.Log("Horizontal Input2: " + direction2 + ", Speed2: " + speed2 );
                 Player.horizontalInput1 = direction;
                 Player.cspeed = speed;
                 Player1.horizontalInput1 = direction2;

@@ -5,20 +5,16 @@ using UnityEngine;
 public class dont : MonoBehaviour
 {
     // Start is called before the first frame update
-    private static dont instance;
+    static dont _instance;
 
     void Awake() {
-        // 如果实例已经存在，则销毁新的实例
-        if (instance != null) {
-            Destroy(gameObject);
-            return;
+        if (_instance == null) {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
-
-        // 将当前实例设置为静态实例
-        instance = this;
-
-        // 确保控制器对象在加载新场景时不被销毁
-        DontDestroyOnLoad(gameObject);
+        else {
+            Destroy(gameObject);
+        }
     }
     void Start()
     {
