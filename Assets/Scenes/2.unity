@@ -377,12 +377,13 @@ GameObject:
   m_Component:
   - component: {fileID: 486564145}
   - component: {fileID: 486564144}
+  - component: {fileID: 486564146}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &486564144
 MonoBehaviour:
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb950e5570f84b945aca0688d4da54fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angleThreshold: 5
 --- !u!4 &486564145
 Transform:
   m_ObjectHideFlags: 0
@@ -411,6 +413,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &486564146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486564143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f6c74aa2bb77644ad0f878c4f9060b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &511274702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1377,102 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2073768051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2073768054}
+  - component: {fileID: 2073768052}
+  - component: {fileID: 2073768055}
+  m_Layer: 0
+  m_Name: Arduino
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!114 &2073768052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073768051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1f6c74aa2bb77644ad0f878c4f9060b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2073768054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073768051}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3719159, y: 0.35614046, z: 0.052287176}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2073768055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073768051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c53a53d4c59daf742b7221e854c30bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAutoOpen: 1
+  OpenMethod: 1
+  ReadProtocol: 2
+  BaudRate: 19200
+  Parity: 0
+  StopBit: 0
+  DataBit: 8
+  RecvDiscardNull: 0
+  AutoRTSCTSHandshake: 0
+  StartEnableDTR: 1
+  DtrEnabled: 0
+  RtsEnabled: 0
+  Skip: 0
+  BluetoothSSPNoServerMode: 0
+  FeedCode: <CR><LF>
+  SplitCode: ','
+  FixedFeedCount: 10
+  UpdateProcessing: 0
+  ReadCompleteEventObject:
+    m_PersistentCalls:
+      m_Calls: []
+  ReadCompleteEventObjectType: 
+  ReadClassMembersObject: {fileID: 0}
+  SystemEventObject:
+    m_PersistentCalls:
+      m_Calls: []
+  ExternalConfigPath: 1
+  ExternalConfigFileName: serial_config.txt
+  VendorID_string: 1A86
+  ProductID_string: 7523
+  SerialNumber_search_string: 5&33C70414&0&8
+  EnableTrans: 1
+  DebugConsoleMonitor: 0
+  ExternalConfig: 0
+  ExpandConfig: 1
+  ExpandSPMonitor: 1
+  ExpandEventConfig: 0
+  LicenseEmail: 
+  LicenseCode: 
 --- !u!1 &2138787243 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8059951634746225749, guid: b5d9f35400584994283ed800722291c9, type: 3}
