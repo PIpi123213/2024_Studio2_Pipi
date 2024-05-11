@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1851c8f2fa3b6d54390ab1895ef891c3
+guid: 1fa55ea1a003486468af573f1439d2fa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -38,16 +38,16 @@ TextureImporter:
     mipBias: 0
     wrapU: 1
     wrapV: 1
-    wrapW: 0
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 0
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 233.21
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -66,9 +66,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
+    maxTextureSize: 128
+    resizeAlgorithm: 1
+    textureFormat: 4
     textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
@@ -101,7 +101,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: WebGL
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -112,101 +112,110 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u6C99\u6EE9-2_0"
+      name: "jssz\u50CF\u7D20\u5316td(1)_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 640
-        height: 87
+        x: 6
+        y: 61
+        width: 14
+        height: 27
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 42}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f5b27a8124eaf1d4abd16a23063be220
-      internalID: 1552270939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u6C99\u6EE9-2_1"
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 312
-        width: 640
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9ffc5d190414c244aae63d5567b28717
-      internalID: 855759993
+      spriteID: c86c26316f277474fbd08ce0ba8e2dea
+      internalID: 2122540690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6C99\u6EE9-2_2"
+      name: "jssz\u50CF\u7D20\u5316td(1)_1"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 87
-        width: 74
-        height: 225
+        x: 56
+        y: 66
+        width: 12
+        height: 13
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 42, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: df463cbc2cf0ec44491d815f52892471
-      internalID: 1558667498
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: "\u6C99\u6EE9-2_3"
-      rect:
-        serializedVersion: 2
-        x: 582
-        y: 87
-        width: 58
-        height: 225
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e93aa92fbeb27e41b7a8a6b6634916f
-      internalID: 1949179053
+      spriteID: f443d7806ba37ac4dbae9a7ea86c4d41
+      internalID: 120714134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "jssz\u50CF\u7D20\u5316td(1)_2"
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 35
+        width: 32
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a72870d288a1154daac07d9a9d94b12
+      internalID: 263789908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "jssz\u50CF\u7D20\u5316td(1)_3"
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 28
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 363a4fc4a3b4d5846ba582154bdc304b
+      internalID: 2040236247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "jssz\u50CF\u7D20\u5316td(1)_4"
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 11
+        width: 14
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 227568155b3a625458f286ec0c248bd8
+      internalID: 8129998
       vertices: []
       indices: 
       edges: []
@@ -222,13 +231,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\u6C99\u6EE9-2_3": 1558667498
-      "\u6C99\u6EE9-2_0": 1552270939
-      "\u6C99\u6EE9-2_2": 855759993
-      "\u6C99\u6EE9-2_1": 570639991
+      "jssz\u50CF\u7D20\u5316td(1)_4": 8129998
+      "jssz\u50CF\u7D20\u5316td(1)_1": 120714134
+      "jssz\u50CF\u7D20\u5316td(1)_2": 263789908
+      "jssz\u50CF\u7D20\u5316td(1)_3": 2040236247
+      "jssz\u50CF\u7D20\u5316td(1)_0": 2122540690
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
+  pSDShowRemoveMatteOption: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 

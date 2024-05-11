@@ -6,13 +6,18 @@ public class moveBoat : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    public float reduceforcerate = 0.1f;
+    public float reduceForcerate = 0.001f;
     public float speedRate = 1000f;
 
 
     private float leftforce = 0f;
     private float rightforce = 0f;
-    
+    private float currentleftforce = 0f;
+    private float currentrightforce = 0f;
+    private float currentleftdirection = 0f;
+    private float currentrightdirection = 0f;
+
+
     public int scaleChangeInterval = 20;
     private Rigidbody2D rb;
     private Transform left;
@@ -54,38 +59,68 @@ public class moveBoat : MonoBehaviour
     }
     private void Update()
     {
-        if (leftforce > 0) {
-            leftforce = leftforce - reduceforcerate;
-        }
-        else {
-            leftforce = 0;
-        }
-        if (rightforce > 0) {
-            rightforce = rightforce - reduceforcerate;
-        }
-        else {
-            rightforce = 0;
-        }
+        /* if (leftforce > 0) {
+             leftforce = leftforce - reduceforcerate;
+         }
+         else {
+             leftforce = 0;
+         }
+         if (rightforce > 0) {
+             rightforce = rightforce - reduceforcerate;
+         }
+         else {
+             rightforce = 0;
+         }*/
 
 
 
-        if (arduino123.speed>=10.0f)
+
+
+
+        leftforce = arduino123.speed / speedRate;
+        
+        rightforce = arduino123.speed2 / speedRate;
+
+        if (arduino123.speed>=13.5f)
         {
-            leftforce = arduino123.speed / speedRate;
+            currentleftforce = leftforce;
+            currentleftdirection = arduino123.direction;
             float min = 0f;
-            float max = 0.5f;
+            float max = 1f;
             leftforce = Mathf.Clamp(leftforce, min, max);
             //Debug.Log(" leftforce: " + leftforce);
             ApplyForce(left, arduino123.direction,leftforce);
         }
-        if (arduino123.speed2 >= 10.0f)
+        else {
+            if (currentleftforce >=0f) {
+                ApplyForce(left, currentleftdirection, currentleftforce*1.5f);
+                currentleftforce -= reduceForcerate * Time.deltaTime;
+
+            }
+            
+
+
+
+        }
+        if (arduino123.speed2 >= 13.5f)
         {
-            rightforce = arduino123.speed2 / speedRate;
+            currentrightforce = rightforce;
+            currentleftdirection = arduino123.direction;
             float min = 0f;
-            float max = 0.5f;
+            float max = 1f;
             rightforce = Mathf.Clamp(rightforce, min, max);
             ApplyForce(right, -arduino123.direction2,rightforce);
+            
             //Debug.Log(" rightforce: " + rightforce);
+        }
+        else {
+            if (currentrightforce >= 0f) {
+                ApplyForce(right, currentrightdirection, currentrightforce*1.5f);
+                currentrightforce -= reduceForcerate * Time.deltaTime;
+
+            }
+
+
         }
     }
 
@@ -127,8 +162,10 @@ public class moveBoat : MonoBehaviour
 
 
     void ApplyForceTowardsPlant(Transform current) {
-        Vector2 forceDirection = (current.position - transform.position).normalized;
+        Vector2 forceDirection = current.up;
         GetComponent<Rigidbody2D>().AddForce(forceDirection * forceCurrent, ForceMode2D.Impulse);
+
+
     }
 
 
