@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Current
   - Plant
+  - Stone
   layers:
   - Default
   - TransparentFX
