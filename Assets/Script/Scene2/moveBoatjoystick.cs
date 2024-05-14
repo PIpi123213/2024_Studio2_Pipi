@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class moveBoat : MonoBehaviour
+public class moveBoatjoystick : MonoBehaviour
 {
     // Start is called before the first frame update
     
     public float reduceForcerate = 0.001f;
-    public float speedRate = 1000f;
+    public float speedRate = 4f;
 
 
     private float leftforce = 0f;
     private float leftdirection = 0f;
     private float rightdirection = 0f;
     private float rightforce = 0f;
-    private float currentleftforce = 0f;
-    private float currentrightforce = 0f;
-    private float currentleftdirection = 0f;
-    private float currentrightdirection = 0f;
+   
 
 
     public int scaleChangeInterval = 20;
@@ -61,58 +58,34 @@ public class moveBoat : MonoBehaviour
     }
     private void Update()
     {
-        /* if (leftforce > 0) {
-             leftforce = leftforce - reduceforcerate;
-         }
-         else {
-             leftforce = 0;
-         }
-         if (rightforce > 0) {
-             rightforce = rightforce - reduceforcerate;
-         }
-         else {
-             rightforce = 0;
-         }*/
-
-
-
-
-
-
-        leftforce = arduino123.speed / speedRate;
-        rightforce = arduino123.speed2 / speedRate;
-
-      
-        leftdirection = arduino123.direction;
-
        
-        rightdirection = arduino123.direction;
 
-        if (leftforce >= 13.5f/speedRate)
+
+
+
+
+
+        leftforce = input11.speed / speedRate;
+        leftdirection = input11.direction;
+
+        rightforce = input11.speed2 / speedRate;
+        rightdirection = input11.direction2;
+
+        if (leftforce >=0f)
         {
-            currentleftforce = leftforce;
-            currentleftdirection = leftdirection;
+           
+            
             float min = 0f;
             float max = 1f;
             leftforce = Mathf.Clamp(leftforce, min, max);
-            //Debug.Log(" leftforce: " + leftforce);
+           // Debug.Log(" leftforce: " + leftforce);
             ApplyForce(left, leftdirection, leftforce);
         }
-        else {
-            if (currentleftforce >=0f) {
-                ApplyForce(left, currentleftdirection, currentleftforce*1.5f);
-                currentleftforce -= reduceForcerate * Time.deltaTime;
-
-            }
-            
-
-
-
-        }
-        if (rightforce >= 13.5f / speedRate)
+        
+        if (rightforce >=0f)
         {
-            currentrightforce = rightforce;
-            currentleftdirection = rightdirection;
+            
+            
             float min = 0f;
             float max = 1f;
             rightforce = Mathf.Clamp(rightforce, min, max);
@@ -120,15 +93,7 @@ public class moveBoat : MonoBehaviour
             
             //Debug.Log(" rightforce: " + rightforce);
         }
-        else {
-            if (currentrightforce >= 0f) {
-                ApplyForce(right, currentrightdirection, currentrightforce*1.5f);
-                currentrightforce -= reduceForcerate * Time.deltaTime;
-
-            }
-
-
-        }
+       
     }
 
 
@@ -145,6 +110,8 @@ public class moveBoat : MonoBehaviour
         
         if (other.gameObject.CompareTag("Current")) {
             ApplyForceTowardsPlant(other.transform);
+
+
         }
 
         if (other.gameObject.CompareTag("Plant")) {
@@ -172,6 +139,7 @@ public class moveBoat : MonoBehaviour
         currentforce currentForceScript = current.GetComponent<currentforce>();
         forceCurrent = currentForceScript.force;
         Vector2 forceDirection = current.up;
+        
         GetComponent<Rigidbody2D>().AddForce(forceDirection * forceCurrent, ForceMode2D.Impulse);
 
 
