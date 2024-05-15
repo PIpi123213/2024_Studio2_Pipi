@@ -115,7 +115,7 @@ public class moveBoatjoystick : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Plant")) {
-            speedRate = 3000f;
+            speedRate = 30f;
         }
 
 
@@ -126,7 +126,7 @@ public class moveBoatjoystick : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         Debug.Log("out");
         if (other.CompareTag("Plant")) {
-            speedRate = 1000f;
+            speedRate = 15f;
         }
     }
 

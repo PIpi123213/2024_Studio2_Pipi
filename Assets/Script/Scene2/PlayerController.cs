@@ -11,9 +11,16 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     public static float speed;
 
+
+    public Sprite[] lifeSprites; // 生命状态的 Sprite
+    private SpriteRenderer spriteRenderer;
+
     private void Start() {
         currentLives = maxLives;
         rb = GetComponent<Rigidbody2D>();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        UpdateLifeSprite();
     }
 
     void Update()
@@ -40,15 +47,37 @@ public class PlayerController : MonoBehaviour
             
             
                 Debug.Log("over");
-                TakeDamage();
+                TakeDamage(1);
+                
+
+
+        }
+
+        if (speed >= 1.1f && collision.gameObject.CompareTag("Stone"))
+        {
+
+
+
+            Debug.Log("over");
+            TakeDamage(2);
             
 
         }
+
+
+        if (collision.gameObject.CompareTag("Police"))
+        {
+            Debug.Log("catched");
+            GameOver();
+        }
+
+
+
     }
 
-    private void TakeDamage() {
-        currentLives--;
-
+    private void TakeDamage(int damage) {
+        currentLives = currentLives - damage;
+        UpdateLifeSprite();
         if (currentLives <= 0) {
             GameOver();
         }
@@ -59,6 +88,34 @@ public class PlayerController : MonoBehaviour
         // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+
+    private void GameWin()
+    {
+        Debug.Log("Game Win");
+        // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
+    private void UpdateLifeSprite()
+    {
+        if (currentLives >= 1 && currentLives <= lifeSprites.Length)
+        {
+            spriteRenderer.sprite = lifeSprites[currentLives - 1];
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+       
+        if (other.CompareTag("Waterfall")) // 假设是玩家物体
+        {
+            GameWin();
+        }
+    }
+
+
+
 
     float GetTotalForceMagnitude()
     {
@@ -84,4 +141,5 @@ public class PlayerController : MonoBehaviour
 
         return totalForceMagnitude;
     }
+
 }

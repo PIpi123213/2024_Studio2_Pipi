@@ -61,19 +61,7 @@ public class moveBoat : MonoBehaviour
     }
     private void Update()
     {
-        /* if (leftforce > 0) {
-             leftforce = leftforce - reduceforcerate;
-         }
-         else {
-             leftforce = 0;
-         }
-         if (rightforce > 0) {
-             rightforce = rightforce - reduceforcerate;
-         }
-         else {
-             rightforce = 0;
-         }*/
-
+        
 
 
 
@@ -105,9 +93,6 @@ public class moveBoat : MonoBehaviour
 
             }
             
-
-
-
         }
         if (rightforce >= 13.5f / speedRate)
         {
@@ -130,8 +115,6 @@ public class moveBoat : MonoBehaviour
 
         }
     }
-
-
 
     void ApplyForce(Transform side, float direction,float force )
     {
