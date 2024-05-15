@@ -9,6 +9,7 @@ public class police : MonoBehaviour
     public Transform target;
     private UnityEngine.AI.NavMeshAgent agent;
     private Collider2D[] childColliders;
+    private AudioPolice audioPolice;
 
     public float wanderRadius = 10f; // 半径范围内随机移动
     public float wanderTimer = 5f; // 移动到一个点的时间
@@ -21,8 +22,11 @@ public class police : MonoBehaviour
     private Color originalColor = Color.black;
 
     public float rotationDuration = 1f;
+
+
     void Start()
     {
+        audioPolice = GetComponent<AudioPolice>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         childColliders = GetComponentsInChildren<Collider2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -53,6 +57,7 @@ public class police : MonoBehaviour
             agent.SetDestination(target.position);
             spriteRenderer.color = Color.red;
             RotateTowards(target.position);
+            audioPolice.playAudio();
         }
         else
         {
@@ -64,7 +69,7 @@ public class police : MonoBehaviour
                 agent.SetDestination(new Vector3(newPos.x, newPos.y, transform.position.z));
                 timer = 0;
             }
-
+            audioPolice.stopAudio();
             RotateTowards(agent.destination);
         }
 

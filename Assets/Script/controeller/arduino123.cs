@@ -53,8 +53,11 @@ public class arduino123 : MonoBehaviour
                     direction = -Mathf.Sign(value1);
                     speed = Mathf.Abs(value1);
                     speed = speed / 1.2f;
+                    PlayerController.isMoveL = true;
                     if (speed <= 7.5f) {
                         speed = 0.0f;
+                        PlayerController.isMoveL = false;
+
                     }
                 }
                 // 尝试解析第二个部分的值
@@ -62,8 +65,10 @@ public class arduino123 : MonoBehaviour
                     direction2 = -Mathf.Sign(value2);
                     speed2 = Mathf.Abs(value2);
                     speed2 = speed2 / 1.05f;
+                    PlayerController.isMoveR = true;
                     if (speed2 <= 7.5f) {
                         speed2 = 0.0f;
+                        PlayerController.isMoveR = false;
                     }
                 }
             }

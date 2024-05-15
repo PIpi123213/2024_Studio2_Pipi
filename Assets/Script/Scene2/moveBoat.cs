@@ -8,7 +8,7 @@ public class moveBoat : MonoBehaviour
     
     public float reduceForcerate = 0.001f;
     public float speedRate = 1000f;
-
+    private float speedRateTemp = 0f;
 
     private float leftforce = 0f;
     private float leftdirection = 0f;
@@ -29,6 +29,8 @@ public class moveBoat : MonoBehaviour
     private Vector3 initialScale;
     private int scaleChangeCounter = 0;
     private float forceCurrent = 10f;
+
+   
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -36,7 +38,7 @@ public class moveBoat : MonoBehaviour
         right = transform.Find("right");
 
         initialScale = transform.localScale;
-        
+        speedRateTemp = speedRate;
     }
 
     void FixedUpdate()
@@ -114,6 +116,11 @@ public class moveBoat : MonoBehaviour
 
 
         }
+
+
+
+
+        
     }
 
     void ApplyForce(Transform side, float direction,float force )
@@ -131,7 +138,7 @@ public class moveBoat : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Plant")) {
-            speedRate = 3000f;
+            speedRate = 2*speedRateTemp;
         }
 
 
@@ -142,7 +149,7 @@ public class moveBoat : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         Debug.Log("out");
         if (other.CompareTag("Plant")) {
-            speedRate = 1000f;
+            speedRate = speedRateTemp;
         }
     }
 

@@ -37,13 +37,20 @@ public class input11 : MonoBehaviour
             direction = Mathf.Sign(leftStickRotation);
             speed = Mathf.Abs(leftStickSpeed) * 6.5f;
             // 打印左摇杆信息
+           
+
+                PlayerController.isMoveL = true;
+
+           
+            
+                
             
         }
         else
         {
             direction = 0f;
             speed = 0f;
-
+            PlayerController.isMoveL = false;
         }
 
         
@@ -52,14 +59,15 @@ public class input11 : MonoBehaviour
         {
             direction2 = Mathf.Sign(rightStickRotation);
             speed2 = Mathf.Abs(rightStickSpeed);
+            PlayerController.isMoveR = true;
             // 打印左摇杆信息
-            
+
         }
         else
         {
             direction2 = 0f;
             speed2 = 0f;
-
+            PlayerController.isMoveR = false;
         }
        /* Debug.Log("1"+speed);
         Debug.Log("2"+speed2);*/

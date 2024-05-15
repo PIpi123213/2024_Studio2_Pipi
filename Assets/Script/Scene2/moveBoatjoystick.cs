@@ -26,6 +26,8 @@ public class moveBoatjoystick : MonoBehaviour
     private Vector3 initialScale;
     private int scaleChangeCounter = 0;
     private float forceCurrent = 10f;
+
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();

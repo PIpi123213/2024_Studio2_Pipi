@@ -14,11 +14,14 @@ public class PlayerController : MonoBehaviour
 
     public Sprite[] lifeSprites; // 生命状态的 Sprite
     private SpriteRenderer spriteRenderer;
+    public static bool isMoveL = false;
+    public static bool isMoveR = false;
+    public playerAudio audio1;
 
     private void Start() {
         currentLives = maxLives;
         rb = GetComponent<Rigidbody2D>();
-
+        audio1 =GetComponent<playerAudio>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateLifeSprite();
     }
@@ -35,15 +38,16 @@ public class PlayerController : MonoBehaviour
         float totalForceMagnitude = GetTotalForceMagnitude();
 
         // 打印施加在物体上的所有力的大小
-        //Debug.Log("speed: " + speed);
+        Debug.Log("speed: " + speed);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
        
 
-        if (speed >= 0.6f&& collision.gameObject.CompareTag("Stone"))
+        if (speed >= 0.45f&& collision.gameObject.CompareTag("Stone"))
         {
-
+            audio1.playhit(2f);
             
             
                 Debug.Log("over");
@@ -53,9 +57,9 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (speed >= 1.1f && collision.gameObject.CompareTag("Stone"))
+        if (speed >= 0.9f && collision.gameObject.CompareTag("Stone"))
         {
-
+            audio1.playhit(3f);
 
 
             Debug.Log("over");
