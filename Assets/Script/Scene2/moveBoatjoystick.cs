@@ -93,7 +93,7 @@ public class moveBoatjoystick : MonoBehaviour
             rightforce = Mathf.Clamp(rightforce, min, max);
             ApplyForce(right, -rightdirection, rightforce);
             
-            //Debug.Log(" rightforce: " + rightforce);
+            Debug.Log(" rightforce: " + rightforce);
         }
        
     }

@@ -45,7 +45,7 @@ public class moveBoat : MonoBehaviour
     {
         //transform.localScale = Vector3.Lerp(transform.localScale, initialScale * targetScale, scaleChangeRate * Time.fixedDeltaTime);
         //增加一些动态感觉
-        if (scaleChangeCounter >= scaleChangeInterval)
+        /*if (scaleChangeCounter >= scaleChangeInterval)
         {
             targetScale = Random.Range(0.99f, 1.01f);
             scaleChangeCounter = 0;
@@ -56,7 +56,7 @@ public class moveBoat : MonoBehaviour
         }
 
         // 直接改变大小
-        transform.localScale = initialScale * targetScale;
+        transform.localScale = initialScale * targetScale;*/
 
 
 
@@ -76,30 +76,28 @@ public class moveBoat : MonoBehaviour
         leftdirection = arduino123.direction;
 
        
-        rightdirection = arduino123.direction;
+        rightdirection = arduino123.direction2;
 
-        if (leftforce >= 13.5f/speedRate)
+        if (leftforce >= 20f/speedRate)
         {
-            currentleftforce = leftforce;
-            currentleftdirection = leftdirection;
+            
             float min = 0f;
             float max = 1f;
             leftforce = Mathf.Clamp(leftforce, min, max);
             //Debug.Log(" leftforce: " + leftforce);
             ApplyForce(left, leftdirection, leftforce);
         }
-        else {
+       /* else {
             if (currentleftforce >=0f) {
                 ApplyForce(left, currentleftdirection, currentleftforce*1.5f);
                 currentleftforce -= reduceForcerate * Time.deltaTime;
 
             }
             
-        }
-        if (rightforce >= 13.5f / speedRate)
+        }*/
+        if (rightforce >= 20f / speedRate)
         {
-            currentrightforce = rightforce;
-            currentleftdirection = rightdirection;
+            
             float min = 0f;
             float max = 1f;
             rightforce = Mathf.Clamp(rightforce, min, max);
@@ -107,7 +105,7 @@ public class moveBoat : MonoBehaviour
             
             //Debug.Log(" rightforce: " + rightforce);
         }
-        else {
+       /* else {
             if (currentrightforce >= 0f) {
                 ApplyForce(right, currentrightdirection, currentrightforce*1.5f);
                 currentrightforce -= reduceForcerate * Time.deltaTime;
@@ -116,7 +114,7 @@ public class moveBoat : MonoBehaviour
 
 
         }
-
+*/
 
 
 
@@ -138,7 +136,7 @@ public class moveBoat : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Plant")) {
-            speedRate = 2*speedRateTemp;
+            speedRate = 3*speedRateTemp;
         }
 
 

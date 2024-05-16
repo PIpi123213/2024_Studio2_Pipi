@@ -24,7 +24,7 @@ public class playerAudio : MonoBehaviour
     {
         if (PlayerController.speed>0.1f )
         {
-            Debug.Log("ROW");
+            //Debug.Log("ROW");
             playRandomAudio();
             SmoothVolumeChange();
         }

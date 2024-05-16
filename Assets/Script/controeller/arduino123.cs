@@ -42,6 +42,8 @@ public class arduino123 : MonoBehaviour
 
     public void ReadComprateString(object data) {
         var text = data as string;
+        direction = 0f;
+        direction2 = 0f;
         speed = 0.0f;
         speed2 = 0.0f;
         if (!string.IsNullOrEmpty(text)) {
@@ -52,9 +54,10 @@ public class arduino123 : MonoBehaviour
                 if (int.TryParse(parts[0], out value1)) {
                     direction = -Mathf.Sign(value1);
                     speed = Mathf.Abs(value1);
-                    speed = speed / 1.2f;
+                    speed = speed / 1.05f;
                     PlayerController.isMoveL = true;
                     if (speed <= 7.5f) {
+                        direction = 0f;
                         speed = 0.0f;
                         PlayerController.isMoveL = false;
 
@@ -64,9 +67,10 @@ public class arduino123 : MonoBehaviour
                 if (int.TryParse(parts[1], out value2)) {
                     direction2 = -Mathf.Sign(value2);
                     speed2 = Mathf.Abs(value2);
-                    speed2 = speed2 / 1.05f;
+                    speed2 = speed2 / 1.2f;
                     PlayerController.isMoveR = true;
                     if (speed2 <= 7.5f) {
+                        direction2 = 0f;
                         speed2 = 0.0f;
                         PlayerController.isMoveR = false;
                     }
@@ -84,8 +88,8 @@ public class arduino123 : MonoBehaviour
                 if (speed <= 7.5f) {
                     speed = 0.0f;
                 }*/
-                //Debug.Log("Horizontal Input: " + direction + ", Speed: " + speed);
-                //Debug.Log("Horizontal Input2: " + direction2 + ", Speed2: " + speed2 );
+               //Debug.Log("Horizontal Input: " + direction + ", Speed: " + speed);
+               //Debug.Log("Horizontal Input2: " + direction2 + ", Speed2: " + speed2 );
                 Player.horizontalInput1 = direction;
                 Player.cspeed = speed;
                 Player1.horizontalInput1 = direction2;

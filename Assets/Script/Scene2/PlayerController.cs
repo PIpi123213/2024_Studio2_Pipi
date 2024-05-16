@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
         float totalForceMagnitude = GetTotalForceMagnitude();
 
         // 打印施加在物体上的所有力的大小
-        Debug.Log("speed: " + speed);
+        //Debug.Log("speed: " + speed);
 
     }
 
