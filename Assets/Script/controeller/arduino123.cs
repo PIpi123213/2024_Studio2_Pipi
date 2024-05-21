@@ -16,14 +16,20 @@ public class arduino123 : MonoBehaviour
 
     void Awake() {
         // 如果实例已经存在，则销毁新的实例
-        if (instance != null) {
-            Destroy(gameObject);
-            return;
+        if (instance == null) {
+            instance = this;
+            
         }
-
+        else
+        {
+            if(instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
         // 将当前实例设置为静态实例
-        instance = this;
-
+        
+        
         // 确保控制器对象在加载新场景时不被销毁
         DontDestroyOnLoad(gameObject);
     }
@@ -90,10 +96,10 @@ public class arduino123 : MonoBehaviour
                 }*/
                //Debug.Log("Horizontal Input: " + direction + ", Speed: " + speed);
                //Debug.Log("Horizontal Input2: " + direction2 + ", Speed2: " + speed2 );
-                Player.horizontalInput1 = direction;
-                Player.cspeed = speed;
-                Player1.horizontalInput1 = direction2;
-                Player1.cspeed = speed2;
+                //Player.horizontalInput1 = direction;
+                //Player.cspeed = speed;
+               // Player1.horizontalInput1 = direction2;
+                //Player1.cspeed = speed2;
 
 
             // 现在你可以使用 direction 和 speed 了

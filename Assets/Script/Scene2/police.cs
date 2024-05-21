@@ -11,6 +11,8 @@ public class police : MonoBehaviour
     private Collider2D[] childColliders;
     private AudioPolice audioPolice;
 
+
+
     public float wanderRadius = 10f; // 半径范围内随机移动
     public float wanderTimer = 5f; // 移动到一个点的时间
     private float timer;
@@ -19,13 +21,16 @@ public class police : MonoBehaviour
 
 
     private SpriteRenderer spriteRenderer;
-    private Color originalColor = Color.black;
+    
 
     public float rotationDuration = 1f;
-
+    private GameObject childObject;
 
     void Start()
     {
+        Transform childTransform = transform.Find("effectLight");
+        childObject = childTransform.gameObject;
+
         audioPolice = GetComponent<AudioPolice>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         childColliders = GetComponentsInChildren<Collider2D>();
@@ -55,14 +60,15 @@ public class police : MonoBehaviour
         if (ischase)
         {
             agent.SetDestination(target.position);
-            spriteRenderer.color = Color.red;
+            
             RotateTowards(target.position);
             audioPolice.playAudio();
+            childObject.SetActive(true);
         }
         else
         {
             timer += Time.deltaTime;
-            spriteRenderer.color = originalColor;
+            
             if (timer >= wanderTimer)
             {
                 Vector2 newPos = RandomNavSphere(transform.position, wanderRadius);
@@ -71,6 +77,7 @@ public class police : MonoBehaviour
             }
             audioPolice.stopAudio();
             RotateTowards(agent.destination);
+            childObject.SetActive(false);
         }
 
 

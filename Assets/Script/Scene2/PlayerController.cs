@@ -18,7 +18,12 @@ public class PlayerController : MonoBehaviour
     public static bool isMoveR = false;
     public playerAudio audio1;
 
+
+    private GameObject childObject;
     private void Start() {
+        Transform childTransform = transform.Find("wave");
+        childObject = childTransform.gameObject;
+
         currentLives = maxLives;
         rb = GetComponent<Rigidbody2D>();
         audio1 =GetComponent<playerAudio>();
@@ -38,7 +43,16 @@ public class PlayerController : MonoBehaviour
         float totalForceMagnitude = GetTotalForceMagnitude();
 
         // 打印施加在物体上的所有力的大小
-        //Debug.Log("speed: " + speed);
+        Debug.Log("speed: " + speed);
+        if (speed >=0.03f)
+        {
+            childObject.SetActive(true);
+        }
+        else
+        {
+            childObject.SetActive(false);
+        }
+
 
     }
 

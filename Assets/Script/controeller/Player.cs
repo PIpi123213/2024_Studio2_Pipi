@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float minX, maxX, minY, maxY;
-    public float moveSpeed = 10f;
+    private float minX, maxX, minY, maxY;
+    private float moveSpeed = 10f;
     //public float yOffset = 0.5f;
 
-    public static float horizontalInput1;
-    public static float cspeed;
+    private float horizontalInput1;
+    private float cspeed;
     public float smoothness = 10.0f;
 
     // Start is called before the first frame update
@@ -22,9 +22,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        cspeed = arduino123.speed/900f;
+        horizontalInput1 = arduino123.direction;
         
-        //MoveWithMouse();
-        //MoveWithKeyboard();
+
         MoveWithController();
     }
 
@@ -77,9 +78,9 @@ public class Player : MonoBehaviour
         // 通过插值方法逐渐改变角色位置
         transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * smoothness);
         // 限制角色移动范围
-        float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
-        float clampedY = Mathf.Clamp(transform.position.y, minY, maxY);
-        transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        //float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
+        //float clampedY = Mathf.Clamp(transform.position.y, minY, maxY);
+        //transform.position = new Vector3(clampedX, clampedY, transform.position.z);
 
     }
     private void MoveWithController2() {

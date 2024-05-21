@@ -8,6 +8,7 @@ public class moveBoatjoystick : MonoBehaviour
     
     public float reduceForcerate = 0.001f;
     public float speedRate = 4f;
+    private float rspeedRate = 4f;
 
 
     private float leftforce = 0f;
@@ -35,7 +36,7 @@ public class moveBoatjoystick : MonoBehaviour
         right = transform.Find("right");
 
         initialScale = transform.localScale;
-        
+        rspeedRate = speedRate;
     }
 
     void FixedUpdate()
@@ -93,7 +94,7 @@ public class moveBoatjoystick : MonoBehaviour
             rightforce = Mathf.Clamp(rightforce, min, max);
             ApplyForce(right, -rightdirection, rightforce);
             
-            Debug.Log(" rightforce: " + rightforce);
+            //Debug.Log(" rightforce: " + rightforce);
         }
        
     }
@@ -117,7 +118,7 @@ public class moveBoatjoystick : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Plant")) {
-            speedRate = 30f;
+            speedRate = rspeedRate*2.0f;
         }
 
 
@@ -128,7 +129,7 @@ public class moveBoatjoystick : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         Debug.Log("out");
         if (other.CompareTag("Plant")) {
-            speedRate = 15f;
+            speedRate = rspeedRate;
         }
     }
 

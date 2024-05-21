@@ -5,10 +5,12 @@ using UnityEngine;
 
 public class Player1 : MonoBehaviour
 {
-    public float minX, maxX, minY, maxY;
-    public float moveSpeed = 10f;
-    public static float horizontalInput1;
-    public static float cspeed;
+    private float minX, maxX, minY, maxY;
+    private float moveSpeed = 10f;
+
+    private float horizontalInput1;
+    private float cspeed;
+
     public float smoothness = 10.0f;
 
     // Start is called before the first frame update
@@ -20,7 +22,8 @@ public class Player1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        cspeed = arduino123.speed2/900f;
+        horizontalInput1 = arduino123.direction2;
         //MoveWithMouse();
         //MoveWithKeyboard();
         MoveWithController();
