@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
     private PlayableDirector currentplayDirector;
     private GameObject currentspacebar;
     private GameObject currentdialoguebox;
+    private double closestClipEndTime;
     private void Awake()
     {
         if (instance == null)
@@ -59,6 +61,37 @@ public class GameManager : MonoBehaviour
         UIManager.instance.ToggleSpaceBar(currentspacebar,false);
         UIManager.instance.ToggleDialogueBox(currentdialoguebox,false);
     }
+
+    public void SetClosestClipEndTime(PlayableDirector _playableDirector, double endTime)
+    {
+        currentplayDirector = _playableDirector;
+       
+            closestClipEndTime= endTime;
+        
+        
+            
+        
+    }
+    private void JumpToClipEnd()
+    {
+        if (currentplayDirector == null)
+            return;
+
+        if (closestClipEndTime != double.MaxValue)
+        {
+            currentplayDirector.time = closestClipEndTime - 0.01f;
+            currentplayDirector.Evaluate();
+            gameMode = GameMode.GamePlay;
+            currentplayDirector.playableGraph.GetRootPlayable(0).SetSpeed(1d);
+        }
+        else
+        {
+            return;
+        }
+
+    }
+
+
     void Start()
     {
         
@@ -74,6 +107,21 @@ public class GameManager : MonoBehaviour
                 ResumeTimeline();
             }
 
+
+
+
+
+
         }
+        if (Input.GetKeyDown(KeyCode.E) && currentplayDirector!=null && gameMode == GameMode.GamePlay )
+        {
+            JumpToClipEnd();
+            
+            
+        }
+
+
+
+
     }
 }

@@ -14,10 +14,7 @@ public class moveBoat : MonoBehaviour
     private float leftdirection = 0f;
     private float rightdirection = 0f;
     private float rightforce = 0f;
-    private float currentleftforce = 0f;
-    private float currentrightforce = 0f;
-    private float currentleftdirection = 0f;
-    private float currentrightdirection = 0f;
+   
 
 
     public int scaleChangeInterval = 20;
@@ -25,9 +22,9 @@ public class moveBoat : MonoBehaviour
     private Transform left;
     private Transform right;
 
-    private float targetScale;
+    /*private float targetScale;
     private Vector3 initialScale;
-    private int scaleChangeCounter = 0;
+    private int scaleChangeCounter = 0;*/
     private float forceCurrent = 10f;
 
    
@@ -37,7 +34,7 @@ public class moveBoat : MonoBehaviour
         left = transform.Find("left");
         right = transform.Find("right");
 
-        initialScale = transform.localScale;
+        //initialScale = transform.localScale;
         speedRateTemp = speedRate;
     }
 
