@@ -17,7 +17,7 @@ public class moveBoat : MonoBehaviour
    
 
 
-    public int scaleChangeInterval = 20;
+    
     private Rigidbody2D rb;
     private Transform left;
     private Transform right;

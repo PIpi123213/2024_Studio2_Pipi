@@ -18,7 +18,7 @@ public class moveBoatjoystick : MonoBehaviour
    
 
 
-    public int scaleChangeInterval = 20;
+    //public int scaleChangeInterval = 20;
     private Rigidbody2D rb;
     private Transform left;
     private Transform right;
@@ -43,19 +43,7 @@ public class moveBoatjoystick : MonoBehaviour
     {
         //transform.localScale = Vector3.Lerp(transform.localScale, initialScale * targetScale, scaleChangeRate * Time.fixedDeltaTime);
         //增加一些动态感觉
-        if (scaleChangeCounter >= scaleChangeInterval)
-        {
-            targetScale = Random.Range(0.99f, 1.01f);
-            scaleChangeCounter = 0;
-        }
-        else
-        {
-            scaleChangeCounter++;
-        }
-
-        // 直接改变大小
-        transform.localScale = initialScale * targetScale;
-
+        
 
 
     }

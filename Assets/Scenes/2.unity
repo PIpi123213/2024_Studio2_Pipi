@@ -2294,7 +2294,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180.111}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -412, y: -211}
+  m_AnchoredPosition: {x: -411.99994, y: -211}
   m_SizeDelta: {x: -1272.5, y: -722.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &360129786 stripped
@@ -18682,9 +18682,9 @@ MonoBehaviour:
       m_Calls: []
   ExternalConfigPath: 1
   ExternalConfigFileName: serial_config.txt
-  VendorID_string: 1A86
-  ProductID_string: 7523
-  SerialNumber_search_string: 5&33C70414&0&2
+  VendorID_string: 0403
+  ProductID_string: 6001
+  SerialNumber_search_string: FTB6SPL3
   EnableTrans: 1
   DebugConsoleMonitor: 0
   ExternalConfig: 0
@@ -20441,6 +20441,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 564823780, guid: 910b35a4d3f6d574ab53fd31cb27654b, type: 3}
+      propertyPath: speedRate
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 1210091976, guid: 910b35a4d3f6d574ab53fd31cb27654b, type: 3}
       propertyPath: m_Enabled
       value: 0
