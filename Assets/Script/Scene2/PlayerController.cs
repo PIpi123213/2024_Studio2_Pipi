@@ -17,16 +17,17 @@ public class PlayerController : MonoBehaviour
     public static bool isMoveL = false;
     public static bool isMoveR = false;
     public playerAudio audio1;
-
+    private bool isHit=false;
 
     private GameObject childObject;
     private void Start() {
         Transform childTransform = transform.Find("wave");
         childObject = childTransform.gameObject;
 
-        currentLives = maxLives;
+        
         rb = GetComponent<Rigidbody2D>();
         audio1 =GetComponent<playerAudio>();
+        currentLives = maxLives;
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateLifeSprite();
     }
@@ -59,28 +60,27 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) {
        
 
-        if (speed >= 0.45f&& collision.gameObject.CompareTag("Stone"))
+        if (collision.gameObject.CompareTag("Stone")&&!isHit)
         {
-            audio1.playhit(2f);
             
-            
-                Debug.Log("over");
+            if (speed >= 0.9f )
+            {
+                audio1.playhit(3f);
+                TakeDamage(2);
+
+
+            }
+            else if(speed >= 0.45f)
+            {
+                audio1.playhit(2f);
                 TakeDamage(1);
-                
 
-
-        }
-
-        if (speed >= 0.9f && collision.gameObject.CompareTag("Stone"))
-        {
-            audio1.playhit(3f);
-
-
-            Debug.Log("over");
-            TakeDamage(2);
-            
+            }
+            isHit = true;
 
         }
+
+       
 
 
         if (collision.gameObject.CompareTag("Police"))
@@ -92,6 +92,16 @@ public class PlayerController : MonoBehaviour
 
 
     }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+
+        if (collision.gameObject.CompareTag("Stone") )
+        {
+
+            isHit = false;
+
+        }
+    }
 
     private void TakeDamage(int damage) {
         currentLives = currentLives - damage;
@@ -100,7 +110,13 @@ public class PlayerController : MonoBehaviour
             GameOver();
         }
     }
-
+    private void UpdateLifeSprite()
+    {
+        if (currentLives >= 1 && currentLives <= lifeSprites.Length)
+        {
+            spriteRenderer.sprite = lifeSprites[currentLives - 1];
+        }
+    }
     private void GameOver() {
         Debug.Log("Game Over");
         // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
@@ -115,13 +131,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    private void UpdateLifeSprite()
-    {
-        if (currentLives >= 1 && currentLives <= lifeSprites.Length)
-        {
-            spriteRenderer.sprite = lifeSprites[currentLives - 1];
-        }
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -22,8 +22,7 @@ public class Player1 : MonoBehaviour
     public float forceMagnitude = 0f;
     // Start is called before the first frame update
     public float forceIncreaseRate = 1f; // 力的增加速率
-    private float forceIncreaseRateTemp = 1f;
-    private float currentForce = 5f;
+    
 
     public float rotationSpeed = 1f;
     private float returnSpeed = 0.5f;
@@ -31,7 +30,7 @@ public class Player1 : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        forceIncreaseRateTemp = forceIncreaseRate;
+       
     }
 
     // Update is called once per frame

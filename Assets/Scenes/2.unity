@@ -3398,6 +3398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2469a3390fd7c52418624cfaa07e48b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetFrameRate: 24
   gameMode: 0
 --- !u!1 &490442083
 GameObject:
@@ -20513,7 +20514,8 @@ PrefabInstance:
       propertyPath: speedRate
       value: 11
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4242522408474180374, guid: 910b35a4d3f6d574ab53fd31cb27654b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -33,16 +34,38 @@ public class Player : MonoBehaviour
     public float rotationSpeed_Joystick = 1f;
     private float returnSpeed = 0.5f;
 
+    public Sprite[] lifeSprites; // 生命状态的 Sprite
+    private SpriteRenderer spriteRenderer;
+    public int maxLives = 3;
+    private int currentLives;
+    private GameObject childObject;
+    public playerAudio audio1;
+    private float speed;
+    private bool isHit = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         forceIncreaseRateTemp = forceIncreaseRate;
+        Transform childTransform = transform.Find("wave");
+        childObject = childTransform.gameObject;
+        currentLives = maxLives;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        UpdateLifeSprite();
+        audio1 = GetComponent<playerAudio>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(characterChoice == Char.Option1) {
+        if (speed >= 0.03f)
+        {
+            childObject.SetActive(true);
+        }
+        else
+        {
+            childObject.SetActive(false);
+        }
+        if (characterChoice == Char.Option1) {
             cspeed = arduino123.speed / speedRate;
             horizontalInput1 = arduino123.direction;
         }
@@ -63,8 +86,17 @@ public class Player : MonoBehaviour
             horizontalInput1_Joystick = input11.direction2;
 
         }
-        
 
+        Vector2 velocity = rb.velocity;
+
+        // 计算速度的大小（即速度的标量值）
+        speed = velocity.magnitude;
+
+        // 打印物体的速度
+
+
+        // 打印施加在物体上的所有力的大小
+        UnityEngine.Debug.Log("speed: " + speed);
 
         Quaternion currentRotation = transform.rotation;
         float currentZ = currentRotation.eulerAngles.z;
@@ -72,7 +104,7 @@ public class Player : MonoBehaviour
         // 计算目标旋转角度
         if (cspeed != 0) {
             // 当 cspeed 非零时，按固定速度调整 z 轴旋转，方向由 cspeed 的正负决定
-            float targetZ = currentZ + (horizontalInput1 * rotationSpeed * Time.deltaTime);
+            float targetZ = currentZ + (-horizontalInput1 * rotationSpeed * Time.deltaTime);
             targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, targetZ);
             transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, 1); // 直接设置为目标旋转，避免 Lerp 的缓动效果
         }
@@ -82,7 +114,7 @@ public class Player : MonoBehaviour
         if (cspeed_Joystick != 0)
         {
             // 当 cspeed 非零时，按固定速度调整 z 轴旋转，方向由 cspeed 的正负决定
-            float targetZ = currentZ + (horizontalInput1_Joystick * rotationSpeed_Joystick * Time.deltaTime);
+            float targetZ = currentZ + (-horizontalInput1_Joystick * rotationSpeed_Joystick * Time.deltaTime);
             targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, targetZ);
             transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, 1); // 直接设置为目标旋转，避免 Lerp 的缓动效果
         }
@@ -119,13 +151,13 @@ public class Player : MonoBehaviour
         currentForce += forceIncreaseRate * Time.deltaTime;
 
         // 限制当前施加的力不超过最大值
-        currentForce = Mathf.Clamp(currentForce, 3f, forceMagnitude);
+        currentForce = Mathf.Clamp(currentForce, 4f, forceMagnitude);
 
 
 
         // 施加力，方向为世界空间中的 Y 轴正方向，大小为 currentForce
         rb.AddForce(Vector3.up * currentForce);
-        UnityEngine.Debug.Log(currentForce);
+        //UnityEngine.Debug.Log(currentForce);
         if (horizontalInput1 != 0)
         {
             MoveWithController();
@@ -140,8 +172,36 @@ public class Player : MonoBehaviour
 
     }
 
+    private void GameOver()
+    {
+        UnityEngine.Debug.Log("Game Over");
+        // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    private void GameWin()
+    {
+        UnityEngine.Debug.Log("Game Win");
+        // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
+    private void TakeDamage(int damage)
+    {
+        currentLives = currentLives - damage;
+        UpdateLifeSprite();
+        if (currentLives <= 0)
+        {
+            GameOver();
+        }
+    }
+    private void UpdateLifeSprite()
+    {
+        if (currentLives >= 1 && currentLives <= lifeSprites.Length)
+        {
+            spriteRenderer.sprite = lifeSprites[currentLives - 1];
+        }
+    }
 
 
 
@@ -159,7 +219,7 @@ public class Player : MonoBehaviour
         //transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * smoothness);
         // 限制角色移动范围
        
-        Vector2 forceDirection = transform.right * horizontalInput1;
+        Vector2 forceDirection = Vector3.right * horizontalInput1;
         rb.AddForce(forceDirection.normalized * cspeed, ForceMode2D.Impulse);
 
     }
@@ -178,7 +238,7 @@ public class Player : MonoBehaviour
         //transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * smoothness);
         // 限制角色移动范围
 
-        Vector2 forceDirection = transform.right * horizontalInput1_Joystick;
+        Vector2 forceDirection = Vector3.right * horizontalInput1_Joystick;
         rb.AddForce(forceDirection.normalized * cspeed_Joystick, ForceMode2D.Impulse);
 
     }
@@ -193,16 +253,16 @@ public class Player : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Plant")) {
-            //speedRate = 3 * speedRateTemp;
+            
             currentForce = 0f;
-            forceIncreaseRate = -forceIncreaseRate*20;
+            //forceIncreaseRate = -forceIncreaseRate*20;
         }
 
     }
     private void OnTriggerExit2D(Collider2D other) {
-        //Debug.Log("out");
+        
         if (other.CompareTag("Plant")) {
-            //speedRate = speedRateTemp;
+            
             forceIncreaseRate = forceIncreaseRateTemp;
         }
     }
@@ -215,6 +275,28 @@ public class Player : MonoBehaviour
             forceIncreaseRate = -forceIncreaseRate * 5;
 
         }
+
+
+        if (collision.gameObject.CompareTag("Stone") && !isHit)
+        {
+
+            if (speed >= 1.2f)
+            {
+                audio1.playhit(3f);
+                TakeDamage(2);
+
+
+            }
+            else if (speed >= 0.7f)
+            {
+                audio1.playhit(2f);
+                TakeDamage(1);
+
+            }
+            isHit = true;
+
+        }
+
 
     }
 

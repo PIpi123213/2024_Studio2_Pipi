@@ -6,15 +6,15 @@ public class moveBoatjoystick : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    public float reduceForcerate = 0.001f;
-    public float speedRate = 4f;
-    private float rspeedRate = 4f;
+    public float reduceForcerate_Joystick = 0.001f;
+    public float speedRate_Joystick = 4f;
+    private float rspeedRate_Joystick = 4f;
 
 
-    private float leftforce = 0f;
-    private float leftdirection = 0f;
-    private float rightdirection = 0f;
-    private float rightforce = 0f;
+    private float leftforce_Joystick = 0f;
+    private float leftdirection_Joystick = 0f;
+    private float rightdirection_Joystick = 0f;
+    private float rightforce_Joystick = 0f;
    
 
 
@@ -23,9 +23,7 @@ public class moveBoatjoystick : MonoBehaviour
     private Transform left;
     private Transform right;
 
-    private float targetScale;
-    private Vector3 initialScale;
-    private int scaleChangeCounter = 0;
+   
     private float forceCurrent = 10f;
 
     
@@ -35,8 +33,8 @@ public class moveBoatjoystick : MonoBehaviour
         left = transform.Find("left");
         right = transform.Find("right");
 
-        initialScale = transform.localScale;
-        rspeedRate = speedRate;
+
+        rspeedRate_Joystick = speedRate_Joystick;
     }
 
     void FixedUpdate()
@@ -49,40 +47,40 @@ public class moveBoatjoystick : MonoBehaviour
     }
     private void Update()
     {
-       
 
 
 
 
 
 
-        leftforce = input11.speed / speedRate;
-        leftdirection = input11.direction;
 
-        rightforce = input11.speed2 / speedRate;
-        rightdirection = input11.direction2;
+        leftforce_Joystick = input11.speed / speedRate_Joystick;
+        leftdirection_Joystick = input11.direction;
 
-        if (leftforce >=0f)
+        rightforce_Joystick = input11.speed2 / speedRate_Joystick;
+        rightdirection_Joystick = input11.direction2;
+
+        if (leftforce_Joystick >= 0f)
         {
            
             
             float min = 0f;
             float max = 1f;
-            leftforce = Mathf.Clamp(leftforce, min, max);
+            leftforce_Joystick = Mathf.Clamp(leftforce_Joystick, min, max);
            // Debug.Log(" leftforce: " + leftforce);
-            ApplyForce(left, leftdirection, leftforce);
+            ApplyForce(left, leftdirection_Joystick, leftforce_Joystick);
         }
         
-        if (rightforce >=0f)
+        if (rightforce_Joystick >= 0f)
         {
             
             
             float min = 0f;
             float max = 1f;
-            rightforce = Mathf.Clamp(rightforce, min, max);
-            ApplyForce(right, -rightdirection, rightforce);
+            rightforce_Joystick = Mathf.Clamp(rightforce_Joystick, min, max);
+            ApplyForce(right, -rightdirection_Joystick, rightforce_Joystick);
             
-            //Debug.Log(" rightforce: " + rightforce);
+            
         }
        
     }
@@ -106,7 +104,7 @@ public class moveBoatjoystick : MonoBehaviour
         }
 
         if (other.gameObject.CompareTag("Plant")) {
-            speedRate = rspeedRate*2.0f;
+            speedRate_Joystick = rspeedRate_Joystick * 2.0f;
         }
 
 
@@ -117,7 +115,7 @@ public class moveBoatjoystick : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other) {
         Debug.Log("out");
         if (other.CompareTag("Plant")) {
-            speedRate = rspeedRate;
+            speedRate_Joystick = rspeedRate_Joystick;
         }
     }
 
