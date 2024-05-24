@@ -7,7 +7,7 @@ using UnityEngine.Timeline;
 public class GameManager : MonoBehaviour
 {
     // Start is called before the first frame update private static arduino123 instance;
-
+    public int targetFrameRate = 24;
     public static GameManager instance;
     public enum GameMode
     {
@@ -94,7 +94,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        QualitySettings.vSyncCount = 0; // ½ûÓÃ VSync
+        Application.targetFrameRate = targetFrameRate;
     }
 
     // Update is called once per frame

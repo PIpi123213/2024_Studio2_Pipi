@@ -15,6 +15,11 @@ public class Player : MonoBehaviour
     public float speedRate;
     private float horizontalInput1;
     private float cspeed;
+
+    public float speedRate_Joystick;
+    private float horizontalInput1_Joystick;
+    private float cspeed_Joystick;
+
     public float smoothness = 10.0f;
     private float forceCurrent;
     private Rigidbody2D rb;
@@ -25,6 +30,7 @@ public class Player : MonoBehaviour
     private float currentForce = 5f;
 
     public float rotationSpeed = 1f;
+    public float rotationSpeed_Joystick = 1f;
     private float returnSpeed = 0.5f;
 
     void Start()
@@ -46,6 +52,20 @@ public class Player : MonoBehaviour
 
         }
 
+        if (characterChoice == Char.Option1)
+        {
+            cspeed_Joystick = input11.speed / speedRate_Joystick;
+            horizontalInput1_Joystick = input11.direction;
+        }
+        else
+        {
+            cspeed_Joystick = input11.speed2 / speedRate_Joystick;
+            horizontalInput1_Joystick = input11.direction2;
+
+        }
+        
+
+
         Quaternion currentRotation = transform.rotation;
         float currentZ = currentRotation.eulerAngles.z;
         Quaternion targetRotation;
@@ -56,36 +76,76 @@ public class Player : MonoBehaviour
             targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, targetZ);
             transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, 1); // 直接设置为目标旋转，避免 Lerp 的缓动效果
         }
-        UnityEngine.Debug.Log(cspeed);
+        //UnityEngine.Debug.Log(cspeed);
 
-        if (cspeed <= 0.04f) {
+
+        if (cspeed_Joystick != 0)
+        {
+            // 当 cspeed 非零时，按固定速度调整 z 轴旋转，方向由 cspeed 的正负决定
+            float targetZ = currentZ + (horizontalInput1_Joystick * rotationSpeed_Joystick * Time.deltaTime);
+            targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, targetZ);
+            transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, 1); // 直接设置为目标旋转，避免 Lerp 的缓动效果
+        }
+        //UnityEngine.Debug.Log(cspeed_Joystick);
+
+        if (cspeed_Joystick <= 0.3f && horizontalInput1 == 0f)
+        {
+            targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 0);
+            transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, returnSpeed * Time.deltaTime);
+        }
+
+
+
+        if (cspeed <= 0.04f&&horizontalInput1_Joystick==0f) {
             targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 0);
             transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, returnSpeed * Time.deltaTime);
         }
         // 当 cspeed 为零时，平滑地将 z 轴旋转恢复到 0
         //
 
+       
 
+
+
+       
+        
+        
+    }
+
+    private void FixedUpdate()
+    {
+        //UnityEngine.Debug.Log(currentForce);
 
         currentForce += forceIncreaseRate * Time.deltaTime;
 
         // 限制当前施加的力不超过最大值
-        currentForce = Mathf.Clamp(currentForce, 2f, forceMagnitude);
+        currentForce = Mathf.Clamp(currentForce, 3f, forceMagnitude);
 
-       
+
 
         // 施加力，方向为世界空间中的 Y 轴正方向，大小为 currentForce
         rb.AddForce(Vector3.up * currentForce);
+        UnityEngine.Debug.Log(currentForce);
+        if (horizontalInput1 != 0)
+        {
+            MoveWithController();
+        }
+        if (horizontalInput1_Joystick != 0)
+        {
+            MoveWithController_Joystick();
+        }
 
 
 
 
-        MoveWithController();
     }
 
-  
 
-   
+
+
+
+
+
 
     private void MoveWithController() {
         
@@ -103,7 +163,26 @@ public class Player : MonoBehaviour
         rb.AddForce(forceDirection.normalized * cspeed, ForceMode2D.Impulse);
 
     }
-   
+
+
+    private void MoveWithController_Joystick()
+    {
+
+
+        float distanceToMove = horizontalInput1_Joystick * cspeed_Joystick * 10 * Time.deltaTime;
+
+        // 创建一个新的位置向量
+        Vector3 newPosition = transform.position + new Vector3(distanceToMove, 0f, 0f);
+
+        // 通过插值方法逐渐改变角色位置
+        //transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * smoothness);
+        // 限制角色移动范围
+
+        Vector2 forceDirection = transform.right * horizontalInput1_Joystick;
+        rb.AddForce(forceDirection.normalized * cspeed_Joystick, ForceMode2D.Impulse);
+
+    }
+
 
 
 
@@ -115,7 +194,8 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("Plant")) {
             //speedRate = 3 * speedRateTemp;
-            forceIncreaseRate = -forceIncreaseRate*3;
+            currentForce = 0f;
+            forceIncreaseRate = -forceIncreaseRate*20;
         }
 
     }
@@ -127,8 +207,26 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
 
+        if (collision.gameObject.CompareTag("Stone"))
+        {
+            forceIncreaseRate = -forceIncreaseRate * 5;
 
+        }
+
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Stone"))
+        {
+
+            forceIncreaseRate = forceIncreaseRateTemp;
+
+        }
+    }
 
 
 
