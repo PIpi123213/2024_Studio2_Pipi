@@ -35,16 +35,12 @@ public class input11 : MonoBehaviour
         if (Mathf.Abs(leftStickRotation) >= angleThreshold)
         {
             direction = Mathf.Sign(leftStickRotation);
-            speed = Mathf.Abs(leftStickSpeed) * 6.5f;
+            speed = Mathf.Abs(leftStickSpeed) * 8f;
             // ¥Ú”°◊Û“°∏À–≈œ¢
            
 
                 PlayerController.isMoveL = true;
-
-           
-            
-                
-            
+ 
         }
         else
         {

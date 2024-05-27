@@ -10,6 +10,10 @@ TagManager:
   - Border
   - Police
   - Waterfall
+  - END
+  - PointA
+  - PointB
+  - PointC
   layers:
   - Default
   - TransparentFX

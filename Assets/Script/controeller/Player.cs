@@ -52,6 +52,9 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateLifeSprite();
         audio1 = GetComponent<playerAudio>();
+
+
+        GameManager.iswinscene2=0;
     }
 
     // Update is called once per frame
@@ -86,6 +89,11 @@ public class Player : MonoBehaviour
             horizontalInput1_Joystick = input11.direction2;
 
         }
+
+
+
+        
+
 
         Vector2 velocity = rb.velocity;
 
@@ -256,6 +264,12 @@ public class Player : MonoBehaviour
             
             currentForce = 0f;
             //forceIncreaseRate = -forceIncreaseRate*20;
+        }
+
+
+        if (other.gameObject.CompareTag("END")) 
+        {
+            GameManager.iswinscene2++;
         }
 
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.Timeline;
 
 public class GameManager : MonoBehaviour
@@ -9,6 +10,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update private static arduino123 instance;
     public int targetFrameRate = 24;
     public static GameManager instance;
+    public static int iswinscene2 = 0;
+
+
+
+
     public enum GameMode
     {
         GamePlay,
@@ -122,7 +128,37 @@ public class GameManager : MonoBehaviour
         }
 
 
+        if (iswinscene2 == 2)
+        {
+            GameWin();
+
+        }
+
+
+
 
 
     }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over");
+        // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
+
+
+
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GameWin()
+    {
+        Debug.Log("Game Win");
+        // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+
+
+
 }
