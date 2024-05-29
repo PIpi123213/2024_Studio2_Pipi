@@ -8,6 +8,9 @@ public class PoliceMove : MonoBehaviour
     public float speed = 5f; // 移动速度
     private bool movingRight = true; // 当前移动方向
     private float currentspeed = 0f;
+
+
+
     private void Start()
     {
         currentspeed = speed;

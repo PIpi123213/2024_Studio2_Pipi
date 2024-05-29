@@ -40,13 +40,14 @@ public class PlayerScene1 : MonoBehaviour
         {
             T_hand = null;
         }
-        T_hand.gameObject.SetActive(false);
-        T_handtransform = T_hand.transform.Find("R_shoulder");
-        Current_T_handtransform = T_handtransform;
-
+       
         if (characterChoice == Char.Option1)
         {
             fishingLine = null;
+            T_hand.gameObject.SetActive(false);
+            T_handtransform = T_hand.transform.Find("R_shoulder");
+            Current_T_handtransform = T_handtransform;
+
         }
 
 
@@ -155,6 +156,8 @@ public class PlayerScene1 : MonoBehaviour
         if(characterChoice == Char.Option2)
         {
             fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick )*0.7f;
+            fishingLine.currentropeLength = Mathf.Clamp(fishingLine.currentropeLength, 140f, 380f);
+
             MoveWithControllerPlayer2_Joystick();
 
 
