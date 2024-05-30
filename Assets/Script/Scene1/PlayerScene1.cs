@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScene1 : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class PlayerScene1 : MonoBehaviour
     private float previousRotation = 0f;
 
     public FishingLine fishingLine;
+    public Slider slider;
+    public float sliderRate;
+    private bool isDiging = false;
 
 
 
@@ -97,17 +101,45 @@ public class PlayerScene1 : MonoBehaviour
 
         }
 
-        if (cspeed_Joystick > 0f && characterChoice == Char.Option1)
+        if (cspeed_Joystick > 0f && characterChoice == Char.Option1 &&isMoving)
         {
             MoveWithControllerPlayer1_Joystick();
 
         }
-        if(characterChoice == Char.Option1)
+        if (cspeed > 20f / speedRate && characterChoice == Char.Option1 && isMoving) {
+            MoveWithControllerPlayer1();
+
+        }
+
+
+        if(characterChoice == Char.Option1 ) {
+          
+
+                slider.value -= sliderRate / (cspeed*10f + 1 + cspeed_Joystick);
+
+          
+        }
+
+
+
+
+
+
+
+
+        if (characterChoice == Char.Option1)
         {
+
+
+
+
+
             if (horizontalInput1_Joystick < 0f)//1号玩家JOystick
             {
-
+                isDiging = true;
                 isMoving = true;
+                Find.isMoving = true;
+                Find.isDiging = true;
                 animator.SetBool("isDiging", true);
                 lastInputTime = Time.time;
                 T_hand.gameObject.SetActive(true);
@@ -116,9 +148,14 @@ public class PlayerScene1 : MonoBehaviour
             }
             else if (horizontalInput1_Joystick == 0f)
             {
+
                 if (Time.time - lastInputTime > inputTimeout)
                 {
+                    //Debug.Log("666666");
+                    Find.isMoving = true;
+                    isDiging = false;
                     isMoving = true;
+                    Find.isDiging = false;
                     animator.SetBool("isDiging", true);
                     T_hand.gameObject.SetActive(true);
                     T_handtransform = Current_T_handtransform;
@@ -129,6 +166,9 @@ public class PlayerScene1 : MonoBehaviour
             }
             else
             {
+                Find.isDiging = false;
+                Find.isMoving = false;
+                isDiging = false;
                 isMoving = false;
                 animator.SetBool("isDiging", false);
                 T_hand.gameObject.SetActive(false);
@@ -136,6 +176,48 @@ public class PlayerScene1 : MonoBehaviour
                 lastInputTime = Time.time;
 
             }
+
+
+
+
+
+            if (horizontalInput1 < 0f)//1号玩家JOystick
+            {
+                isDiging = true;
+                Find.isMoving = true;
+                isMoving = true;
+                animator.SetBool("isDiging", true);
+                lastInputTime = Time.time;
+                T_hand.gameObject.SetActive(true);
+                //animator.SetFloat("DigSpeed", cspeed_Joystick);
+                T_handtransform = Current_T_handtransform;
+            }
+            else if (horizontalInput1 ==0f) {
+                if (Time.time - lastInputTime > inputTimeout) {
+                    Find.isMoving = true;
+                    isDiging = false;
+                    isMoving = true;
+                    animator.SetBool("isDiging", true);
+                    T_hand.gameObject.SetActive(true);
+                    T_handtransform = Current_T_handtransform;
+
+
+                }
+
+            }
+            else {
+                Find.isMoving = false;
+                isDiging = false;
+                isMoving = false;
+                animator.SetBool("isDiging", false);
+                T_hand.gameObject.SetActive(false);
+                animator.SetFloat("PushupSpeed", cspeed * 3f);
+                lastInputTime = Time.time;
+
+            }
+
+
+
         }
        
 
@@ -156,11 +238,12 @@ public class PlayerScene1 : MonoBehaviour
         if(characterChoice == Char.Option2)
         {
             fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick )*0.7f;
+            fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1f;
             fishingLine.currentropeLength = Mathf.Clamp(fishingLine.currentropeLength, 140f, 380f);
 
             MoveWithControllerPlayer2_Joystick();
 
-
+            MoveWithControllerPlayer2();
 
 
 
@@ -236,10 +319,56 @@ public class PlayerScene1 : MonoBehaviour
 
         // 计算新的旋转角度
 
-        if (cspeed_Joystick >= 0f)
+        if (cspeed_Joystick >= 30f/speedRate)
         {
             fishingLine.point.Rotate(0f, 0f, rotationAmount, Space.Self);
             
+
+            /*  Quaternion currentRotation = T_handtransform.rotation;
+
+              // 计算目标旋转
+              Quaternion targetRotation = currentRotation * Quaternion.Euler(0f, 0f, rotationAmount);
+
+              // 使用插值方法逐渐改变物体的旋转
+              T_handtransform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * cspeed_Joystick *30f);*/
+        }
+
+    }
+
+
+    private void MoveWithControllerPlayer1() {
+
+
+        float rotationAmount = horizontalInput1 * cspeed * Time.deltaTime * 1200f;
+
+        // 计算新的旋转角度
+
+        if (cspeed >= 20f / speedRate) {
+
+            T_handtransform.Rotate(0f, 0f, rotationAmount, Space.Self);
+
+
+            /*  Quaternion currentRotation = T_handtransform.rotation;
+
+              // 计算目标旋转
+              Quaternion targetRotation = currentRotation * Quaternion.Euler(0f, 0f, rotationAmount);
+
+              // 使用插值方法逐渐改变物体的旋转
+              T_handtransform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * cspeed_Joystick *30f);*/
+        }
+
+    }
+
+    private void MoveWithControllerPlayer2() {
+
+
+        float rotationAmount = -horizontalInput1 * cspeed * Time.deltaTime * 800f;
+
+        // 计算新的旋转角度
+
+        if (cspeed>= 20f / speedRate) {
+            fishingLine.point.Rotate(0f, 0f, rotationAmount, Space.Self);
+
 
             /*  Quaternion currentRotation = T_handtransform.rotation;
 

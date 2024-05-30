@@ -31,7 +31,7 @@ public class FishingLine : MonoBehaviour
 
     public Slider score;
 
-
+    
 
 
 
@@ -69,7 +69,8 @@ public class FishingLine : MonoBehaviour
         Color originalColor2 = startColor2;
         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
         Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
-        float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.07f;
+        float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.05f;
+        //Debug.Log(startSaturation);
         currentSaturation = Mathf.Lerp(s, startSaturation*1.2f , 5f * Time.deltaTime);
         currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
         Color newColor = Color.HSVToRGB(h, currentSaturation, v);
@@ -126,8 +127,9 @@ public class FishingLine : MonoBehaviour
             // 检查计时器是否达到阈值时长
             if (timer >= duration&&currentSaturation>=0.75f)
             {
-                Debug.Log("Saturation has been above the threshold for 1 second");
+                //Debug.Log("Saturation has been above the threshold for 1 second");
                 // 触发你需要的逻辑，例如重置计时器
+                //GameManager.instance.GameOver();
                 timer = 0.0f;
             }
            
