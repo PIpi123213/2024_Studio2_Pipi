@@ -9322,6 +9322,8 @@ MonoBehaviour:
   T_hand: {fileID: 1615123928}
   isMoving: 0
   fishingLine: {fileID: 0}
+  slider: {fileID: 0}
+  sliderRate: 0
 --- !u!1001 &2455737131857962086
 PrefabInstance:
   m_ObjectHideFlags: 0
