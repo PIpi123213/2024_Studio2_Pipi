@@ -13,7 +13,8 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI dialogueLineText;
     public GameObject spacebar;*/
 
-
+    private bool isScrolling = false;
+    public float textSpeed;
 
 
     void Awake()
@@ -70,6 +71,7 @@ public class UIManager : MonoBehaviour
     public void ToggleDialogueBox(GameObject _dialogueBox, bool _isActive)
     {
         _dialogueBox.SetActive(_isActive);
+
     }
 
     public void ToggleSpaceBar(GameObject _spacebar, bool _isActive)
@@ -80,11 +82,57 @@ public class UIManager : MonoBehaviour
     public void SetupDialogue(GameObject _dialogueBox, TextMeshProUGUI _characterNameText, TextMeshProUGUI _dialogueLineText, string _name, string _line)
     {
         _characterNameText.text = _name;
-        _dialogueLineText.text = _line;
+       // _dialogueLineText.text = _line;
 
         ToggleDialogueBox(_dialogueBox, true);
+        StartCoroutine(ScrollingText(_dialogueLineText, _line));
+    }
+    public void SetupDialogue_noScrolling(GameObject _dialogueBox, TextMeshProUGUI _characterNameText, TextMeshProUGUI _dialogueLineText, string _name, string _line)
+    {
+        _characterNameText.text = _name;
+         _dialogueLineText.text = _line;
+
+        ToggleDialogueBox(_dialogueBox, true);
+        //StartCoroutine(ScrollingText(_dialogueLineText, _line));
     }
 
+
+    private IEnumerator ScrollingText(TextMeshProUGUI dialogueLineText, string line)
+    {
+        isScrolling = true;
+        dialogueLineText.text = "";
+        int index = 0;
+        while (index < line.Length)
+        {
+            if (line[index] == '<')
+            {
+                // 检查富文本标签
+                int closeIndex = line.IndexOf('>', index);
+                if (closeIndex != -1)
+                {
+                    // 添加完整的富文本标签
+                    dialogueLineText.text += line.Substring(index, closeIndex - index + 1);
+                    index = closeIndex + 1;
+                }
+                else
+                {
+                    // 如果没有找到闭合标签，直接添加剩余字符
+                    dialogueLineText.text += line[index];
+                    index++;
+                }
+            }
+            else
+            {
+                dialogueLineText.text += line[index];
+                index++;
+                yield return new WaitForSeconds(textSpeed);
+            }
+        }
+
+        isScrolling = false;
+
+
+    }
 
 
 

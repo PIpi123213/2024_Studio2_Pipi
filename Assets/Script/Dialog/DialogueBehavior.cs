@@ -23,6 +23,7 @@ public class DialogueBehavior : PlayableBehaviour
     private TextMeshProUGUI characterNameText;
     private TextMeshProUGUI dialogueLineText;
     private GameObject spacebar;
+    public bool ifScrolling = true;
     public void Initialize(GameObject _dialogueBox)
     {
         dialogueBox = _dialogueBox;
@@ -43,10 +44,31 @@ public class DialogueBehavior : PlayableBehaviour
     {
         if(isClipPlayed==false && info.weight > 0)
         {
-            UIManager.instance.SetupDialogue(dialogueBox, characterNameText, dialogueLineText,characterName, dialogueLine);
+            if (ifScrolling)
+            {
+                UIManager.instance.SetupDialogue(dialogueBox, characterNameText, dialogueLineText, characterName, dialogueLine);
+
+            }
+            else
+            {
+                UIManager.instance.SetupDialogue_noScrolling(dialogueBox, characterNameText, dialogueLineText, characterName, dialogueLine);
+            }
+
+
+
+
+
+
+
+            
             if (requirePause)
             {
                 pauseScheduled = true;
+                UIManager.instance.ToggleSpaceBar(spacebar,true);
+            }
+            else
+            {
+                UIManager.instance.ToggleSpaceBar(spacebar, false);
             }
             isClipPlayed = true;
             
@@ -90,7 +112,7 @@ public class DialogueBehavior : PlayableBehaviour
 
             if (closestTime != double.MaxValue)
             {
-                Debug.Log("isplay2");
+                //Debug.Log("isplay2");
                 GameManager.instance.SetClosestClipEndTime(playableDirector, closestTime);
             }
         }
@@ -127,7 +149,7 @@ public class DialogueBehavior : PlayableBehaviour
 
         if (closestTime != double.MaxValue)
         {
-            Debug.Log("Next clip found");
+            //Debug.Log("Next clip found");
             GameManager.instance.SetClosestClipEndTime(playableDirector, closestTime);
         }
         if (pauseScheduled)

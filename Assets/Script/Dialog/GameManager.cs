@@ -18,13 +18,19 @@ public class GameManager : MonoBehaviour
     public enum GameMode
     {
         GamePlay,
-        DialogueMoment
+        DialogueMoment,
+        CGMoment
     }
     public GameMode gameMode;
     private PlayableDirector currentplayDirector;
     private GameObject currentspacebar;
     private GameObject currentdialoguebox;
     private double closestClipEndTime;
+    private arduino123 _arduino123;
+    private input11 _input11;
+
+
+
     private void Awake()
     {
         if (instance == null)
@@ -45,7 +51,9 @@ public class GameManager : MonoBehaviour
         // 确保控制器对象在加载新场景时不被销毁
         DontDestroyOnLoad(gameObject);
         gameMode = GameMode.GamePlay;
-        Application.targetFrameRate = 30;
+        //Application.targetFrameRate = 30;
+        _arduino123 = GetComponent<arduino123>();
+        _input11 = GetComponent<input11>();
     }
     public void PauseTimeline(PlayableDirector _playableDirector, GameObject spacebar,GameObject dialoguebox)
     {
@@ -133,6 +141,28 @@ public class GameManager : MonoBehaviour
             GameWin();
 
         }
+
+
+
+        if(gameMode == GameMode.GamePlay)
+        {
+            _arduino123.enabled = true;
+            _input11.enabled = true;
+
+
+        }
+        else
+        {
+            _arduino123.enabled = false;
+            _input11.enabled = false;
+
+
+        }
+
+
+
+
+
 
 
 

@@ -27,7 +27,7 @@ public class PlayerScene1 : MonoBehaviour
     public bool isMoving;
     private float inputTimeout = 0.7f;
     private float lastInputTime;
-    private float previousRotation = 0f;
+   
 
     public FishingLine fishingLine;
 
