@@ -14,6 +14,7 @@ TagManager:
   - PointA
   - PointB
   - PointC
+  - Hand
   layers:
   - Default
   - TransparentFX
