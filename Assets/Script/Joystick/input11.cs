@@ -18,6 +18,8 @@ public class input11 : MonoBehaviour
     public static float direction2;
     public static float speed2;
 
+    //public float deadZone = 0.1f;
+
     public float angleThreshold = 5f;
     void Update()
     {
@@ -30,7 +32,16 @@ public class input11 : MonoBehaviour
         float rightStickRotation = GetStickRotation(rightStickInput, prevRightStickInput);
         float leftStickSpeed = GetStickSpeed(leftStickInput);
         float rightStickSpeed = GetStickSpeed(rightStickInput);
-        
+       /* if (leftStickInput.magnitude < deadZone)
+        {
+            leftStickInput = Vector2.zero;
+        }
+
+        // Apply dead zone to right stick input
+        if (rightStickInput.magnitude < deadZone)
+        {
+            rightStickInput = Vector2.zero;
+        }*/
         // ´òÓ¡×óÒ¡¸ËÐÅÏ¢
         if (Mathf.Abs(leftStickRotation) >= angleThreshold)
         {

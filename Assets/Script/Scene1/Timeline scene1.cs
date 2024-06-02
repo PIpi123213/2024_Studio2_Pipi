@@ -4,23 +4,30 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
-public class Timeline1 : MonoBehaviour
+public class Timelinescene1 : MonoBehaviour
 {
     // Start is called before the first frame update
     public PlayableDirector playableDirector1; // Reference to the PlayableDirector
     private bool isplayed1 = false;
- 
+    private bool play2schel = false;
     public PlayableDirector playableDirector2;
     private bool isplayed2 = false;
+    private bool play3schel = false;
+    public PlayableDirector playableDirector3;
+    private bool isplayed3 = false;
+    public GameObject canvas;
+    public static bool isGameStart = false;
+    public static bool isGameStart2 = false;
+
     void Start()
     {
         if (playableDirector1 != null)
         {
             // ¶©ÔÄstoppedÊÂ¼þ
             playableDirector1.stopped += OnPlayableDirectorStopped;
-           
+
         }
-       
+        canvas.SetActive(false);
     }
 
 
@@ -29,25 +36,25 @@ public class Timeline1 : MonoBehaviour
     void Update()
     {
         // Check the custom condition
-        if (Uicontroller.isStart&&!isplayed1)
+        if (!isplayed1)
         {
             PlayTimeline(playableDirector1);
-            isplayed1=true;
+            isplayed1 = true;
             GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
         }
-        if (Uicontroller.isStartGame && !isplayed2)
+        if (play2schel&&!isplayed2)
         {
             PlayTimeline(playableDirector2);
             isplayed2 = true;
         }
 
 
-      
+
 
 
     }
 
-   
+
 
     private void PlayTimeline(PlayableDirector _playableDirector)
     {
@@ -55,6 +62,7 @@ public class Timeline1 : MonoBehaviour
         if (_playableDirector != null)
         {
             _playableDirector.Play();
+           
             //GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
         }
     }
@@ -64,10 +72,11 @@ public class Timeline1 : MonoBehaviour
         if (director == playableDirector1)
         {
             //Uicontroller.isStart = true
-            Uicontroller.isStartGame = true;
-            Debug.Log("Timeline1 has ended.");
+            play2schel = true;
+            isGameStart = true;
+
             GameManager.instance.gameMode = GameManager.GameMode.GamePlay;
-           
+
         }
     }
 
@@ -85,10 +94,6 @@ public class Timeline1 : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
-
-
-
 
 
 

@@ -7,6 +7,7 @@ public class Uicontroller : MonoBehaviour
 {
     // Start is called before the first frame update
     public static int playerReady = 0;
+    public static int played = 0;
     public GameObject Firstcanvas;
     public float fadeDuration = 2.0f; // 渐隐持续时间
     private CanvasGroup canvasGroup;
@@ -37,8 +38,19 @@ public class Uicontroller : MonoBehaviour
             if (_camera.fieldOfView >= 24.9f)
             {
                 isStart = true;
+                
             }
         }
+
+        if (played >= 2)
+        {
+            Debug.Log("111");
+            GameManager.instance.ResumeTimeline();
+        }
+
+
+
+
     }
 
     public void StartFading()

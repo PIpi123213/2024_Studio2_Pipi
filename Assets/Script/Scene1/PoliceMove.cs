@@ -19,8 +19,12 @@ public class PoliceMove : MonoBehaviour
     void Update()
     {
         // ÒÆ¶¯ÎïÌå
-        float move = speed * Time.deltaTime;
-        transform.Translate(movingRight ? move : -move, 0, 0);
+        if (Timelinescene1.isGameStart2)
+        {
+            float move = speed * Time.deltaTime;
+            transform.Translate(movingRight ? move : -move, 0, 0);
+        }
+       
         
     }
 

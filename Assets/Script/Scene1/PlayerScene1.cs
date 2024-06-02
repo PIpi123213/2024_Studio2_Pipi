@@ -127,7 +127,7 @@ public class PlayerScene1 : MonoBehaviour
 
 
 
-        if (characterChoice == Char.Option1)
+        if (characterChoice == Char.Option1 && Timelinescene1.isGameStart)
         {
 
 
@@ -235,7 +235,7 @@ public class PlayerScene1 : MonoBehaviour
 
 
         
-        if(characterChoice == Char.Option2)
+        if(characterChoice == Char.Option2 && Timelinescene1.isGameStart)
         {
             fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick )*0.7f;
             fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1f;
@@ -286,30 +286,7 @@ public class PlayerScene1 : MonoBehaviour
 
 
     
-    private void MoveWithControllerPlayer1_Joystick()
-    {
-
-
-        float rotationAmount = horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime * 1200f;
-
-        // 计算新的旋转角度
-       
-        if (cspeed_Joystick >= 0f)
-        {
-
-            T_handtransform.Rotate(0f, 0f, rotationAmount, Space.Self);
-
-
-          /*  Quaternion currentRotation = T_handtransform.rotation;
-
-            // 计算目标旋转
-            Quaternion targetRotation = currentRotation * Quaternion.Euler(0f, 0f, rotationAmount);
-
-            // 使用插值方法逐渐改变物体的旋转
-            T_handtransform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * cspeed_Joystick *30f);*/
-        }
-
-    }
+  
 
     private void MoveWithControllerPlayer2_Joystick()
     {
@@ -334,7 +311,30 @@ public class PlayerScene1 : MonoBehaviour
         }
 
     }
+    private void MoveWithControllerPlayer1_Joystick()
+    {
 
+
+        float rotationAmount = horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime * 1200f;
+
+        // 计算新的旋转角度
+
+        if (cspeed_Joystick >= 0f)
+        {
+
+            T_handtransform.Rotate(0f, 0f, rotationAmount, Space.Self);
+
+
+            /*  Quaternion currentRotation = T_handtransform.rotation;
+
+              // 计算目标旋转
+              Quaternion targetRotation = currentRotation * Quaternion.Euler(0f, 0f, rotationAmount);
+
+              // 使用插值方法逐渐改变物体的旋转
+              T_handtransform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * cspeed_Joystick *30f);*/
+        }
+
+    }
 
     private void MoveWithControllerPlayer1() {
 

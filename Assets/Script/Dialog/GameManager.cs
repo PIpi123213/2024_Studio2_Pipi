@@ -144,7 +144,7 @@ public class GameManager : MonoBehaviour
 
 
 
-        if(gameMode == GameMode.GamePlay)
+        if(gameMode == GameMode.GamePlay || gameMode == GameMode.DialogueMoment)
         {
             _arduino123.enabled = true;
             _input11.enabled = true;
