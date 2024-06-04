@@ -32,9 +32,9 @@ public class FishingLine : MonoBehaviour
     public Slider score;
 
     
+    public float sRate = 1.0f;
 
-
-
+    public GameObject key;
 
 
 
@@ -69,9 +69,9 @@ public class FishingLine : MonoBehaviour
         Color originalColor2 = startColor2;
         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
         Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
-        float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.05f;
+        float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.05f * sRate;
         //Debug.Log(startSaturation);
-        currentSaturation = Mathf.Lerp(s, startSaturation*1.2f , 5f * Time.deltaTime);
+        currentSaturation = Mathf.Lerp(s, startSaturation*1.2f , 2f * Time.deltaTime);
         currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
         Color newColor = Color.HSVToRGB(h, currentSaturation, v);
         //lineMaterial.SetColor("_Color1", newColor);
@@ -130,6 +130,7 @@ public class FishingLine : MonoBehaviour
                 //Debug.Log("Saturation has been above the threshold for 1 second");
                 // 触发你需要的逻辑，例如重置计时器
                 //GameManager.instance.GameOver();
+
                 timer = 0.0f;
             }
            
@@ -140,18 +141,28 @@ public class FishingLine : MonoBehaviour
             //timer = 0.0f;
         }
 
-       // Debug.Log(currentSaturation);
-
-        if(currentSaturation <= 0.15f)
+        // Debug.Log(currentSaturation);
+        if (score.value != 1)
         {
-            score.value += 0.0005f;
+            if (currentSaturation <= 0.12f)
+            {
+                score.value += 0.0005f;
+
+            }
+            else
+            {
+                score.value -= 0.0007f;
+            }
+        }
+       
+        if(score.value >= 1)
+        {
+            key.transform.position = Vector3.MoveTowards(key.transform.position, point.transform.position, 2f * Time.deltaTime);
+
+
+
 
         }
-        else
-        {
-            score.value -= 0.0005f;
-        }
-
 
 
 

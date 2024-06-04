@@ -4,25 +4,28 @@ using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
-public class Timelinescene1 : MonoBehaviour
+public class Timelinescene11 : MonoBehaviour
 {
     // Start is called before the first frame update
+
     public PlayableDirector playableDirector1; // Reference to the PlayableDirector
     private bool isplayed1 = false;
-    private bool play2schel = false;
+    public static bool play2schel = false;
     public PlayableDirector playableDirector2;
     private bool isplayed2 = false;
-    private bool play3schel = false;
-  
-    private bool isplayed3 = false;
-    public GameObject canvas;
+
+    public GameObject Line;
     public static bool isGameStart = false;
-    public static bool isGameStart2 = false;
-
-    public static int isReady_timeline2 = 0;
 
 
-    //public GameObject police;
+    public static int isWin_scene1 = 0;
+
+
+    public GameObject playerCanvas;
+  
+
+
+
     void Start()
     {
         if (playableDirector1 != null)
@@ -31,12 +34,13 @@ public class Timelinescene1 : MonoBehaviour
             playableDirector1.stopped += OnPlayableDirectorStopped;
 
         }
-        canvas.SetActive(false);
-        //police.SetActive(false);
+        Line.SetActive(false);
+
+        isWin_scene1 = 0;
+        play2schel = false;
         isGameStart = false;
-        isGameStart2 = false;
-        isReady_timeline2 = 0;
-       }
+
+    }
 
 
 
@@ -50,43 +54,35 @@ public class Timelinescene1 : MonoBehaviour
             isplayed1 = true;
             GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
         }
-        if (play2schel&&!isplayed2)
+        if (play2schel && !isplayed2  )
         {
+            Line.SetActive(false);
             PlayTimeline(playableDirector2);
             isplayed2 = true;
-           
+
         }
-     
 
-
-
-
-
-
-        if(GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && isReady_timeline2 == 2)
+        if (GameManager.instance.gameMode == GameManager.GameMode.CGMoment)
         {
-            GameManager.instance.ResumeTimeline();
-           // GameManager.instance.gameMode = GameManager.GameMode.GamePlay;
-            canvas.SetActive(true);
-            isReady_timeline2 = 0;
+            playerCanvas.SetActive(false);
         }
-
+        else
+        {
+            playerCanvas.SetActive(true);
+        }
 
 
 
 
 
     }
-
-
-
     private void PlayTimeline(PlayableDirector _playableDirector)
     {
         // Play the timeline
         if (_playableDirector != null)
         {
             _playableDirector.Play();
-           
+
             //GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
         }
     }
@@ -96,31 +92,20 @@ public class Timelinescene1 : MonoBehaviour
         if (director == playableDirector1)
         {
             //Uicontroller.isStart = true
-            play2schel = true;
+            //play2schel = true;
             isGameStart = true;
-
-            //GameManager.instance.gameMode = GameManager.GameMode.GamePlay;
+            Line.SetActive(true);
+            GameManager.instance.gameMode = GameManager.GameMode.GamePlay;
 
         }
         if (director == playableDirector2)
         {
-            //Uicontroller.isStart = true
-            play3schel = true;
 
-           // GameManager.instance.gameMode = GameManager.GameMode.GamePlay;
+            GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
 
         }
 
-
-
-
-
-
-
-
-
     }
-
     void OnDestroy()
     {
         if (playableDirector1 != null)
@@ -130,21 +115,10 @@ public class Timelinescene1 : MonoBehaviour
         }
     }
 
-    //public string sceneName;
+
     public void SwitchToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-    }
-
-    
-
-    public void SwitchGameModeto_GamePlay()
-    {
-        GameManager.instance.gameMode = GameManager.GameMode.GamePlay ;
-
-
-
-
     }
 
 }

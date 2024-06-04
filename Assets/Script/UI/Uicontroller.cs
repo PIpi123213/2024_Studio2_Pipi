@@ -26,6 +26,19 @@ public class Uicontroller : MonoBehaviour
         {
             Debug.LogError("CanvasGroup component is missing. Please add a CanvasGroup component to the Canvas.");
         }
+
+        playerReady = 0;
+        played = 0;
+        isStart = false;
+        isStartGame = false;
+
+
+
+
+
+
+
+
     }
 
     private void Update()
