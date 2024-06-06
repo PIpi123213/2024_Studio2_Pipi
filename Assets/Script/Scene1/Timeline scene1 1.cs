@@ -22,9 +22,17 @@ public class Timelinescene11 : MonoBehaviour
 
 
     public GameObject playerCanvas;
-  
+
+    public PlayableDirector player1Timeline;
+    public static bool player1win = false;
+    private bool isplayer1played = false;
 
 
+
+    public PlayableDirector player2Timeline;
+    public static bool player2win = false;
+    private bool isplayer2played = false;
+    public GameObject player2;
 
     void Start()
     {
@@ -39,7 +47,8 @@ public class Timelinescene11 : MonoBehaviour
         isWin_scene1 = 0;
         play2schel = false;
         isGameStart = false;
-
+        player1win = false;
+        player2win = false;
     }
 
 
@@ -56,9 +65,11 @@ public class Timelinescene11 : MonoBehaviour
         }
         if (play2schel && !isplayed2  )
         {
-            Line.SetActive(false);
+           
             PlayTimeline(playableDirector2);
             isplayed2 = true;
+            GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
+
 
         }
 
@@ -71,8 +82,18 @@ public class Timelinescene11 : MonoBehaviour
             playerCanvas.SetActive(true);
         }
 
-
-
+        if (player1win && !isplayer1played)
+        {
+            PlayTimeline(player1Timeline);
+            isplayer1played = true;
+        }
+        if (player2win && !isplayer2played)
+        {
+            Line.SetActive(false);
+            PlayTimeline(player2Timeline);
+            isplayer2played = true;
+            player2.SetActive(true);
+        }
 
 
     }
@@ -101,8 +122,7 @@ public class Timelinescene11 : MonoBehaviour
         if (director == playableDirector2)
         {
 
-            GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
-
+           
         }
 
     }

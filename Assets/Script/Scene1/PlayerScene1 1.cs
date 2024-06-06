@@ -135,9 +135,17 @@ public class PlayerScene11 : MonoBehaviour
         {
             Timelinescene11.isWin_scene1++;
             isWin = true;
+            if(characterChoice == Char.Option1)
+            {
+                Timelinescene11.player1win = true;
+            }
+            else
+            {
+                
+            }
         }
 
-
+        
 
 
 

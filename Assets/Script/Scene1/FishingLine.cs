@@ -157,8 +157,12 @@ public class FishingLine : MonoBehaviour
        
         if(score.value >= 1)
         {
-            key.transform.position = Vector3.MoveTowards(key.transform.position, point.transform.position, 2f * Time.deltaTime);
-
+            key.transform.position = Vector3.MoveTowards(key.transform.position, point.transform.position, 1.3f * Time.deltaTime);
+            if (key.transform.position == point.transform.position)
+            {
+                Timelinescene11.player2win = true;
+            }
+            
 
 
 

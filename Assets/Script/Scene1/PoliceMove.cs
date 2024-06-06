@@ -28,7 +28,7 @@ public class PoliceMove : MonoBehaviour
         // ÒÆ¶¯ÎïÌå
         if (Timelinescene11.isGameStart)
         {
-            if (Timelinescene11.isWin_scene1 == 1)
+            if (Timelinescene11.isWin_scene1 == 2)
             {
                 transform.position = Vector3.MoveTowards(transform.position, ploicePosition1, speed * Time.deltaTime);
                 if(ploicePosition1.x > transform.position.x)
