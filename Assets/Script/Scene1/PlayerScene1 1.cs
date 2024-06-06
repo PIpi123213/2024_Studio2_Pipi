@@ -89,7 +89,7 @@ public class PlayerScene11 : MonoBehaviour
         if (characterChoice == Char.Option1)
         {
             cspeed = arduino123.speed / speedRate;
-            horizontalInput1 = arduino123.direction;
+            horizontalInput1 = -arduino123.direction;
         }
         else
         {
@@ -262,10 +262,10 @@ public class PlayerScene11 : MonoBehaviour
 
         }
 
-        if (characterChoice == Char.Option2 && Timelinescene11.isGameStart)
+        if (characterChoice == Char.Option2 && Timelinescene11.isGameStart && slider.value < 1f)
         {
             fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick) * 0.7f;
-            fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1f;
+            fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1.2f;
             fishingLine.currentropeLength = Mathf.Clamp(fishingLine.currentropeLength, 140f, 380f);
 
             MoveWithControllerPlayer2_Joystick();

@@ -87,7 +87,7 @@ public class PlayerScene0 : MonoBehaviour
         Debug.Log(cspeed_Joystick);
         if (slider.value < 1f)
         {
-            slider.value = slider.value + (cspeed * horizontalInput1 / speedRate) + (cspeed_Joystick * horizontalInput1_Joystick / speedRate_Joystick)*Time.deltaTime;
+            slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick  / speedRate_Joystick)*Time.deltaTime;
 
         }
         else
@@ -131,7 +131,7 @@ public class PlayerScene0 : MonoBehaviour
                 isPlayed = true;
             }
             MoveWithControllerPlayer1();
-            animator.SetFloat("Speed", cspeed * 3f);
+            animator.SetFloat("Speed", cspeed * 0.8f);
         }
 
 
@@ -193,13 +193,13 @@ public class PlayerScene0 : MonoBehaviour
             {
 
                 animator.SetBool("isLeft", true);
-                animator.SetFloat("Speed", cspeed * 0.8f);
+                animator.SetFloat("Speed", cspeed * 0.8f + 1f);
 
             }
             else if (horizontalInput1 < 0f)
             {
                 animator.SetBool("isRight", true);
-                animator.SetFloat("Speed2", cspeed * 0.8f);
+                animator.SetFloat("Speed2", cspeed * 0.8f + 1f);
             }
             else
             {
@@ -256,7 +256,7 @@ public class PlayerScene0 : MonoBehaviour
     {
 
 
-        float rotationAmount = horizontalInput1 * cspeed * Time.deltaTime * 1200f;
+        float rotationAmount = horizontalInput1 * cspeed * Time.deltaTime * 800f;
 
         // 计算新的旋转角度
 

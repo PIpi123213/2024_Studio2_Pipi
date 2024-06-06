@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: DialogueClip(Clone)(Clone)
   m_EditorClassIdentifier: 
   template:
-    characterName: Y
+    characterName: T
     dialogueLine: "\uFF08\u5C31\u5403\u6912\u76D0\u571F\u8C46\u5427\uFF09"
     requirePause: 0
     ffScheduled: 1
@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Name: DialogueClip
   m_EditorClassIdentifier: 
   template:
-    characterName: Y
+    characterName: T
     dialogueLine: "\uFF08\u4ECA\u5929\u5F97\u591A\u5403\u70B9\uFF0C\u571F\u8C46\u5012\u662F\u4E5F\u597D\u5403\u7684\uFF09"
     requirePause: 0
     ffScheduled: 1
@@ -895,10 +895,10 @@ MonoBehaviour:
   m_Children: []
   m_Clips:
   - m_Version: 1
-    m_Start: 22.43333333333333
+    m_Start: 21.3
     m_ClipIn: 0
     m_Asset: {fileID: -6120529799293138641}
-    m_Duration: 3.633333333333333
+    m_Duration: 4.766666666666662
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6676292126394982492}
     m_EaseInDuration: 0

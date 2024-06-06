@@ -68,14 +68,33 @@ public class FishingLine : MonoBehaviour
         Color originalColor = startColor;
         Color originalColor2 = startColor2;
         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
-        Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
+        //Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
         float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.05f * sRate;
         //Debug.Log(startSaturation);
-        currentSaturation = Mathf.Lerp(s, startSaturation*1.2f , 2f * Time.deltaTime);
-        currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-        Color newColor = Color.HSVToRGB(h, currentSaturation, v);
-        //lineMaterial.SetColor("_Color1", newColor);
-        lineMaterial.color = newColor;
+        if(ropeLength - currentropeLength >= 0) {
+            currentSaturation = Mathf.Lerp(s, startSaturation * 1.2f, 2f * Time.deltaTime);
+            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+            Color newColor = Color.HSVToRGB(0, currentSaturation, v);
+            //lineMaterial.SetColor("_Color1", newColor);
+            lineMaterial.color = newColor;
+
+
+
+
+
+        }
+        else {
+            currentSaturation = Mathf.Lerp(s, startSaturation * 1.2f, 2f * Time.deltaTime);
+            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+            Color newColor = Color.HSVToRGB(48f/255f, currentSaturation, v);
+            //lineMaterial.SetColor("_Color1", newColor);
+            lineMaterial.color = newColor;
+
+        }
+
+
+
+
 
 
         /*if (Mathf.Abs(ropeLength - currentropeLength) >= fishLength)
@@ -117,7 +136,7 @@ public class FishingLine : MonoBehaviour
         //Debug.Log("23123");
         //Debug.Log(h);
 
-        
+
 
         if (currentSaturation>=0.5f)
 

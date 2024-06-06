@@ -37,6 +37,11 @@ public class PlayerScene1 : MonoBehaviour
 
     private bool isReady = false;
 
+    public GameObject poster1;
+    public GameObject poster2;
+
+
+
 
 
     private void Start()
@@ -45,6 +50,8 @@ public class PlayerScene1 : MonoBehaviour
         if(characterChoice == Char.Option2)
         {
             T_hand = null;
+            poster1 = null;
+            poster2 = null;
         }
        
         if (characterChoice == Char.Option1)
@@ -53,7 +60,8 @@ public class PlayerScene1 : MonoBehaviour
             T_hand.gameObject.SetActive(false);
             T_handtransform = T_hand.transform.Find("R_shoulder");
             Current_T_handtransform = T_handtransform;
-
+            poster1.SetActive(true);
+            poster2.SetActive(false);
         }
 
 
@@ -82,7 +90,7 @@ public class PlayerScene1 : MonoBehaviour
         if (characterChoice == Char.Option1)
         {
             cspeed = arduino123.speed / speedRate;
-            horizontalInput1 = arduino123.direction;
+            horizontalInput1 = -arduino123.direction;
         }
         else
         {
@@ -142,6 +150,8 @@ public class PlayerScene1 : MonoBehaviour
                 T_hand.gameObject.SetActive(true);
                 animator.SetFloat("DigSpeed", cspeed_Joystick);
                 T_handtransform = Current_T_handtransform;
+                poster1.SetActive(false);
+                poster2.SetActive(true);
             }
             else if (horizontalInput1_Joystick == 0f)
             {
@@ -156,7 +166,8 @@ public class PlayerScene1 : MonoBehaviour
                     animator.SetBool("isDiging", true);
                     T_hand.gameObject.SetActive(true);
                     T_handtransform = Current_T_handtransform;
-
+                    poster1.SetActive(false);
+                    poster2.SetActive(true);
 
                 }
 
@@ -171,7 +182,8 @@ public class PlayerScene1 : MonoBehaviour
                 T_hand.gameObject.SetActive(false);
                 animator.SetFloat("PushupSpeed", cspeed_Joystick * 1.5f);
                 lastInputTime = Time.time;
-
+                poster1.SetActive(true);
+                poster2.SetActive(false);
             }
 
 
@@ -188,6 +200,8 @@ public class PlayerScene1 : MonoBehaviour
                 T_hand.gameObject.SetActive(true);
                 //animator.SetFloat("DigSpeed", cspeed_Joystick);
                 T_handtransform = Current_T_handtransform;
+                poster1.SetActive(false);
+                poster2.SetActive(true);
             }
             else if (horizontalInput1 ==0f) {
                 if (Time.time - lastInputTime > inputTimeout) {
@@ -197,7 +211,8 @@ public class PlayerScene1 : MonoBehaviour
                     animator.SetBool("isDiging", true);
                     T_hand.gameObject.SetActive(true);
                     T_handtransform = Current_T_handtransform;
-
+                    poster1.SetActive(false);
+                    poster2.SetActive(true);
 
                 }
 
@@ -210,7 +225,8 @@ public class PlayerScene1 : MonoBehaviour
                 T_hand.gameObject.SetActive(false);
                 animator.SetFloat("PushupSpeed", cspeed * 3f);
                 lastInputTime = Time.time;
-
+                poster1.SetActive(true);
+                poster2.SetActive(false);
             }
 
 
