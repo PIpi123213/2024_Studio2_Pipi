@@ -54,7 +54,7 @@ public class FishingLine : MonoBehaviour
         lineRenderer.positionCount = 2;
         ropeLength = Vector2.Distance(hookTransform.position, fishTransform.position) * 100f;
         currentropeLength = ropeLength;
-        score.value = 0.2f;
+        score.value = 0.1f;
     }
 
     void Update()
@@ -65,18 +65,29 @@ public class FishingLine : MonoBehaviour
         lineRenderer.SetPosition(0, hookTransform.position);
         lineRenderer.SetPosition(1, fishTransform.position);
         //Debug.Log(Mathf.Abs(ropeLength - currentropeLength));
-        Color originalColor = startColor;
+        Color originalColor = lineMaterial.color;
         Color originalColor2 = startColor2;
         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
         //Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
         float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.05f * sRate;
-        //Debug.Log(startSaturation);
+       Debug.Log(currentSaturation);
         if(ropeLength - currentropeLength >= 0) {
-            currentSaturation = Mathf.Lerp(s, startSaturation * 1.2f, 2f * Time.deltaTime);
-            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-            Color newColor = Color.HSVToRGB(0, currentSaturation, v);
-            //lineMaterial.SetColor("_Color1", newColor);
-            lineMaterial.color = newColor;
+            if (startSaturation > 0.2f)
+            {
+                currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
+                currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                Color newColor = Color.HSVToRGB(0, currentSaturation, v);
+                //lineMaterial.SetColor("_Color1", newColor);
+                lineMaterial.color = newColor;
+            }
+            else
+            {
+                currentSaturation = Mathf.Lerp(s, 0f, 3f * Time.deltaTime);
+                currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                Color newColor = Color.HSVToRGB(0, currentSaturation, v);
+                //lineMaterial.SetColor("_Color1", newColor);
+                lineMaterial.color = newColor;
+            }
 
 
 
@@ -84,12 +95,22 @@ public class FishingLine : MonoBehaviour
 
         }
         else {
-            currentSaturation = Mathf.Lerp(s, startSaturation * 1.2f, 2f * Time.deltaTime);
-            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-            Color newColor = Color.HSVToRGB(48f/255f, currentSaturation, v);
-            //lineMaterial.SetColor("_Color1", newColor);
-            lineMaterial.color = newColor;
-
+            if (startSaturation > 0.2f)
+            {
+                currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
+                currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+                //lineMaterial.SetColor("_Color1", newColor);
+                lineMaterial.color = newColor;
+            }
+            else
+            {
+                currentSaturation = Mathf.Lerp(s, 0f, 3f * Time.deltaTime);
+                currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+                //lineMaterial.SetColor("_Color1", newColor);
+                lineMaterial.color = newColor;
+            }
         }
 
 
@@ -138,15 +159,15 @@ public class FishingLine : MonoBehaviour
 
 
 
-        if (currentSaturation>=0.5f)
+        if (currentSaturation>=0.4f)
 
         {
             timer += Time.deltaTime;
 
             // 检查计时器是否达到阈值时长
-            if (timer >= duration&&currentSaturation>=0.75f)
+            if (timer >= duration&&currentSaturation>=0.6f)
             {
-                //Debug.Log("Saturation has been above the threshold for 1 second");
+                Debug.Log("Saturation has been above the threshold for 1 second");
                 // 触发你需要的逻辑，例如重置计时器
                 //GameManager.instance.GameOver();
 
@@ -163,7 +184,7 @@ public class FishingLine : MonoBehaviour
         // Debug.Log(currentSaturation);
         if (score.value != 1)
         {
-            if (currentSaturation <= 0.12f)
+            if (currentSaturation <= 0.2f)
             {
                 score.value += 0.0005f;
 
@@ -176,6 +197,7 @@ public class FishingLine : MonoBehaviour
        
         if(score.value >= 1)
         {
+            key.transform.SetParent(null);
             key.transform.position = Vector3.MoveTowards(key.transform.position, point.transform.position, 1.3f * Time.deltaTime);
             if (key.transform.position == point.transform.position)
             {

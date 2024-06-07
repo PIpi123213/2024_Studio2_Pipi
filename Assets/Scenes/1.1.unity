@@ -4833,7 +4833,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -4868,7 +4868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1438877284}
-  Rate: 0.03
+  Rate: 0.02
 --- !u!50 &1183393805
 Rigidbody2D:
   serializedVersion: 4
@@ -5126,7 +5126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterChoice: 2
   speedRate: 200
-  speedRate_Joystick: 1.5
+  speedRate_Joystick: 1
   smoothness: 10
   T_hand: {fileID: 0}
   isMoving: 0
@@ -8582,7 +8582,7 @@ MonoBehaviour:
   duration: 0.6
   point: {fileID: 1700536136}
   score: {fileID: 342443685}
-  sRate: 1.5
+  sRate: 0.15
   key: {fileID: 708554592}
 --- !u!1 &2019531872
 GameObject:

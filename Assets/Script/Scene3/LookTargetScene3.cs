@@ -58,7 +58,7 @@ public class LookTargetScene3 : MonoBehaviour
         player2InView = mainCamera.WorldToViewportPoint(player2.transform.position);
 
 
-        Debug.Log(player1InView);
+       // Debug.Log(player1InView);
 
         
   

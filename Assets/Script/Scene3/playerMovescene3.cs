@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class playerMovescene3 : MonoBehaviour
 {
@@ -24,7 +25,8 @@ public class playerMovescene3 : MonoBehaviour
     private Rigidbody2D rb;
     public Transform point;
 
-
+    public bool isHiding;
+    public bool isMoving;
 
     void Start()
     {
@@ -42,6 +44,7 @@ public class playerMovescene3 : MonoBehaviour
         if (characterChoice == Char.Option1) {
             cspeed = arduino123.speed / speedRate;
             horizontalInput1 = arduino123.direction;
+            
         }
         else {
             cspeed = arduino123.speed2 / speedRate;
@@ -57,6 +60,22 @@ public class playerMovescene3 : MonoBehaviour
             cspeed_Joystick = input11.speed2 / speedRate_Joystick;
             horizontalInput1_Joystick = input11.direction2;
 
+        }
+        Vector2 velocity = rb.velocity;
+
+        // 计算速度的大小（即速度的标量值）
+        float speed = velocity.magnitude;
+       Debug.Log(speed);
+        if (speed >=0.5f)
+        {
+            isMoving = true;
+
+
+
+        }
+        else
+        {
+            isMoving = false;
         }
     }
     void FixedUpdate() {
@@ -79,7 +98,7 @@ public class playerMovescene3 : MonoBehaviour
             ApplyForce(point, horizontalInput1_Joystick, cspeed_Joystick);
 
         }
-
+    
 
 
 
@@ -92,6 +111,36 @@ public class playerMovescene3 : MonoBehaviour
 
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Shelter"))
+        {
+            isHiding = true;
+        }
+
+    }
+
+
+
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+   
+
+
+
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Shelter"))
+        {
+            isHiding = false;
+        }
+
+    }
+
+
     void ApplyForce(Transform side, float direction, float force) {
         Vector2 forceDirection = side.right * direction;
         rb.AddForceAtPosition(forceDirection.normalized * force, side.position, ForceMode2D.Impulse);

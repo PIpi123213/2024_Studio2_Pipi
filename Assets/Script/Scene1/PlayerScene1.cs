@@ -107,7 +107,7 @@ public class PlayerScene1 : MonoBehaviour
         else
         {
             cspeed_Joystick = input11.speed2 / speedRate_Joystick;
-            horizontalInput1_Joystick = input11.direction2;
+            horizontalInput1_Joystick = -input11.direction2;
 
         }
 

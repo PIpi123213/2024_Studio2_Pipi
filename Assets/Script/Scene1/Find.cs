@@ -35,16 +35,16 @@ public class Find : MonoBehaviour
                 {
                     if (currentSaturation <= 0.95f)
                     {
-                        Color originalColor = startColor;
+                        Color originalColor = spriteRenderer.material.color;
 
                         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                        startSaturation += Rate;
-                        startSaturation = Mathf.Clamp(startSaturation, 0f, 50f);
+                        startSaturation += Rate*0.3f;
+                        startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
 
-                        currentSaturation = Mathf.Lerp(s, startSaturation, 10f * Time.deltaTime);
+                        currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
                         currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                        Color newColor = Color.HSVToRGB(h, currentSaturation, v);
+                        Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
 
                         spriteRenderer.material.color = newColor;
 
@@ -61,16 +61,16 @@ public class Find : MonoBehaviour
                 {
                     if (currentSaturation <= 0.95f)
                     {
-                        Color originalColor = startColor;
+                        Color originalColor = spriteRenderer.material.color;
 
                         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                        startSaturation += Rate * 5;
-                        startSaturation = Mathf.Clamp(startSaturation, 0f, 50f);
+                        startSaturation += Rate * 3f;
+                        startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
 
-                        currentSaturation = Mathf.Lerp(s, startSaturation, 10f * Time.deltaTime);
+                        currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
                         currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                        Color newColor = Color.HSVToRGB(h, currentSaturation, v);
+                        Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
 
                         spriteRenderer.material.color = newColor;
 
@@ -90,15 +90,15 @@ public class Find : MonoBehaviour
             else
             {
 
-                Color originalColor = startColor;
+                Color originalColor = spriteRenderer.material.color;
 
                 Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                startSaturation -= Rate * 2f;
-                startSaturation = Mathf.Clamp(startSaturation, 0f, 50f);
-                currentSaturation = Mathf.Lerp(s, startSaturation, 10f * Time.deltaTime);
+                startSaturation -= Rate *1.5f;
+                startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
+                currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
                 currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                Color newColor = Color.HSVToRGB(h, currentSaturation, v);
+                Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
 
                 spriteRenderer.material.color = newColor;
 

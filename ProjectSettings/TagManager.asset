@@ -15,6 +15,8 @@ TagManager:
   - PointB
   - PointC
   - Hand
+  - Shelter
+  - Player2
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - UI
   - p2
   - p1
-  - 
+  - Shelter
   - 
   - 
   - 
