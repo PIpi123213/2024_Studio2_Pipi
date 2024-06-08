@@ -23,6 +23,7 @@ public class PointFollow : MonoBehaviour
             // 计算新的位置，但只更新 x 坐标，保持 y 坐标不变
             Vector3 newPosition = transform.position;
             newPosition.x = target.position.x + relativePosition.x;
+            newPosition.y = target.position.y + relativePosition.y;
             transform.position = newPosition;
         }
     }

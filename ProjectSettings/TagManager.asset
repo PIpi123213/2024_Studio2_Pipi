@@ -17,6 +17,7 @@ TagManager:
   - Hand
   - Shelter
   - Player2
+  - Win
   layers:
   - Default
   - TransparentFX

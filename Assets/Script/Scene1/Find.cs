@@ -28,12 +28,12 @@ public class Find : MonoBehaviour
     {
         if (Timelinescene11.isGameStart)
         {
-            if (isFind && isMoving && Timelinescene11.isWin_scene1!=2)
+            if (isFind && isMoving && !Timelinescene11.player1win)
             {
 
                 if (!isDiging)
                 {
-                    if (currentSaturation <= 0.95f)
+                    if (currentSaturation <= 0.9f)
                     {
                         Color originalColor = spriteRenderer.material.color;
 
@@ -59,16 +59,16 @@ public class Find : MonoBehaviour
                 }
                 else
                 {
-                    if (currentSaturation <= 0.95f)
+                    if (currentSaturation <= 0.9f)
                     {
                         Color originalColor = spriteRenderer.material.color;
 
                         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                        startSaturation += Rate * 3f;
+                        startSaturation += Rate * 5f;
                         startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
 
-                        currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
+                        currentSaturation = Mathf.Lerp(s, startSaturation, 5f * Time.deltaTime);
                         currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
                         Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
 

@@ -10,13 +10,9 @@ public class findScene3 : MonoBehaviour
     public float Rate;
     private float startSaturation = 0f;
     private float currentSaturation = 0f;
-    private bool isFind = false;
-    private bool isMoving = false;
-    private bool isFind1 = false;
-    private bool isMoving1 = false;
-    private bool isFind2 = false;
-    private bool isMoving2 = false;
-    public static bool isDiging;
+    public bool isFind = false;
+   
+    
     //public Detection detection;
     public playerMovescene3 player1;
     public playerMovescene3 player2;
@@ -29,7 +25,7 @@ public class findScene3 : MonoBehaviour
     public LayerMask playerLayer;        // Íæ¼Ò²ã
     public LayerMask obstaclesLayer;
 
-
+  
 
 
 
@@ -43,10 +39,12 @@ public class findScene3 : MonoBehaviour
 
     void Start()
     {
-       
-      /*  startColor = Color.HSVToRGB(51f/255f, 0.03f, 1f); ;
-        spriteRenderer.material.color = startColor;*/
+
+        /*  startColor = Color.HSVToRGB(51f/255f, 0.03f, 1f); ;
+          spriteRenderer.material.color = startColor;*/
         //detection = GetComponent<Detection>();
+       
+
     }
 
     // Update is called once per frame
@@ -54,7 +52,7 @@ public class findScene3 : MonoBehaviour
     {
       
 
-        if (TimelineScene3.isGameStart)
+        if (TimelineScene3.isGameStart && !TimelineScene3.isLose)
         {
             if (DetectPlayer(Player1) && !DetectPlayer(Player2))
             {
@@ -82,33 +80,70 @@ public class findScene3 : MonoBehaviour
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
+                        TimelineScene3.isLose = true;
+
+                        isFind = true;
                     }
                 }
                 else
                 {
-                    if (currentSaturation <= 0.9f)
+                    if (player1.isMovingFast)
                     {
-                        Color originalColor = spriteRenderer.material.color;
+                        if (currentSaturation <= 0.9f)
+                        {
+                            Color originalColor = spriteRenderer.material.color;
 
-                        Color.RGBToHSV(originalColor, out float h, out float s, out float v);
+                            Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                        startSaturation += Rate * 9f;
-                        startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
+                            startSaturation += Rate * 12f;
+                            startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
 
-                        currentSaturation = Mathf.Lerp(s, startSaturation, 5f * Time.deltaTime);
-                        currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                        Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+                            currentSaturation = Mathf.Lerp(s, startSaturation, 8f * Time.deltaTime);
+                            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                            Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
 
-                        spriteRenderer.material.color = newColor;
+                            spriteRenderer.material.color = newColor;
 
 
+                        }
+                        else
+                        {
+                            spriteRenderer.material.color = Color.red;
+                            Debug.Log("LOSE");
+                            //GameManager.instance.GameOver();
+                            TimelineScene3.isLose = true; 
+                            isFind = true;
+                        }
                     }
                     else
                     {
-                        spriteRenderer.material.color = Color.red;
-                        Debug.Log("LOSE");
-                        //GameManager.instance.GameOver();
+                        if (currentSaturation <= 0.9f)
+                        {
+                            Color originalColor = spriteRenderer.material.color;
+
+                            Color.RGBToHSV(originalColor, out float h, out float s, out float v);
+
+                            startSaturation += Rate * 9f;
+                            startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
+
+                            currentSaturation = Mathf.Lerp(s, startSaturation, 5f * Time.deltaTime);
+                            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                            Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+
+                            spriteRenderer.material.color = newColor;
+
+
+                        }
+                        else
+                        {
+                            spriteRenderer.material.color = Color.red;
+                            Debug.Log("LOSE");
+                            //GameManager.instance.GameOver();
+                            TimelineScene3.isLose = true;
+                            isFind = true;
+                        }
                     }
+                    
                 }
 
 
@@ -140,32 +175,67 @@ public class findScene3 : MonoBehaviour
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
+                        TimelineScene3.isLose = true;
+                        isFind = true;
                     }
                 }
                 else
                 {
-                    if (currentSaturation <= 0.9f)
+                    if (player2.isMovingFast)
                     {
-                        Color originalColor = spriteRenderer.material.color;
+                        if (currentSaturation <= 0.9f)
+                        {
+                            Color originalColor = spriteRenderer.material.color;
 
-                        Color.RGBToHSV(originalColor, out float h, out float s, out float v);
+                            Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                        startSaturation += Rate * 9f;
-                        startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
+                            startSaturation += Rate * 12f;
+                            startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
 
-                        currentSaturation = Mathf.Lerp(s, startSaturation, 5f * Time.deltaTime);
-                        currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                        Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+                            currentSaturation = Mathf.Lerp(s, startSaturation, 8f * Time.deltaTime);
+                            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                            Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
 
-                        spriteRenderer.material.color = newColor;
+                            spriteRenderer.material.color = newColor;
 
 
+                        }
+                        else
+                        {
+                            spriteRenderer.material.color = Color.red;
+                            Debug.Log("LOSE");
+                            //GameManager.instance.GameOver();
+                            TimelineScene3.isLose = true;
+                            isFind = true;
+                        }
                     }
                     else
                     {
-                        spriteRenderer.material.color = Color.red;
-                        Debug.Log("LOSE");
-                        //GameManager.instance.GameOver();
+                        if (currentSaturation <= 0.9f)
+                        {
+                            Color originalColor = spriteRenderer.material.color;
+
+                            Color.RGBToHSV(originalColor, out float h, out float s, out float v);
+
+                            startSaturation += Rate * 9f;
+                            startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
+
+                            currentSaturation = Mathf.Lerp(s, startSaturation, 5f * Time.deltaTime);
+                            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                            Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+
+                            spriteRenderer.material.color = newColor;
+
+
+                        }
+                        else
+                        {
+                            spriteRenderer.material.color = Color.red;
+                            Debug.Log("LOSE");
+                            //GameManager.instance.GameOver();
+                            TimelineScene3.isLose = true;
+                            isFind = true;
+                        }
                     }
                 }
 
@@ -198,32 +268,67 @@ public class findScene3 : MonoBehaviour
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
+                        isFind = true;
+                        TimelineScene3.isLose = true;
                     }
                 }
                 else
                 {
-                    if (currentSaturation <= 0.9f)
+                    if (player1.isMovingFast || player2.isMovingFast)
                     {
-                        Color originalColor = spriteRenderer.material.color;
+                        if (currentSaturation <= 0.9f)
+                        {
+                            Color originalColor = spriteRenderer.material.color;
 
-                        Color.RGBToHSV(originalColor, out float h, out float s, out float v);
+                            Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                        startSaturation += Rate * 9f;
-                        startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
+                            startSaturation += Rate * 12f;
+                            startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
 
-                        currentSaturation = Mathf.Lerp(s, startSaturation, 4f * Time.deltaTime);
-                        currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                        Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+                            currentSaturation = Mathf.Lerp(s, startSaturation, 8f * Time.deltaTime);
+                            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                            Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
 
-                        spriteRenderer.material.color = newColor;
+                            spriteRenderer.material.color = newColor;
 
 
+                        }
+                        else
+                        {
+                            spriteRenderer.material.color = Color.red;
+                            Debug.Log("LOSE");
+                            //GameManager.instance.GameOver();
+                            TimelineScene3.isLose = true;
+                            isFind = true;
+                        }
                     }
                     else
                     {
-                        spriteRenderer.material.color = Color.red;
-                        Debug.Log("LOSE");
-                        //GameManager.instance.GameOver();
+                        if (currentSaturation <= 0.9f)
+                        {
+                            Color originalColor = spriteRenderer.material.color;
+
+                            Color.RGBToHSV(originalColor, out float h, out float s, out float v);
+
+                            startSaturation += Rate * 9f;
+                            startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
+
+                            currentSaturation = Mathf.Lerp(s, startSaturation, 5f * Time.deltaTime);
+                            currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
+                            Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
+
+                            spriteRenderer.material.color = newColor;
+
+
+                        }
+                        else
+                        {
+                            spriteRenderer.material.color = Color.red;
+                            Debug.Log("LOSE");
+                            //GameManager.instance.GameOver();
+                            TimelineScene3.isLose = true;
+                            isFind = true;
+                        }
                     }
                 }
 
@@ -252,7 +357,10 @@ public class findScene3 : MonoBehaviour
         }
 
         }
+    else if(TimelineScene3.isGameStart && TimelineScene3.isLose)
+        {
 
+        }
 
 
     }

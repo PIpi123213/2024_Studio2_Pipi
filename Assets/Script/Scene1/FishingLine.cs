@@ -70,7 +70,7 @@ public class FishingLine : MonoBehaviour
         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
         //Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
         float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.05f * sRate;
-       Debug.Log(currentSaturation);
+       //Debug.Log(currentSaturation);
         if(ropeLength - currentropeLength >= 0) {
             if (startSaturation > 0.2f)
             {
@@ -159,27 +159,8 @@ public class FishingLine : MonoBehaviour
 
 
 
-        if (currentSaturation>=0.4f)
-
-        {
-            timer += Time.deltaTime;
-
-            // 检查计时器是否达到阈值时长
-            if (timer >= duration&&currentSaturation>=0.6f)
-            {
-                Debug.Log("Saturation has been above the threshold for 1 second");
-                // 触发你需要的逻辑，例如重置计时器
-                //GameManager.instance.GameOver();
-
-                timer = 0.0f;
-            }
-           
-        }
-        else
-        {
-            // 如果条件不再满足，重置计时器
-            //timer = 0.0f;
-        }
+       
+       
 
         // Debug.Log(currentSaturation);
         if (score.value != 1)
@@ -208,7 +189,30 @@ public class FishingLine : MonoBehaviour
 
 
         }
+        else
+        {
+            if (currentSaturation >= 0.4f)
 
+            {
+                timer += Time.deltaTime;
+
+                // 检查计时器是否达到阈值时长
+                if (timer >= duration && currentSaturation >= 0.6f)
+                {
+                    Debug.Log("Saturation has been above the threshold for 1 second");
+                    // 触发你需要的逻辑，例如重置计时器
+                    //GameManager.instance.GameOver();
+
+                    timer = 0.0f;
+                }
+                else
+                {
+                    // 如果条件不再满足，重置计时器
+                    //timer = 0.0f;
+                }
+            }
+
+        }
 
 
 

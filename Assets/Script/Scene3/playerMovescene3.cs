@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class playerMovescene3 : MonoBehaviour
@@ -27,7 +28,10 @@ public class playerMovescene3 : MonoBehaviour
 
     public bool isHiding;
     public bool isMoving;
-
+    public bool isMovingFast;
+    public Slider slider;
+    private bool isready = false;
+    private bool iswin = false;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -65,7 +69,7 @@ public class playerMovescene3 : MonoBehaviour
 
         // 计算速度的大小（即速度的标量值）
         float speed = velocity.magnitude;
-       Debug.Log(speed);
+      // Debug.Log(speed);
         if (speed >=0.5f)
         {
             isMoving = true;
@@ -77,28 +81,86 @@ public class playerMovescene3 : MonoBehaviour
         {
             isMoving = false;
         }
+
+        if (speed > 1.8f)
+        {
+            isMovingFast = true;
+
+
+        }
+        else
+        {
+            isMovingFast = false;
+        }
+
+        if(GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineScene3.isLose)
+        {
+            if (slider.value < 1f)
+            {
+                slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick*20f / speedRate_Joystick) * Time.deltaTime;
+
+            }
+            else
+            {
+                if (!isready)
+                {
+                    PlayerControllerScene3.isReady++;
+                    isready = true;
+                }
+
+
+
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
     }
     void FixedUpdate() {
-        if (cspeed>= 20f / speedRate) {
 
-            float min = 0f;
-            float max = 1f;
 
-            ApplyForce(point, horizontalInput1, cspeed);
+
+
+
+
+
+
+
+        if (!TimelineScene3.isLose && !iswin)
+        {
+            if (cspeed >= 20f / speedRate)
+            {
+
+                float min = 0f;
+                float max = 1f;
+
+                ApplyForce(point, horizontalInput1, cspeed);
+            }
+
+
+
+
+            if (cspeed_Joystick >= 0f)
+            {
+
+
+                float min = 0f;
+                float max = 1f;
+                ApplyForce(point, horizontalInput1_Joystick, cspeed_Joystick);
+
+            }
+
         }
 
-
-
-
-        if (cspeed_Joystick >= 0f) {
-
-
-            float min = 0f;
-            float max = 1f;
-            ApplyForce(point, horizontalInput1_Joystick, cspeed_Joystick);
-
-        }
-    
 
 
 
@@ -117,6 +179,14 @@ public class playerMovescene3 : MonoBehaviour
         {
             isHiding = true;
         }
+        if (collision.gameObject.CompareTag("Win"))
+        {
+            Debug.Log("1");
+            iswin = true;
+            TimelineScene3.isWin++;
+        }
+
+
 
     }
 

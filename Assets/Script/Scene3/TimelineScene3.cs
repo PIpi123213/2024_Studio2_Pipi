@@ -12,22 +12,28 @@ public class TimelineScene3 : MonoBehaviour
     public static bool play2schel = false;
     public PlayableDirector playableDirector2;
     private bool isplayed2 = false;
+    public PlayableDirector playableDirector3;
+    private bool isplayed3 = false;
 
-   
+
     public static bool isGameStart = false;
    
-
+    public static bool isLose = false;
+    public static int isWin = 0;
     void Start()
     {
         if (playableDirector1 != null)
         {
             // 订阅stopped事件
             playableDirector1.stopped += OnPlayableDirectorStopped;
+            playableDirector2.stopped += OnPlayableDirectorStopped;
 
         }
-       
+        SaveManager.Instance.ResetCheckpoints();
         play2schel = false;
         isGameStart = false;
+        isLose = false;
+        isWin = 0;
     }
 
 
@@ -43,16 +49,22 @@ public class TimelineScene3 : MonoBehaviour
             GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
            
         }
-        if (play2schel && !isplayed2)
+        if (isLose && !isplayed2)
         {
-
+            isGameStart = false;
             PlayTimeline(playableDirector2);
             isplayed2 = true;
             GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
 
 
         }
+        if (isWin ==2 && !isplayed3)
+        {
+            PlayTimeline(playableDirector3);
+            isplayed3 = true;
 
+            GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
+        }
      
 
 
@@ -80,8 +92,7 @@ public class TimelineScene3 : MonoBehaviour
         }
         if (director == playableDirector2)
         {
-
-
+           
         }
 
     }
@@ -91,6 +102,7 @@ public class TimelineScene3 : MonoBehaviour
         {
             // 取消订阅stopped事件，以避免内存泄漏
             playableDirector1.stopped -= OnPlayableDirectorStopped;
+            playableDirector2.stopped -= OnPlayableDirectorStopped;
         }
     }
 
@@ -99,4 +111,9 @@ public class TimelineScene3 : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+
+
+
+
 }

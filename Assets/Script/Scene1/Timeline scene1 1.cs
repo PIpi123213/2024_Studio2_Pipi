@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -13,7 +14,7 @@ public class Timelinescene11 : MonoBehaviour
     public static bool play2schel = false;
     public PlayableDirector playableDirector2;
     private bool isplayed2 = false;
-
+    private int isplayed = 0;
     public GameObject Line;
     public static bool isGameStart = false;
 
@@ -33,13 +34,15 @@ public class Timelinescene11 : MonoBehaviour
     public static bool player2win = false;
     private bool isplayer2played = false;
     public GameObject player2;
-
+    public GameObject player1;
     void Start()
     {
         if (playableDirector1 != null)
         {
             // 订阅stopped事件
             playableDirector1.stopped += OnPlayableDirectorStopped;
+            player1Timeline.stopped += OnPlayableDirectorStopped;
+            player2Timeline.stopped += OnPlayableDirectorStopped;
 
         }
         Line.SetActive(false);
@@ -63,7 +66,7 @@ public class Timelinescene11 : MonoBehaviour
             isplayed1 = true;
             GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
         }
-        if (play2schel && !isplayed2  )
+        if (play2schel && !isplayed2 && isplayed ==2)
         {
            
             PlayTimeline(playableDirector2);
@@ -109,7 +112,7 @@ public class Timelinescene11 : MonoBehaviour
     }
     private void OnPlayableDirectorStopped(PlayableDirector director)
     {
-        Debug.Log("PlayableDirector stopped event triggered.");
+       
         if (director == playableDirector1)
         {
             //Uicontroller.isStart = true
@@ -119,12 +122,18 @@ public class Timelinescene11 : MonoBehaviour
             GameManager.instance.gameMode = GameManager.GameMode.GamePlay;
 
         }
-        if (director == playableDirector2)
+        if (director == player1Timeline)
         {
-
-           
+            Debug.Log("PlayableDirector stopped event triggered.");
+            Destroy(player1);
+            isplayed++;
         }
+        if (director == player2Timeline)
+        {
+            Debug.Log("PlayableDirector stopped event triggered.");
+            isplayed++;
 
+        }
     }
     void OnDestroy()
     {
@@ -132,6 +141,8 @@ public class Timelinescene11 : MonoBehaviour
         {
             // 取消订阅stopped事件，以避免内存泄漏
             playableDirector1.stopped -= OnPlayableDirectorStopped;
+            player1Timeline.stopped -= OnPlayableDirectorStopped;
+                 player2Timeline.stopped -= OnPlayableDirectorStopped;
         }
     }
 

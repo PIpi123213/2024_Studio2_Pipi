@@ -138,6 +138,7 @@ public class PlayerScene11 : MonoBehaviour
             if(characterChoice == Char.Option1)
             {
                 Timelinescene11.player1win = true;
+                Debug.Log("player1 is win");
             }
             else
             {
@@ -145,161 +146,174 @@ public class PlayerScene11 : MonoBehaviour
             }
         }
 
-        
 
 
 
 
-        if (characterChoice == Char.Option1 && Timelinescene11.isGameStart)
+        if (!isWin)
         {
-            if (horizontalInput1_Joystick < 0f)//1ºÅÍæ¼ÒJOystick
+            if (characterChoice == Char.Option1 && Timelinescene11.isGameStart)
             {
-                isDiging = true;
-                isMoving = true;
-                Find.isMoving = true;
-                Find.isDiging = true;
-                animator.SetBool("isDiging", true);
-                lastInputTime = Time.time;
-                T_hand.gameObject.SetActive(true);
-                animator.SetFloat("DigSpeed", cspeed_Joystick);
-                T_handtransform = Current_T_handtransform;
-
-
-                poster1.SetActive(false);
-                poster2.SetActive(true);
-
-
-
-
-
-            }
-            else if (horizontalInput1_Joystick == 0f)
-            {
-
-                if (Time.time - lastInputTime > inputTimeout)
+                if (horizontalInput1_Joystick < 0f)//1ºÅÍæ¼ÒJOystick
                 {
-                    //Debug.Log("666666");
-                    Find.isMoving = true;
-                    isDiging = false;
+                    isDiging = true;
                     isMoving = true;
+                    Find.isMoving = true;
+                    Find.isDiging = true;
+                    animator.SetBool("isDiging", true);
+                    lastInputTime = Time.time;
+                    T_hand.gameObject.SetActive(true);
+                    animator.SetFloat("DigSpeed", cspeed_Joystick);
+                    T_handtransform = Current_T_handtransform;
+
+
+                    poster1.SetActive(false);
+                    poster2.SetActive(true);
+
+
+
+
+
+                }
+                else if (horizontalInput1_Joystick == 0f)
+                {
+
+                    if (Time.time - lastInputTime > inputTimeout)
+                    {
+                        //Debug.Log("666666");
+                        Find.isMoving = true;
+                        isDiging = false;
+                        isMoving = true;
+                        Find.isDiging = false;
+                        animator.SetBool("isDiging", true);
+                        T_hand.gameObject.SetActive(true);
+                        T_handtransform = Current_T_handtransform;
+                        poster1.SetActive(false);
+                        poster2.SetActive(true);
+
+
+
+                    }
+
+                }
+                else
+                {
                     Find.isDiging = false;
-                    animator.SetBool("isDiging", true);
-                    T_hand.gameObject.SetActive(true);
-                    T_handtransform = Current_T_handtransform;
-                    poster1.SetActive(false);
-                    poster2.SetActive(true);
-
-
+                    Find.isMoving = false;
+                    isDiging = false;
+                    isMoving = false;
+                    animator.SetBool("isDiging", false);
+                    T_hand.gameObject.SetActive(false);
+                    animator.SetFloat("PushupSpeed", cspeed_Joystick * 1.5f);
+                    lastInputTime = Time.time;
+                    poster1.SetActive(true);
+                    poster2.SetActive(false);
 
                 }
 
-            }
-            else
-            {
-                Find.isDiging = false;
-                Find.isMoving = false;
-                isDiging = false;
-                isMoving = false;
-                animator.SetBool("isDiging", false);
-                T_hand.gameObject.SetActive(false);
-                animator.SetFloat("PushupSpeed", cspeed_Joystick * 1.5f);
-                lastInputTime = Time.time;
-                poster1.SetActive(true);
-                poster2.SetActive(false);
-
-            }
 
 
 
 
-
-            if (horizontalInput1 < 0f)//1ºÅÍæ¼ÒJOystick
-            {
-                isDiging = true;
-                Find.isMoving = true;
-                isMoving = true;
-                animator.SetBool("isDiging", true);
-                lastInputTime = Time.time;
-                T_hand.gameObject.SetActive(true);
-                //animator.SetFloat("DigSpeed", cspeed_Joystick);
-                T_handtransform = Current_T_handtransform;
-
-                poster1.SetActive(false);
-                poster2.SetActive(true);
-
-            }
-            else if (horizontalInput1 == 0f)
-            {
-                if (Time.time - lastInputTime > inputTimeout)
+                if (horizontalInput1 < 0f)//1ºÅÍæ¼ÒJOystick
                 {
+                    isDiging = true;
                     Find.isMoving = true;
-                    isDiging = false;
                     isMoving = true;
                     animator.SetBool("isDiging", true);
+                    lastInputTime = Time.time;
                     T_hand.gameObject.SetActive(true);
+                    //animator.SetFloat("DigSpeed", cspeed_Joystick);
                     T_handtransform = Current_T_handtransform;
+
                     poster1.SetActive(false);
                     poster2.SetActive(true);
 
+                }
+                else if (horizontalInput1 == 0f)
+                {
+                    if (Time.time - lastInputTime > inputTimeout)
+                    {
+                        Find.isMoving = true;
+                        isDiging = false;
+                        isMoving = true;
+                        animator.SetBool("isDiging", true);
+                        T_hand.gameObject.SetActive(true);
+                        T_handtransform = Current_T_handtransform;
+                        poster1.SetActive(false);
+                        poster2.SetActive(true);
+
+
+                    }
 
                 }
+                else
+                {
+                    Find.isMoving = false;
+                    isDiging = false;
+                    isMoving = false;
+                    animator.SetBool("isDiging", false);
+                    T_hand.gameObject.SetActive(false);
+                    animator.SetFloat("PushupSpeed", cspeed * 3f);
+                    lastInputTime = Time.time;
+                    poster1.SetActive(true);
+                    poster2.SetActive(false);
+                }
+
+
 
             }
-            else
+
+            if (characterChoice == Char.Option2 && Timelinescene11.isGameStart && slider.value < 1f)
             {
-                Find.isMoving = false;
-                isDiging = false;
-                isMoving = false;
-                animator.SetBool("isDiging", false);
-                T_hand.gameObject.SetActive(false);
-                animator.SetFloat("PushupSpeed", cspeed * 3f);
-                lastInputTime = Time.time;
-                poster1.SetActive(true);
-                poster2.SetActive(false);
+                fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick) * 0.7f;
+                fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1.2f;
+                fishingLine.currentropeLength = Mathf.Clamp(fishingLine.currentropeLength, 140f, 380f);
+
+                MoveWithControllerPlayer2_Joystick();
+
+                MoveWithControllerPlayer2();
+
+
+
+
             }
+        }
+        else
+        {
+            poster1.SetActive(false);
+            poster2.SetActive(true);
+            T_hand.gameObject.SetActive(false);
+            animator = null;
 
 
 
         }
 
-        if (characterChoice == Char.Option2 && Timelinescene11.isGameStart && slider.value < 1f)
-        {
-            fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick) * 0.7f;
-            fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1.2f;
-            fishingLine.currentropeLength = Mathf.Clamp(fishingLine.currentropeLength, 140f, 380f);
-
-            MoveWithControllerPlayer2_Joystick();
-
-            MoveWithControllerPlayer2();
-
-
-
-
-        }
-/*
-        if (Timelinescene11.isGameStart && GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment)
-        {
-            if (cspeed != 0)
-            {
-                if (!isReady)
+        /*
+                if (Timelinescene11.isGameStart && GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment)
                 {
-                    Timelinescene11.isReady_timeline2++;
-                    isReady = true;
-                }
+                    if (cspeed != 0)
+                    {
+                        if (!isReady)
+                        {
+                            Timelinescene11.isReady_timeline2++;
+                            isReady = true;
+                        }
 
-            }
-            if (cspeed_Joystick != 0)
-            {
-                if (!isReady)
-                {
-                    Timelinescene11.isReady_timeline2++;
-                    isReady = true;
-                }
-            }
+                    }
+                    if (cspeed_Joystick != 0)
+                    {
+                        if (!isReady)
+                        {
+                            Timelinescene11.isReady_timeline2++;
+                            isReady = true;
+                        }
+                    }
 
 
 
-        }*/
+                }*/
 
 
 

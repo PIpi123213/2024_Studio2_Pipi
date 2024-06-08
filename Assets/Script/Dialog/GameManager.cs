@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour
         // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
+  
 
 
 
