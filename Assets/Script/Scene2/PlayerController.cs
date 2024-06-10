@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
         audio1 =GetComponent<playerAudio>();
         currentLives = maxLives;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        UpdateLifeSprite();
+        //UpdateLifeSprite();
     }
 
     void Update()
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         float totalForceMagnitude = GetTotalForceMagnitude();
 
         // 打印施加在物体上的所有力的大小
-        Debug.Log("speed: " + speed);
+        //Debug.Log("speed: " + speed);
         if (speed >=0.03f)
         {
             childObject.SetActive(true);
@@ -80,13 +80,17 @@ public class PlayerController : MonoBehaviour
 
         }
 
-       
 
+        
 
         if (collision.gameObject.CompareTag("Police"))
         {
             Debug.Log("catched");
-            GameOver();
+            if (!waterfall.iswin)
+            {
+                GameOver();
+            }
+            
         }
 
 
@@ -114,20 +118,20 @@ public class PlayerController : MonoBehaviour
     {
         if (currentLives >= 1 && currentLives <= lifeSprites.Length)
         {
-            spriteRenderer.sprite = lifeSprites[currentLives - 1];
+            spriteRenderer.sprite = lifeSprites[currentLives ];
+        }
+        if (currentLives == 0 && currentLives <= lifeSprites.Length)
+        {
+            spriteRenderer.sprite = lifeSprites[0];
         }
     }
     private void GameOver() {
-        Debug.Log("Game Over");
-        // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+      TimelineControllerScene2.isLose = true;
     }
 
     private void GameWin()
     {
-        Debug.Log("Game Win");
-        // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        TimelineControllerScene2.isWin = true;
     }
 
 
@@ -138,7 +142,7 @@ public class PlayerController : MonoBehaviour
        
         if (other.CompareTag("Waterfall")) // 假设是玩家物体
         {
-            GameWin();
+           
         }
     }
 

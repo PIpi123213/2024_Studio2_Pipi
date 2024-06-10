@@ -64,4 +64,7 @@ public class SaveManager : MonoBehaviour
     {
         checkpoints.Clear();
     }
+
+
+   
 }

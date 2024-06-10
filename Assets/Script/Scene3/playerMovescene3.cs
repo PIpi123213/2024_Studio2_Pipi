@@ -69,6 +69,10 @@ public class playerMovescene3 : MonoBehaviour
 
         // 计算速度的大小（即速度的标量值）
         float speed = velocity.magnitude;
+        if (TimelineScene3.isLose)
+        {
+            rb.velocity = Vector2.zero;
+        }
       // Debug.Log(speed);
         if (speed >=0.5f)
         {
@@ -114,7 +118,25 @@ public class playerMovescene3 : MonoBehaviour
         }
 
 
+         if(GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineScene3.isLose)
+        {
+            if (slider.value < 1f)
+            {
+                slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick*20f / speedRate_Joystick) * Time.deltaTime;
 
+            }
+            else
+            {
+                if (!isready)
+                {
+                    PlayerControllerScene3.isReady++;
+                    isready = true;
+                }
+
+
+
+            }
+        }
 
 
 

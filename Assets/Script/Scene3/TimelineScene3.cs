@@ -29,7 +29,7 @@ public class TimelineScene3 : MonoBehaviour
             playableDirector2.stopped += OnPlayableDirectorStopped;
 
         }
-        SaveManager.Instance.ResetCheckpoints();
+        
         play2schel = false;
         isGameStart = false;
         isLose = false;

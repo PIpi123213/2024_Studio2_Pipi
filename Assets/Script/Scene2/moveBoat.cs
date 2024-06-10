@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class moveBoat : MonoBehaviour
 {
@@ -30,6 +31,11 @@ public class moveBoat : MonoBehaviour
     private float rightforce_Joystick = 0f;
 
 
+    private bool isready1 = false;
+    private bool isready2 = false;
+
+    public Slider slider1;
+    public Slider slider2;
 
 
 
@@ -79,59 +85,66 @@ public class moveBoat : MonoBehaviour
         // 直接改变大小
         transform.localScale = initialScale * targetScale;*/
 
-        if (leftforce >= 20f / speedRate)
+
+
+
+        if (!TimelineControllerScene2.isLose)
         {
+            if (leftforce >= 20f / speedRate)
+            {
 
-            float min = 0f;
-            float max = 1f;
-            leftforce = Mathf.Clamp(leftforce, min, max);
-            //Debug.Log(" leftforce: " + leftforce);
-            ApplyForce(left, leftdirection, leftforce);
+                float min = 0f;
+                float max = 1f;
+                leftforce = Mathf.Clamp(leftforce, min, max);
+                //Debug.Log(" leftforce: " + leftforce);
+                ApplyForce(left, leftdirection, leftforce);
+            }
+            /* else {
+                 if (currentleftforce >=0f) {
+                     ApplyForce(left, currentleftdirection, currentleftforce*1.5f);
+                     currentleftforce -= reduceForcerate * Time.deltaTime;
+
+                 }
+
+             }*/
+            if (rightforce >= 20f / speedRate)
+            {
+
+                float min = 0f;
+                float max = 1f;
+                rightforce = Mathf.Clamp(rightforce, min, max);
+                ApplyForce(right, -rightdirection, rightforce);
+
+                //Debug.Log(" rightforce: " + rightforce);
+            }
+
+
+
+
+            if (leftforce_Joystick >= 0f)
+            {
+
+
+                float min = 0f;
+                float max = 1f;
+                leftforce_Joystick = Mathf.Clamp(leftforce_Joystick, min, max);
+                // Debug.Log(" leftforce: " + leftforce);
+                ApplyForce(left, leftdirection_Joystick, leftforce_Joystick);
+            }
+
+            if (rightforce_Joystick >= 0f)
+            {
+
+
+                float min = 0f;
+                float max = 1f;
+                rightforce_Joystick = Mathf.Clamp(rightforce_Joystick, min, max);
+                ApplyForce(right, -rightdirection_Joystick, rightforce_Joystick);
+
+
+            }
         }
-        /* else {
-             if (currentleftforce >=0f) {
-                 ApplyForce(left, currentleftdirection, currentleftforce*1.5f);
-                 currentleftforce -= reduceForcerate * Time.deltaTime;
-
-             }
-
-         }*/
-        if (rightforce >= 20f / speedRate)
-        {
-
-            float min = 0f;
-            float max = 1f;
-            rightforce = Mathf.Clamp(rightforce, min, max);
-            ApplyForce(right, -rightdirection, rightforce);
-
-            //Debug.Log(" rightforce: " + rightforce);
-        }
-
-
-
-
-        if (leftforce_Joystick >= 0f)
-        {
-
-
-            float min = 0f;
-            float max = 1f;
-            leftforce_Joystick = Mathf.Clamp(leftforce_Joystick, min, max);
-            // Debug.Log(" leftforce: " + leftforce);
-            ApplyForce(left, leftdirection_Joystick, leftforce_Joystick);
-        }
-
-        if (rightforce_Joystick >= 0f)
-        {
-
-
-            float min = 0f;
-            float max = 1f;
-            rightforce_Joystick = Mathf.Clamp(rightforce_Joystick, min, max);
-            ApplyForce(right, -rightdirection_Joystick, rightforce_Joystick);
-
-
-        }
+       
 
 
 
@@ -149,7 +162,7 @@ public class moveBoat : MonoBehaviour
     private void Update()
     {
 
-        leftforce_Joystick = input11.speed / speedRate_Joystick;
+        leftforce_Joystick = input11.speed*0.9f / speedRate_Joystick;
         leftdirection_Joystick = input11.direction;
         rightforce_Joystick = input11.speed2 / speedRate_Joystick;
         rightdirection_Joystick = input11.direction2;
@@ -163,21 +176,62 @@ public class moveBoat : MonoBehaviour
         leftdirection = arduino123.direction;
         rightdirection = arduino123.direction2;
 
-        
-       /* else {
-            if (currentrightforce >= 0f) {
-                ApplyForce(right, currentrightdirection, currentrightforce*1.5f);
-                currentrightforce -= reduceForcerate * Time.deltaTime;
+
+        if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineControllerScene2.isLose)
+        {
+            if (slider1.value < 1f)
+            {
+                slider1.value = slider1.value + (leftforce / speedRate) + (leftforce_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+
+            }
+            else
+            {
+                if (!isready1)
+                {
+                    TimelineControllerScene2.isReady++;
+                    isready1 = true;
+                }
+
+
+
+            }
+
+            if (slider2.value < 1f)
+            {
+                slider2.value = slider2.value + (rightforce / speedRate) + (rightforce_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+
+            }
+            else
+            {
+                if (!isready2)
+                {
+                    TimelineControllerScene2.isReady++;
+                    isready2 = true;
+                }
+
+
 
             }
 
 
+
+
         }
-*/
+        if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineControllerScene2.isReady ==2)
+        {
+           GameManager.instance.ResumeTimeline();
 
 
 
-        
+        }
+
+
+
+
+
+
+
+
     }
 
     void ApplyForce(Transform side, float direction,float force )
@@ -208,7 +262,7 @@ public class moveBoat : MonoBehaviour
         Debug.Log("out");
         if (other.CompareTag("Plant")) {
             speedRate = speedRateTemp;
-            speedRate_Joystick = 3 * rspeedRate_Joystick;
+            speedRate_Joystick =  rspeedRate_Joystick;
         }
     }
 

@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public playerAudio audio1;
     private float speed;
     private bool isHit = false;
+    private float startZ;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -50,10 +51,10 @@ public class Player : MonoBehaviour
         childObject = childTransform.gameObject;
         currentLives = maxLives;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        UpdateLifeSprite();
+       // UpdateLifeSprite();
         audio1 = GetComponent<playerAudio>();
 
-
+         startZ = transform.eulerAngles.z;
         GameManager.iswinscene2=0;
     }
 
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour
 
 
         // 打印施加在物体上的所有力的大小
-        UnityEngine.Debug.Log("speed: " + speed);
+       
 
         Quaternion currentRotation = transform.rotation;
         float currentZ = currentRotation.eulerAngles.z;
@@ -130,14 +131,14 @@ public class Player : MonoBehaviour
 
         if (cspeed_Joystick <= 0.3f && horizontalInput1 == 0f)
         {
-            targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 0);
+            targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, startZ);
             transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, returnSpeed * Time.deltaTime);
         }
 
 
 
         if (cspeed <= 0.04f&&horizontalInput1_Joystick==0f) {
-            targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, 0);
+            targetRotation = Quaternion.Euler(currentRotation.eulerAngles.x, currentRotation.eulerAngles.y, startZ);
             transform.rotation = Quaternion.Lerp(currentRotation, targetRotation, returnSpeed * Time.deltaTime);
         }
         // 当 cspeed 为零时，平滑地将 z 轴旋转恢复到 0
@@ -156,24 +157,29 @@ public class Player : MonoBehaviour
     {
         //UnityEngine.Debug.Log(currentForce);
 
-        currentForce += forceIncreaseRate * Time.deltaTime;
 
-        // 限制当前施加的力不超过最大值
-        currentForce = Mathf.Clamp(currentForce, 4f, forceMagnitude);
-
-
-
-        // 施加力，方向为世界空间中的 Y 轴正方向，大小为 currentForce
-        rb.AddForce(Vector3.up * currentForce);
-        //UnityEngine.Debug.Log(currentForce);
-        if (horizontalInput1 != 0)
+        if (GameManager.instance.isGameStart && !TimelineScene21.isWin&& !TimelineScene21.isLose)
         {
-            MoveWithController();
+            currentForce += forceIncreaseRate * Time.deltaTime;
+
+            // 限制当前施加的力不超过最大值
+            currentForce = Mathf.Clamp(currentForce, 4f, forceMagnitude);
+
+
+
+            // 施加力，方向为世界空间中的 Y 轴正方向，大小为 currentForce
+            rb.AddForce(Vector3.up * currentForce);
+            //UnityEngine.Debug.Log(currentForce);
+            if (horizontalInput1 != 0)
+            {
+                MoveWithController();
+            }
+            if (horizontalInput1_Joystick != 0)
+            {
+                MoveWithController_Joystick();
+            }
         }
-        if (horizontalInput1_Joystick != 0)
-        {
-            MoveWithController_Joystick();
-        }
+       
 
 
 
@@ -207,7 +213,11 @@ public class Player : MonoBehaviour
     {
         if (currentLives >= 1 && currentLives <= lifeSprites.Length)
         {
-            spriteRenderer.sprite = lifeSprites[currentLives - 1];
+            spriteRenderer.sprite = lifeSprites[currentLives];
+        }
+        if (currentLives == 0 && currentLives <= lifeSprites.Length)
+        {
+            spriteRenderer.sprite = lifeSprites[0];
         }
     }
 
@@ -287,22 +297,23 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Stone"))
         {
             forceIncreaseRate = -forceIncreaseRate * 5;
-
+            UnityEngine.Debug.Log("speed: " + speed);
         }
 
 
         if (collision.gameObject.CompareTag("Stone") && !isHit)
         {
 
-            if (speed >= 1.2f)
+            if (speed >= 2f)
             {
                 audio1.playhit(3f);
                 TakeDamage(2);
 
 
             }
-            else if (speed >= 0.7f)
+            else if (speed >= 1f)
             {
+                UnityEngine.Debug.Log("boom");
                 audio1.playhit(2f);
                 TakeDamage(1);
 
@@ -318,7 +329,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Stone"))
         {
-
+            isHit =false;
             forceIncreaseRate = forceIncreaseRateTemp;
 
         }

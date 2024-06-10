@@ -54,31 +54,34 @@ public class police : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!waterfall.iswin)
+        {
+
+            if (ischase)
+            {
+                agent.SetDestination(target.position);
+
+                RotateTowards(target.position);
+                audioPolice.playAudio();
+                childObject.SetActive(true);
+            }
+            else
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= wanderTimer)
+                {
+                    Vector2 newPos = RandomNavSphere(transform.position, wanderRadius);
+                    agent.SetDestination(new Vector3(newPos.x, newPos.y, transform.position.z));
+                    timer = 0;
+                }
+                audioPolice.stopAudio();
+                RotateTowards(agent.destination);
+                childObject.SetActive(false);
+            }
+        }
 
        
-        if (ischase)
-        {
-            agent.SetDestination(target.position);
-            
-            RotateTowards(target.position);
-            audioPolice.playAudio();
-            childObject.SetActive(true);
-        }
-        else
-        {
-            timer += Time.deltaTime;
-            
-            if (timer >= wanderTimer)
-            {
-                Vector2 newPos = RandomNavSphere(transform.position, wanderRadius);
-                agent.SetDestination(new Vector3(newPos.x, newPos.y, transform.position.z));
-                timer = 0;
-            }
-            audioPolice.stopAudio();
-            RotateTowards(agent.destination);
-            childObject.SetActive(false);
-        }
 
 
     }

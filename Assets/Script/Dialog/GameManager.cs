@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public static int iswinscene2 = 0;
 
-
-
+    public  string scenename;
+    public bool isGameStart = false;
 
     public enum GameMode
     {
@@ -115,6 +115,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
+
+
+
         if(gameMode == GameMode.DialogueMoment)
         {
             if (Input.GetKeyDown(KeyCode.Space))

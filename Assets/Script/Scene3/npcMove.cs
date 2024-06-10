@@ -24,10 +24,13 @@ public class npcMove : MonoBehaviour
     void Update()
     {
         // ÒÆ¶¯ÎïÌå
-      
+        if (!TimelineScene3.isLose)
+        {
+            float move = speed * Time.deltaTime;
+            transform.Translate(movingRight ? move : -move, 0, 0);
+        }
            
-                float move = speed * Time.deltaTime;
-                transform.Translate(movingRight ? move : -move, 0, 0);
+             
         
 
 
@@ -42,7 +45,7 @@ public class npcMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (TimelineScene3.isGameStart)
+        if (TimelineScene3.isGameStart )
         {
             if (other.CompareTag("PointA"))
             {
