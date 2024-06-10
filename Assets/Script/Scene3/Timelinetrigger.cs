@@ -98,6 +98,7 @@ public class Timelinetrigger : MonoBehaviour
     }
    public void clear()
     {
+        Debug.Log("clean");
         Timelines.Clear();
     }
 }

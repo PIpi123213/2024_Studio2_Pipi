@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
@@ -43,6 +45,12 @@ public class Player : MonoBehaviour
     private float speed;
     private bool isHit = false;
     private float startZ;
+
+    public Slider slider;
+    public Slider slider2;
+    private bool isready = false;
+    private bool isWin = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -91,10 +99,47 @@ public class Player : MonoBehaviour
 
         }
 
+        if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineScene21.isLose)
+        {
+            if (slider.value < 1f)
+            {
+                slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+
+            }
+            else
+            {
+                if (!isready)
+                {
+                    TimelineScene21.isReady++;
+                    isready = true;
+                }
+            }
+        }
+        if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineScene21.isReady == 2 )
+        {
+            GameManager.instance.ResumeTimeline();
 
 
-        
 
+        }
+
+        if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineScene21.isWin==2)
+        {
+            if (slider2.value < 1f)
+            {
+                slider2.value = slider2.value + (cspeed / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+
+            }
+            else
+            {
+                if (!isready)
+                {
+                    TimelineScene21.isReady++;
+                    isready = true;
+                }
+            }
+        }
+       
 
         Vector2 velocity = rb.velocity;
 
@@ -158,7 +203,7 @@ public class Player : MonoBehaviour
         //UnityEngine.Debug.Log(currentForce);
 
 
-        if (GameManager.instance.isGameStart && !TimelineScene21.isWin&& !TimelineScene21.isLose)
+        if (GameManager.instance.isGameStart && TimelineScene21.isWin!=2&& !TimelineScene21.isLose &&!isWin)
         {
             currentForce += forceIncreaseRate * Time.deltaTime;
 
@@ -190,14 +235,16 @@ public class Player : MonoBehaviour
     {
         UnityEngine.Debug.Log("Game Over");
         // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        TimelineScene21.isLose = true;
     }
 
     private void GameWin()
     {
         UnityEngine.Debug.Log("Game Win");
         // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        TimelineScene21.isWin ++;
     }
 
     private void TakeDamage(int damage)
@@ -279,9 +326,18 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag("END")) 
         {
-            GameManager.iswinscene2++;
-        }
+            GameOver();
+            Debug.Log("over");
 
+            //GameManager.iswinscene2++;
+        }
+        if (other.gameObject.CompareTag("Win"))
+        {
+            GameWin();
+            isWin = true;
+
+            //GameManager.iswinscene2++;
+        }
     }
     private void OnTriggerExit2D(Collider2D other) {
         
@@ -304,14 +360,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Stone") && !isHit)
         {
 
-            if (speed >= 2f)
+            if (speed >= 1.8f)
             {
                 audio1.playhit(3f);
                 TakeDamage(2);
 
 
             }
-            else if (speed >= 1f)
+            else if (speed >= 0.8f)
             {
                 UnityEngine.Debug.Log("boom");
                 audio1.playhit(2f);

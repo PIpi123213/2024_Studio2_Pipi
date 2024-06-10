@@ -19,7 +19,7 @@ public class TimelineScene21 : MonoBehaviour
     public static bool isGameStart = false;
 
     public static bool isLose = false;
-    public static bool isWin = false;
+    public static int isWin = 0;
     public static int isReady = 0;
     void Start()
     {
@@ -34,7 +34,7 @@ public class TimelineScene21 : MonoBehaviour
         play2schel = false;
         isGameStart = false;
         isLose = false;
-        isWin = false;
+        isWin = 0;
         isReady = 0;
     }
 
@@ -60,7 +60,7 @@ public class TimelineScene21 : MonoBehaviour
 
 
         }
-        if (isWin && !isplayed3)
+        if (isWin==2 && !isplayed3)
         {
 
 

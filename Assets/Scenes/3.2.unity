@@ -12588,6 +12588,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 74bf19f2519a53747939a6e22bcae014, type: 2}
     - {fileID: 11400000, guid: c57449ceb34e68d409487211f8fa5110, type: 2}
+    - {fileID: 11400000, guid: 119c19d4d34cb1c4484054cced8221f5, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -12614,7 +12615,21 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: 4
+            m_StringArgument: 2.2
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1652755262}
+          m_TargetAssemblyTypeName: Timelinetrigger, Assembly-CSharp
+          m_MethodName: clear
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &443568328
@@ -17047,7 +17062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &651192375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39105,6 +39120,8 @@ PlayableDirector:
     value: {fileID: 901323158}
   - key: {fileID: 2731766174788764728, guid: cdcf2b9b31f12b54d93baf9e4aa3c403, type: 2}
     value: {fileID: 614555858}
+  - key: {fileID: -1592010856890908359, guid: cdcf2b9b31f12b54d93baf9e4aa3c403, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &1450554185
@@ -55396,6 +55413,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector1: {fileID: 2036721355}
+  TimelineID: 
+  count: 0
 --- !u!1 &2041773762
 GameObject:
   m_ObjectHideFlags: 0
@@ -57166,6 +57185,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playableDirector1: {fileID: 2086991800}
+  TimelineID: 
+  count: 0
 --- !u!50 &2086991802
 Rigidbody2D:
   serializedVersion: 4

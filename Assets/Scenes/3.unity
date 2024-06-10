@@ -12304,6 +12304,7 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 74bf19f2519a53747939a6e22bcae014, type: 2}
     - {fileID: 11400000, guid: c57449ceb34e68d409487211f8fa5110, type: 2}
+    - {fileID: 11400000, guid: 119c19d4d34cb1c4484054cced8221f5, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -12331,6 +12332,20 @@ MonoBehaviour:
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 2.2
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1652755262}
+          m_TargetAssemblyTypeName: Timelinetrigger, Assembly-CSharp
+          m_MethodName: clear
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &443568328
@@ -24485,7 +24500,7 @@ Camera:
   far clip plane: 1000
   field of view: 28.8
   orthographic: 1
-  orthographic size: 3.42
+  orthographic size: 3.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -56961,6 +56976,14 @@ PrefabInstance:
       value: Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 4611616396949184309, guid: 14675616b66e2a84098641b342e778ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5098445732270650784, guid: 14675616b66e2a84098641b342e778ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7828378468221287329, guid: 14675616b66e2a84098641b342e778ca, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
