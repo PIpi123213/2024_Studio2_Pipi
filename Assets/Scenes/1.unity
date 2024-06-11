@@ -4785,10 +4785,10 @@ MonoBehaviour:
   ropeLength: 0
   currentropeLength: 0
   fishLength: 50
-  duration: 0.6
+  duration: 20
   point: {fileID: 1700536136}
   score: {fileID: 342443685}
-  sRate: 1
+  sRate: 0.5
   key: {fileID: 0}
 --- !u!120 &1502725880
 LineRenderer:

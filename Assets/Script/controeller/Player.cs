@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
         {
             if (slider.value < 1f)
             {
-                slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+                slider.value = slider.value + (cspeed * 10f / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
 
             }
             else
@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
         {
             if (slider2.value < 1f)
             {
-                slider2.value = slider2.value + (cspeed / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+                slider2.value = slider2.value + (cspeed * 10f / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
 
             }
             else
@@ -360,14 +360,14 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Stone") && !isHit)
         {
 
-            if (speed >= 1.8f)
+            if (speed >= 3f)
             {
                 audio1.playhit(3f);
                 TakeDamage(2);
 
 
             }
-            else if (speed >= 0.8f)
+            else if (speed >= 2f)
             {
                 UnityEngine.Debug.Log("boom");
                 audio1.playhit(2f);

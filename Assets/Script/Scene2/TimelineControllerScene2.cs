@@ -118,6 +118,13 @@ public class TimelineControllerScene2 : MonoBehaviour
     public void SwitchToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        Timelinetrigger.Instance.clear();
+    }
+
+
+    public void BackToScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
 

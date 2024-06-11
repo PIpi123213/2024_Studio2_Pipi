@@ -17,7 +17,9 @@ public class Timelinescene11 : MonoBehaviour
     private int isplayed = 0;
     public GameObject Line;
     public static bool isGameStart = false;
-
+    public PlayableDirector playableDirector3;
+    private bool isplayed3 = false;
+    public static bool isLose = false;
 
     public static int isWin_scene1 = 0;
 
@@ -33,6 +35,10 @@ public class Timelinescene11 : MonoBehaviour
     public PlayableDirector player2Timeline;
     public static bool player2win = false;
     private bool isplayer2played = false;
+    public static int isready = 0;
+
+
+
     public GameObject player2;
     public GameObject player1;
     void Start()
@@ -52,6 +58,8 @@ public class Timelinescene11 : MonoBehaviour
         isGameStart = false;
         player1win = false;
         player2win = false;
+        isLose = false;
+        isready = 0;
     }
 
 
@@ -97,6 +105,23 @@ public class Timelinescene11 : MonoBehaviour
             isplayer2played = true;
             player2.SetActive(true);
         }
+        if (isLose && !isplayed3)
+        {
+           
+            PlayTimeline(playableDirector3);
+            isplayed3 = true;
+            
+        }
+
+        if(GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && isLose && isready == 2)
+        {
+
+
+
+            GameManager.instance.ResumeTimeline();
+        }
+
+
 
 
     }
@@ -150,6 +175,14 @@ public class Timelinescene11 : MonoBehaviour
     public void SwitchToScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        Timelinetrigger.Instance.clear();
     }
+
+
+    public void BackToScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
 
 }

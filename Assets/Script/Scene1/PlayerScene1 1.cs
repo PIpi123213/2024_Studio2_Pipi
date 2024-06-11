@@ -32,6 +32,7 @@ public class PlayerScene11 : MonoBehaviour
 
     public FishingLine fishingLine;
     public Slider slider;
+    public Slider sliderLose;
     public float sliderRate;
     private bool isDiging = false;
 
@@ -39,7 +40,7 @@ public class PlayerScene11 : MonoBehaviour
     public GameObject poster1;
     public GameObject poster2;
     private bool isWin = false;
-
+    private bool isready = false;
 
 
     private void Start()
@@ -89,7 +90,7 @@ public class PlayerScene11 : MonoBehaviour
         if (characterChoice == Char.Option1)
         {
             cspeed = arduino123.speed / speedRate;
-            horizontalInput1 = -arduino123.direction;
+            horizontalInput1 = arduino123.direction;
         }
         else
         {
@@ -145,6 +146,31 @@ public class PlayerScene11 : MonoBehaviour
                 
             }
         }
+        if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && Timelinescene11.isLose)
+        {
+            if (sliderLose.value < 1f)
+            {
+                sliderLose.value = sliderLose.value + (cspeed*10f / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+
+            }
+            else
+            {
+                if (!isready)
+                {
+                    Timelinescene11.isready++;
+                    isready = true;
+                }
+
+
+
+            }
+        }
+
+
+
+
+
+
 
 
 

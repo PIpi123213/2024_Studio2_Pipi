@@ -46,7 +46,11 @@ public class PauseMenu : MonoBehaviour
 
     public void LoadMenu(string sceneName)
     {
-        Timelinetrigger.Instance.clear();
+        if (Timelinetrigger.Instance != null)
+        {
+            Timelinetrigger.Instance.clear();
+        }
+        Resume();
         Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName); // 替换成你的主菜单场景的名称
     }

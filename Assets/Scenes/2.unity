@@ -12681,6 +12681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 764203539378065079, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3941957193261290625, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8135162
@@ -12724,6 +12728,10 @@ PrefabInstance:
     - target: {fileID: 4602442836334176811, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412574425226316354, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -24772,50 +24780,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6953055206502512137, guid: 09bd736cc1773644eb70c2d030203afd, type: 3}
   m_PrefabInstance: {fileID: 1511016382}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1532552727
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1532552729}
-  - component: {fileID: 1532552728}
-  m_Layer: 0
-  m_Name: TimelineTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1532552728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532552727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 651bda1baf7e3eb4ba59a868c9a983db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1532552729
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532552727}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2182556, y: 0.1774595, z: 0.43200538}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1537530122
 GameObject:
   m_ObjectHideFlags: 0
@@ -26694,7 +26658,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1638640952}
           m_TargetAssemblyTypeName: TimelineControllerScene2, Assembly-CSharp
-          m_MethodName: SwitchToScene
+          m_MethodName: BackToScene
           m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -26720,7 +26684,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1532552728}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Timelinetrigger, Assembly-CSharp
           m_MethodName: clear
           m_Mode: 1
@@ -36352,6 +36316,5 @@ SceneRoots:
   - {fileID: 217443975}
   - {fileID: 1497136042}
   - {fileID: 1098464058}
-  - {fileID: 1532552729}
   - {fileID: 851025937}
   - {fileID: 1746295039}

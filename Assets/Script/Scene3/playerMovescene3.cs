@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.Experimental.GraphView.GraphView;
+//using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class playerMovescene3 : MonoBehaviour
 {
@@ -101,7 +101,7 @@ public class playerMovescene3 : MonoBehaviour
         {
             if (slider.value < 1f)
             {
-                slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick*20f / speedRate_Joystick) * Time.deltaTime;
+                slider.value = slider.value + (cspeed*10f / speedRate) + (cspeed_Joystick*20f / speedRate_Joystick) * Time.deltaTime;
 
             }
             else
@@ -118,25 +118,7 @@ public class playerMovescene3 : MonoBehaviour
         }
 
 
-         if(GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineScene3.isLose)
-        {
-            if (slider.value < 1f)
-            {
-                slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick*20f / speedRate_Joystick) * Time.deltaTime;
-
-            }
-            else
-            {
-                if (!isready)
-                {
-                    PlayerControllerScene3.isReady++;
-                    isready = true;
-                }
-
-
-
-            }
-        }
+        
 
 
 

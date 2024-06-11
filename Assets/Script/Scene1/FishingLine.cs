@@ -167,12 +167,12 @@ public class FishingLine : MonoBehaviour
         {
             if (currentSaturation <= 0.2f)
             {
-                score.value += 0.0005f;
+                score.value += 0.0007f;
 
             }
             else
             {
-                score.value -= 0.0007f;
+                score.value -= 0.0005f;
             }
         }
        
@@ -191,18 +191,19 @@ public class FishingLine : MonoBehaviour
         }
         else
         {
-            if (currentSaturation >= 0.4f)
+            if (currentSaturation >= 0.5f)
 
             {
                 timer += Time.deltaTime;
 
                 // 检查计时器是否达到阈值时长
-                if (timer >= duration && currentSaturation >= 0.6f)
+                if (timer >= duration && currentSaturation >= 0.7f)
                 {
                     Debug.Log("Saturation has been above the threshold for 1 second");
+                    lineMaterial.color = Color.red;
                     // 触发你需要的逻辑，例如重置计时器
                     //GameManager.instance.GameOver();
-
+                    Timelinescene11.isLose = true;
                     timer = 0.0f;
                 }
                 else

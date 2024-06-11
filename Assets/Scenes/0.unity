@@ -2295,6 +2295,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1038640764084071664, guid: 47a53439794e35143aff1b9077200744, type: 3}
   m_PrefabInstance: {fileID: 424794755}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &425718720 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 6827127101396452029, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+  m_PrefabInstance: {fileID: 1887561070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &441451795
 GameObject:
   m_ObjectHideFlags: 0
@@ -5735,6 +5740,10 @@ PlayableDirector:
     value: {fileID: 211209626}
   - key: {fileID: 1907673945049837096, guid: 068381085d5c7844bb980abab0d1422b, type: 2}
     value: {fileID: 441451798}
+  - key: {fileID: 3497097698356390433, guid: 068381085d5c7844bb980abab0d1422b, type: 2}
+    value: {fileID: 1895350916}
+  - key: {fileID: -8129420050183889297, guid: 068381085d5c7844bb980abab0d1422b, type: 2}
+    value: {fileID: 425718720}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &981186186
@@ -9750,6 +9759,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+--- !u!82 &1895350916 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 458561435320495811, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+  m_PrefabInstance: {fileID: 1887561070}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1911734635
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,6 +55,7 @@ public class Find : MonoBehaviour
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
+                        Timelinescene11.isLose = true;
                     }
                 }
                 else
@@ -80,7 +81,8 @@ public class Find : MonoBehaviour
                     {
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
-                        //GameManager.instance.GameOver();
+                        Timelinescene11.isLose = true;
+
                     }
                 }
 

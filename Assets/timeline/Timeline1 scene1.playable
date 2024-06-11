@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: T
-    dialogueLine: "<color=grey>(\u5411\u540E/\u9006\u65F6\u9488 \u65CB\u8F6C\u63A7\u5236\u5668)</color> 
+    dialogueLine: "<color=grey>(\u5411\u524D/\u987A\u65F6\u9488 \u65CB\u8F6C\u63A7\u5236\u5668)</color> 
       \u4F7F\u7528\u65E0\u654C\u4FEF\u5367\u6491,\u9632\u6B62\u72F1\u8B66\u53D1\u73B0"
     requirePause: 1
     ffScheduled: 1
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 60.1
+  m_Time: 55.07571257005135
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 1013a76b0ef804c4d8745af04a456d83, type: 2}
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: T
-    dialogueLine: "<color=grey>(\u5411\u524D/\u987A\u65F6\u9488 \u65CB\u8F6C\u63A7\u5236\u5668)</color>
+    dialogueLine: "<color=grey>(\u5411\u540E/\u9006\u65F6\u9488 \u65CB\u8F6C\u63A7\u5236\u5668)</color>
       \u5426\u5219\u6211\u5C31\u51FF\u7A7F\u8FD9\u9762\u5899"
     requirePause: 0
     ffScheduled: 1
@@ -584,7 +584,7 @@ MonoBehaviour:
     m_Start: 9.95
     m_ClipIn: 0
     m_Asset: {fileID: 6791647614418904877}
-    m_Duration: 18.700000000000003
+    m_Duration: 24.066666666666666
     m_TimeScale: 1
     m_ParentTrack: {fileID: -118609601033845902}
     m_EaseInDuration: 0
@@ -971,13 +971,13 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: 8344542343245946748}
-    m_Duration: 60.1
+    m_Duration: 54.14377791043371
     m_TimeScale: 1
     m_ParentTrack: {fileID: 6853467613428247585}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: -1
-    m_BlendOutDuration: 5.583333333333336
+    m_BlendOutDuration: 2.9437779104337096
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -1037,7 +1037,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: ScreenFaderClip
   - m_Version: 1
-    m_Start: 54.516666666666666
+    m_Start: 51.2
     m_ClipIn: 0
     m_Asset: {fileID: 2755919067870025874}
     m_Duration: 29.099999999999994
@@ -1045,7 +1045,7 @@ MonoBehaviour:
     m_ParentTrack: {fileID: 6853467613428247585}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 5.583333333333336
+    m_BlendInDuration: 2.9437779104337096
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
