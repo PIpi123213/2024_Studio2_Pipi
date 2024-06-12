@@ -25,7 +25,7 @@ public class FishingLine : MonoBehaviour
     // Renderer组件
     private Material lineMaterial;
     public Transform point;
-
+    public Transform movepoint;
     private float currentSaturation;
     private float currentSaturation2;
 
@@ -64,6 +64,7 @@ public class FishingLine : MonoBehaviour
         // 设置 LineRenderer 的起点和终点位置
         lineRenderer.SetPosition(0, hookTransform.position);
         lineRenderer.SetPosition(1, fishTransform.position);
+        lineRenderer.SetPosition(2, movepoint.position);
         //Debug.Log(Mathf.Abs(ropeLength - currentropeLength));
         Color originalColor = lineMaterial.color;
         Color originalColor2 = startColor2;

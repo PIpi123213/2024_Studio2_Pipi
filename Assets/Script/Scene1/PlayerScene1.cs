@@ -39,7 +39,7 @@ public class PlayerScene1 : MonoBehaviour
 
     public GameObject poster1;
     public GameObject poster2;
-
+    public GameObject lineMove;
 
 
 
@@ -56,7 +56,8 @@ public class PlayerScene1 : MonoBehaviour
        
         if (characterChoice == Char.Option1)
         {
-            fishingLine = null;
+            lineMove= null
+           fishingLine = null;
             T_hand.gameObject.SetActive(false);
             T_handtransform = T_hand.transform.Find("R_shoulder");
             Current_T_handtransform = T_handtransform;
@@ -315,12 +316,16 @@ public class PlayerScene1 : MonoBehaviour
         float rotationAmount = -horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime * 600f;
 
         // 计算新的旋转角度
+        Vector3 newPosition = lineMove.transform.position + new Vector3(0, horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime * 0.5f, 0);
 
-        if (cspeed_Joystick >= 30f/speedRate)
+        // 应用新的位置
+
+        // 计算新的旋转角度
+        newPosition.y = Mathf.Clamp(newPosition.y, -1f, 1f);
+        if (cspeed_Joystick >= 30f / speedRate)
         {
             fishingLine.point.Rotate(0f, 0f, rotationAmount, Space.Self);
-            
-
+            lineMove.transform.position = newPosition;
             /*  Quaternion currentRotation = T_handtransform.rotation;
 
               // 计算目标旋转
