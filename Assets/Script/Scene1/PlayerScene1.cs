@@ -40,7 +40,7 @@ public class PlayerScene1 : MonoBehaviour
     public GameObject poster1;
     public GameObject poster2;
 
-    public GameObject lineMove;
+
 
 
 
@@ -62,7 +62,6 @@ public class PlayerScene1 : MonoBehaviour
             Current_T_handtransform = T_handtransform;
             poster1.SetActive(true);
             poster2.SetActive(false);
-            lineMove = null;
         }
 
 
@@ -236,7 +235,7 @@ public class PlayerScene1 : MonoBehaviour
       
         if(characterChoice == Char.Option2 && Timelinescene1.isGameStart)
         {
-            fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick )*1f;
+            fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick )*0.7f;
             fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1f;
             fishingLine.currentropeLength = Mathf.Clamp(fishingLine.currentropeLength, 140f, 380f);
 
@@ -314,16 +313,13 @@ public class PlayerScene1 : MonoBehaviour
 
 
         float rotationAmount = -horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime * 600f;
-        Vector3 newPosition = lineMove.transform.position + new Vector3(0, horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime , 0);
-
-        // 应用新的位置
 
         // 计算新的旋转角度
-        newPosition.y = Mathf.Clamp(newPosition.y, -1f, 1f);
+
         if (cspeed_Joystick >= 30f/speedRate)
         {
             fishingLine.point.Rotate(0f, 0f, rotationAmount, Space.Self);
-            lineMove.transform.position = newPosition;
+            
 
             /*  Quaternion currentRotation = T_handtransform.rotation;
 
@@ -343,7 +339,7 @@ public class PlayerScene1 : MonoBehaviour
 
         // 计算新的旋转角度
 
-        if (cspeed >= 20f / speedRate)
+        if (cspeed_Joystick >= 0f)
         {
 
             T_handtransform.Rotate(0f, 0f, rotationAmount, Space.Self);
@@ -390,16 +386,9 @@ public class PlayerScene1 : MonoBehaviour
 
         // 计算新的旋转角度
 
-        Vector3 newPosition = lineMove.transform.position + new Vector3(0, horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime, 0);
-
-        // 应用新的位置
-
-        // 计算新的旋转角度
-        newPosition.y = Mathf.Clamp(newPosition.y, -1f, 1f);
-        if (cspeed_Joystick >= 30f / speedRate)
-        {
+        if (cspeed>= 20f / speedRate) {
             fishingLine.point.Rotate(0f, 0f, rotationAmount, Space.Self);
-            lineMove.transform.position = newPosition;
+
 
             /*  Quaternion currentRotation = T_handtransform.rotation;
 

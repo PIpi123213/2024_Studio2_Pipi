@@ -37,7 +37,7 @@ public class FishingLine : MonoBehaviour
     public GameObject key;
 
 
-    public MeshRenderer obimaterial;
+
 
     void Start()
     {
@@ -65,7 +65,7 @@ public class FishingLine : MonoBehaviour
         lineRenderer.SetPosition(0, hookTransform.position);
         lineRenderer.SetPosition(1, fishTransform.position);
         //Debug.Log(Mathf.Abs(ropeLength - currentropeLength));
-        Color originalColor = obimaterial.material.color;
+        Color originalColor = lineMaterial.color;
         Color originalColor2 = startColor2;
         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
         //Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
@@ -78,8 +78,7 @@ public class FishingLine : MonoBehaviour
                 currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
                 Color newColor = Color.HSVToRGB(0, currentSaturation, v);
                 //lineMaterial.SetColor("_Color1", newColor);
-               lineMaterial.color = newColor;
-                obimaterial.material.color = newColor;
+                lineMaterial.color = newColor;
             }
             else
             {
@@ -87,8 +86,7 @@ public class FishingLine : MonoBehaviour
                 currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
                 Color newColor = Color.HSVToRGB(0, currentSaturation, v);
                 //lineMaterial.SetColor("_Color1", newColor);
-               lineMaterial.color = newColor;
-                obimaterial.material.color = newColor;
+                lineMaterial.color = newColor;
             }
 
 
@@ -104,7 +102,6 @@ public class FishingLine : MonoBehaviour
                 Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
                 //lineMaterial.SetColor("_Color1", newColor);
                 lineMaterial.color = newColor;
-                obimaterial.material.color = newColor;
             }
             else
             {
@@ -112,8 +109,7 @@ public class FishingLine : MonoBehaviour
                 currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
                 Color newColor = Color.HSVToRGB(48f / 255f, currentSaturation, v);
                 //lineMaterial.SetColor("_Color1", newColor);
-               lineMaterial.color = newColor;
-                obimaterial.material.color = newColor;
+                lineMaterial.color = newColor;
             }
         }
 
@@ -207,7 +203,7 @@ public class FishingLine : MonoBehaviour
                     lineMaterial.color = Color.red;
                     // 触发你需要的逻辑，例如重置计时器
                     //GameManager.instance.GameOver();
-                   // Timelinescene11.isLose = true;
+                    Timelinescene11.isLose = true;
                     timer = 0.0f;
                 }
                 else

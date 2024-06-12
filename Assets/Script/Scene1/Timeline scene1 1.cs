@@ -107,7 +107,7 @@ public class Timelinescene11 : MonoBehaviour
         }
         if (isLose && !isplayed3)
         {
-            Line.SetActive(false);
+           
             PlayTimeline(playableDirector3);
             isplayed3 = true;
             
