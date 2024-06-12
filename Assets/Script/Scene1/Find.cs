@@ -26,7 +26,7 @@ public class Find : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Timelinescene11.isGameStart)
+        if (Timelinescene11.isGameStart&& Timelinescene11.isLose== false)
         {
             if (isFind && isMoving && !Timelinescene11.player1win)
             {
@@ -55,6 +55,7 @@ public class Find : MonoBehaviour
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
+                        Timelinescene11.isLose1 = true;
                         Timelinescene11.isLose = true;
                     }
                 }
@@ -81,6 +82,7 @@ public class Find : MonoBehaviour
                     {
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
+                        Timelinescene11.isLose1 = true;
                         Timelinescene11.isLose = true;
 
                     }
@@ -114,7 +116,10 @@ public class Find : MonoBehaviour
 
 
 
-
+        if (Timelinescene11.isLose == true)
+        {
+            spriteRenderer.material.color = Color.red;
+        }
 
 
 

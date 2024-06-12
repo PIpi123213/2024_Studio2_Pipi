@@ -69,6 +69,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vector3 currentPosition = transform.position;
+
+        // 将 z 轴位置固定为 0
+        currentPosition.z = 0f;
+
+        // 应用新的位置
+      transform.position = currentPosition;
+
+
+
+
         if (speed >= 0.03f)
         {
             childObject.SetActive(true);
@@ -213,7 +224,7 @@ public class Player : MonoBehaviour
 
 
             // 施加力，方向为世界空间中的 Y 轴正方向，大小为 currentForce
-            rb.AddForce(Vector3.up * currentForce);
+            rb.AddForce(Vector2.up * currentForce);
             //UnityEngine.Debug.Log(currentForce);
             if (horizontalInput1 != 0)
             {
@@ -236,7 +247,19 @@ public class Player : MonoBehaviour
         UnityEngine.Debug.Log("Game Over");
         // 在这里处理游戏结束的逻辑，例如重新加载场景或者显示游戏结束画面等
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if(characterChoice == Char.Option1)
+        {
+            TimelineScene21.isLose1 = true;
+        }
+        else
+        {
+            TimelineScene21.isLose2 = true;
+        
+    }
+
         TimelineScene21.isLose = true;
+
+
     }
 
     private void GameWin()

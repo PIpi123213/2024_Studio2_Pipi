@@ -26,7 +26,7 @@ public class PoliceMove : MonoBehaviour
     void Update()
     {
         // ÒÆ¶¯ÎïÌå
-        if (Timelinescene11.isGameStart)
+        if (Timelinescene11.isGameStart&&!Timelinescene11.isLose)
         {
             if (Timelinescene11.isWin_scene1 == 2)
             {

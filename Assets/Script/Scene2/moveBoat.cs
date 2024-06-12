@@ -181,7 +181,7 @@ public class moveBoat : MonoBehaviour
         {
             if (slider1.value < 1f)
             {
-                slider1.value = slider1.value + (leftforce*10f / speedRate) + (leftforce_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+                slider1.value = slider1.value + (leftforce*20f / speedRate) + (leftforce_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
 
             }
             else
@@ -198,7 +198,7 @@ public class moveBoat : MonoBehaviour
 
             if (slider2.value < 1f)
             {
-                slider2.value = slider2.value + (rightforce * 10f / speedRate) + (rightforce_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+                slider2.value = slider2.value + (rightforce * 20f / speedRate) + (rightforce_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
 
             }
             else

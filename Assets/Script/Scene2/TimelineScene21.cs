@@ -14,11 +14,16 @@ public class TimelineScene21 : MonoBehaviour
     private bool isplayed2 = false;
     public PlayableDirector playableDirector3;
     private bool isplayed3 = false;
-
+    public PlayableDirector playableDirector4;
+    private bool isplayed4 = false;
 
     public static bool isGameStart = false;
 
     public static bool isLose = false;
+
+    public static bool isLose1 = false;
+    public static bool isLose2 = false;
+
     public static int isWin = 0;
     public static int isReady = 0;
     void Start()
@@ -34,6 +39,10 @@ public class TimelineScene21 : MonoBehaviour
         play2schel = false;
         isGameStart = false;
         isLose = false;
+
+        
+        isLose1 = false;
+        isLose2 = false;
         isWin = 0;
         isReady = 0;
     }
@@ -51,7 +60,7 @@ public class TimelineScene21 : MonoBehaviour
             GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
 
         }
-        if (isLose && !isplayed2)
+        if (isLose1 && !isplayed2)
         {
             isGameStart = false;
             PlayTimeline(playableDirector2);
@@ -60,6 +69,16 @@ public class TimelineScene21 : MonoBehaviour
 
 
         }
+        if (isLose2 && !isplayed4)
+        {
+            isGameStart = false;
+            PlayTimeline(playableDirector4);
+            isplayed4 = true;
+            GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
+
+
+        }
+
         if (isWin==2 && !isplayed3)
         {
 

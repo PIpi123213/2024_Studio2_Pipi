@@ -1,10 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FishingLine : MonoBehaviour
+public class Line : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform hookTransform; // 鱼钩的 Transform
@@ -37,12 +36,11 @@ public class FishingLine : MonoBehaviour
     public LineRenderer lineRenderer2;
 
     public LineRenderer lineRenderer3;
-
-
     public GameObject up;
     public GameObject down;
 
 
+    
     void Start()
     {
         // 获取 LineRenderer 组件
@@ -51,7 +49,7 @@ public class FishingLine : MonoBehaviour
         {
             lineMaterial = lineRenderer.materials[0];
             // 初始化起始颜色
-            startColor = lineMaterial.color ;
+            startColor = lineMaterial.color;
             //startColor2 = lineMaterial.GetColor("_Color2"); ;
         }
         // 设置 LineRenderer 的顶点数
@@ -61,23 +59,24 @@ public class FishingLine : MonoBehaviour
         ropeLength = Vector2.Distance(hookTransform.position, fishTransform.position) * 100f;
         currentropeLength = 230f;
         score.value = 0.1f;
+        currentSaturation = 0f;
         Color.RGBToHSV(lineMaterial.color, out float h, out float s, out float v);
         Color newColor = Color.HSVToRGB(0, 0, v);
         lineMaterial.color = newColor;
         lineRenderer2.materials[0].color = newColor;
         lineRenderer3.materials[0].color = newColor;
-
+        Debug.Log(s);
         up.SetActive(false);
         down.SetActive(false);
     }
 
     void Update()
     {
-        ropeLength = Vector2.Distance(hookTransform.position, fishTransform.position)*100f;
+        ropeLength = Vector2.Distance(hookTransform.position, fishTransform.position) * 100f;
 
         // 设置 LineRenderer 的起点和终点位置
         lineRenderer.SetPosition(0, hookTransform.position);
-    
+
         lineRenderer.SetPosition(1, fishTransform.position);
         lineRenderer2.SetPosition(1, movepoint.position);
         lineRenderer2.SetPosition(0, hookTransform.position);
@@ -89,10 +88,11 @@ public class FishingLine : MonoBehaviour
         Color originalColor = lineMaterial.color;
         Color originalColor2 = startColor2;
         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
+
         //Color.RGBToHSV(originalColor2, out float h2, out float s2, out float v2);
         float startSaturation = Mathf.Abs(ropeLength - currentropeLength) * 0.05f * sRate;
         //Debug.Log(currentSaturation);
-        if ((Timelinescene11.isGameStart||Timelinescene1.isGameStart) && score.value<1)
+        if ((Timelinescene11.isGameStart || Timelinescene1.isGameStart) && score.value < 1)
         {
             if (ropeLength - currentropeLength >= 0)
             {
@@ -108,7 +108,6 @@ public class FishingLine : MonoBehaviour
 
                     up.SetActive(true);
                     down.SetActive(false);
-
                 }
                 else
                 {
@@ -134,12 +133,11 @@ public class FishingLine : MonoBehaviour
                 {
                     currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
                     currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                    Color newColor = Color.HSVToRGB(170f / 255f, currentSaturation, v);
+                    Color newColor = Color.HSVToRGB(206f / 255f, currentSaturation, v);
                     //lineMaterial.SetColor("_Color1", newColor);
                     lineMaterial.color = newColor;
                     lineRenderer2.materials[0].color = newColor;
                     lineRenderer3.materials[0].color = newColor;
-
                     up.SetActive(false);
                     down.SetActive(true);
                 }
@@ -147,7 +145,7 @@ public class FishingLine : MonoBehaviour
                 {
                     currentSaturation = Mathf.Lerp(s, 0f, 3f * Time.deltaTime);
                     currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
-                    Color newColor = Color.HSVToRGB(170f / 255f, currentSaturation, v);
+                    Color newColor = Color.HSVToRGB(206f / 255f, currentSaturation, v);
                     //lineMaterial.SetColor("_Color1", newColor);
                     lineMaterial.color = newColor;
                     lineRenderer2.materials[0].color = newColor;
@@ -157,7 +155,7 @@ public class FishingLine : MonoBehaviour
                 }
             }
         }
-       
+
 
 
 
@@ -205,16 +203,16 @@ public class FishingLine : MonoBehaviour
 
 
 
-       
-       
+
+
 
         // Debug.Log(currentSaturation);
-      
-        if ((Timelinescene11.isGameStart || Timelinescene1.isGameStart) &&score.value != 1)
+
+        if (Timelinescene11.isGameStart  && score.value != 1)
         {
-            if (currentSaturation <= 0.15f)
+            if (currentSaturation <= 0.2f)
             {
-                score.value += 0.0007f;
+                score.value += 0.0008f;
 
             }
             else
@@ -222,22 +220,23 @@ public class FishingLine : MonoBehaviour
                 score.value -= 0.0005f;
             }
         }
-       
-        if(score.value >= 1)
+
+        if (score.value >= 1)
         {
+            up.SetActive(false);
+            down.SetActive(false);
             key.transform.SetParent(null);
             key.transform.position = Vector3.MoveTowards(key.transform.position, point.transform.position, 1.3f * Time.deltaTime);
             if (key.transform.position == point.transform.position)
             {
                 Timelinescene11.player2win = true;
             }
-            up.SetActive(false);
-            down.SetActive(false);
+
 
 
 
         }
-        else
+        else if(Timelinescene11.isGameStart && score.value < 1)
         {
             if (currentSaturation >= 0.5f)
 
@@ -256,7 +255,7 @@ public class FishingLine : MonoBehaviour
                     Timelinescene11.isLose2 = true;
                     lineRenderer3.materials[0].color = Color.red;
                     timer = 0.0f;
-                    if (GameManager.instance.scenename== "1.1")
+                    if (GameManager.instance.scenename == "1.1")
                     {
                         lineRenderer.enabled = false;
                     }
