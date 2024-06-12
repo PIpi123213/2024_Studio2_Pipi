@@ -80,8 +80,8 @@ public class findScene3 : MonoBehaviour
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
+                        TimelineScene3.isLose1 = true;
                         TimelineScene3.isLose = true;
-
                         isFind = true;
                     }
                 }
@@ -111,7 +111,8 @@ public class findScene3 : MonoBehaviour
                             spriteRenderer.material.color = Color.red;
                             Debug.Log("LOSE");
                             //GameManager.instance.GameOver();
-                            TimelineScene3.isLose = true; 
+                            TimelineScene3.isLose1 = true;
+                            TimelineScene3.isLose = true;
                             isFind = true;
                         }
                     }
@@ -139,6 +140,7 @@ public class findScene3 : MonoBehaviour
                             spriteRenderer.material.color = Color.red;
                             Debug.Log("LOSE");
                             //GameManager.instance.GameOver();
+                            TimelineScene3.isLose1 = true;
                             TimelineScene3.isLose = true;
                             isFind = true;
                         }
@@ -175,6 +177,7 @@ public class findScene3 : MonoBehaviour
                         spriteRenderer.material.color = Color.red;
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
+                        TimelineScene3.isLose2 = true;
                         TimelineScene3.isLose = true;
                         isFind = true;
                     }
@@ -205,6 +208,7 @@ public class findScene3 : MonoBehaviour
                             spriteRenderer.material.color = Color.red;
                             Debug.Log("LOSE");
                             //GameManager.instance.GameOver();
+                            TimelineScene3.isLose2 = true;
                             TimelineScene3.isLose = true;
                             isFind = true;
                         }
@@ -233,6 +237,7 @@ public class findScene3 : MonoBehaviour
                             spriteRenderer.material.color = Color.red;
                             Debug.Log("LOSE");
                             //GameManager.instance.GameOver();
+                            TimelineScene3.isLose2 = true;
                             TimelineScene3.isLose = true;
                             isFind = true;
                         }
@@ -269,6 +274,7 @@ public class findScene3 : MonoBehaviour
                         Debug.Log("LOSE");
                         //GameManager.instance.GameOver();
                         isFind = true;
+                        TimelineScene3.isLose3 = true;
                         TimelineScene3.isLose = true;
                     }
                 }
@@ -298,6 +304,7 @@ public class findScene3 : MonoBehaviour
                             spriteRenderer.material.color = Color.red;
                             Debug.Log("LOSE");
                             //GameManager.instance.GameOver();
+                            TimelineScene3.isLose3 = true;
                             TimelineScene3.isLose = true;
                             isFind = true;
                         }
@@ -326,6 +333,7 @@ public class findScene3 : MonoBehaviour
                             spriteRenderer.material.color = Color.red;
                             Debug.Log("LOSE");
                             //GameManager.instance.GameOver();
+                            TimelineScene3.isLose3 = true;
                             TimelineScene3.isLose = true;
                             isFind = true;
                         }

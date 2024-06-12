@@ -9754,6 +9754,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6412574425226316354, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6412574425226316354, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8437344951903794244, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11308,6 +11320,7 @@ MonoBehaviour:
   sliderRate: 0
   poster1: {fileID: 0}
   poster2: {fileID: 0}
+  lineMove: {fileID: 0}
 --- !u!1001 &2455737131857962086
 PrefabInstance:
   m_ObjectHideFlags: 0

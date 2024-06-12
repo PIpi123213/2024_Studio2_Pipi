@@ -30,7 +30,7 @@ public class PlayerScene11 : MonoBehaviour
     private float lastInputTime;
 
 
-    public FishingLine fishingLine;
+    public Line fishingLine;
     public Slider slider;
     public Slider sliderLose;
     public float sliderRate;
@@ -41,6 +41,8 @@ public class PlayerScene11 : MonoBehaviour
     public GameObject poster2;
     private bool isWin = false;
     private bool isready = false;
+    public GameObject lineMove;
+
 
 
     private void Start()
@@ -55,6 +57,7 @@ public class PlayerScene11 : MonoBehaviour
 
         if (characterChoice == Char.Option1)
         {
+            lineMove = null;
             fishingLine = null;
             T_hand.gameObject.SetActive(false);
             T_handtransform = T_hand.transform.Find("R_shoulder");
@@ -150,7 +153,7 @@ public class PlayerScene11 : MonoBehaviour
         {
             if (sliderLose.value < 1f)
             {
-                sliderLose.value = sliderLose.value + (cspeed*10f / speedRate) + (cspeed_Joystick * 20f / speedRate_Joystick) * Time.deltaTime;
+                sliderLose.value = sliderLose.value + (cspeed*10f / speedRate) + (cspeed_Joystick * 5f / speedRate_Joystick) * Time.deltaTime;
 
             }
             else
@@ -178,7 +181,7 @@ public class PlayerScene11 : MonoBehaviour
 
         if (!isWin)
         {
-            if (characterChoice == Char.Option1 && Timelinescene11.isGameStart)
+            if (characterChoice == Char.Option1 && Timelinescene11.isGameStart &&!Timelinescene11.isLose)
             {
                 if (horizontalInput1_Joystick < 0f)//1号玩家JOystick
                 {
@@ -290,10 +293,10 @@ public class PlayerScene11 : MonoBehaviour
 
             }
 
-            if (characterChoice == Char.Option2 && Timelinescene11.isGameStart && slider.value < 1f)
+            if (characterChoice == Char.Option2 && Timelinescene11.isGameStart && slider.value < 1f && !Timelinescene11.isLose)
             {
                 fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1_Joystick * cspeed_Joystick) * 0.7f;
-                fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1.2f;
+                fishingLine.currentropeLength = fishingLine.currentropeLength + (horizontalInput1 * cspeed) * 1.6f;
                 fishingLine.currentropeLength = Mathf.Clamp(fishingLine.currentropeLength, 140f, 380f);
 
                 MoveWithControllerPlayer2_Joystick();
@@ -385,11 +388,16 @@ public class PlayerScene11 : MonoBehaviour
 
         // 计算新的旋转角度
 
-        if (cspeed_Joystick >= 30f / speedRate)
+        Vector3 newPosition = lineMove.transform.position + new Vector3(0, horizontalInput1_Joystick * cspeed_Joystick * Time.deltaTime * 0.15f, 0);
+
+        // 应用新的位置
+
+        // 计算新的旋转角度
+        newPosition.y = Mathf.Clamp(newPosition.y, -0.7f, 0.7f);
+        if (cspeed_Joystick >=0f)
         {
             fishingLine.point.Rotate(0f, 0f, rotationAmount, Space.Self);
-
-
+            lineMove.transform.position = newPosition;
             /*  Quaternion currentRotation = T_handtransform.rotation;
 
               // 计算目标旋转
@@ -398,6 +406,7 @@ public class PlayerScene11 : MonoBehaviour
               // 使用插值方法逐渐改变物体的旋转
               T_handtransform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * cspeed_Joystick *30f);*/
         }
+
 
     }
     private void MoveWithControllerPlayer1_Joystick()
@@ -457,12 +466,16 @@ public class PlayerScene11 : MonoBehaviour
         float rotationAmount = -horizontalInput1 * cspeed * Time.deltaTime * 800f;
 
         // 计算新的旋转角度
+        Vector3 newPosition = lineMove.transform.position + new Vector3(0, horizontalInput1 * cspeed* Time.deltaTime * 0.4f, 0);
 
+        // 应用新的位置
+
+        // 计算新的旋转角度
+        newPosition.y = Mathf.Clamp(newPosition.y, -0.7f, 0.7f);
         if (cspeed >= 20f / speedRate)
         {
             fishingLine.point.Rotate(0f, 0f, rotationAmount, Space.Self);
-
-
+            lineMove.transform.position = newPosition;
             /*  Quaternion currentRotation = T_handtransform.rotation;
 
               // 计算目标旋转
@@ -471,6 +484,7 @@ public class PlayerScene11 : MonoBehaviour
               // 使用插值方法逐渐改变物体的旋转
               T_handtransform.rotation = Quaternion.Lerp(currentRotation, targetRotation, Time.deltaTime * cspeed_Joystick *30f);*/
         }
+
 
     }
 

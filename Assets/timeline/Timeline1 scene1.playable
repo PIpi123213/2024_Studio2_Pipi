@@ -211,6 +211,57 @@ MonoBehaviour:
     m_PostExtrapolationTime: 0
     m_PreExtrapolationTime: 0
     m_DisplayName: DialogueClip
+  - m_Version: 1
+    m_Start: 33.5
+    m_ClipIn: 0
+    m_Asset: {fileID: -5001579576163366322}
+    m_Duration: 8.533333333333335
+    m_TimeScale: 1
+    m_ParentTrack: {fileID: -5366454862283815486}
+    m_EaseInDuration: 0
+    m_EaseOutDuration: 0
+    m_BlendInDuration: -1
+    m_BlendOutDuration: -1
+    m_MixInCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_MixOutCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_BlendInCurveMode: 0
+    m_BlendOutCurveMode: 0
+    m_ExposedParameterNames: []
+    m_AnimationCurves: {fileID: 0}
+    m_Recordable: 0
+    m_PostExtrapolationMode: 0
+    m_PreExtrapolationMode: 0
+    m_PostExtrapolationTime: 0
+    m_PreExtrapolationTime: 0
+    m_DisplayName: DialogueClip
   m_Markers:
     m_Objects: []
 --- !u!114 &-5155504911137128334
@@ -306,6 +357,25 @@ MonoBehaviour:
   m_Markers:
     m_Objects: []
   m_PostPlaybackState: 3
+--- !u!114 &-5001579576163366322
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcff86648c6c91e4091f11e45901479d, type: 3}
+  m_Name: DialogueClip(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  template:
+    characterName: T
+    dialogueLine: "\u611F\u89C9\u6CA1\u4EC0\u4E48\u96BE\u9053\u554A"
+    requirePause: 0
+    ffScheduled: 1
+    ifScrolling: 1
+  dialogueBox: {fileID: 0}
 --- !u!114 &-4258061571681186190
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,7 +390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: Y
-    dialogueLine: "<color=grey>\u7EA2\u8272\u4EE3\u8868\u8FC7\u7D27\u5E94\u8BE5\u653E\u677E\uFF0C\u9EC4\u8272\u4EE3\u8868\u592A\u677E\u5E94\u8BE5\u6536\u7D27"
+    dialogueLine: "<color=grey>\u6ED1\u5757\u5411\u4E0A\uFF0C\u7EF3\u5B50\u4F38\u957F\uFF0C\u6ED1\u5757\u5411\u4E0B\uFF0C\u7EF3\u5B50\u7F29\u77ED"
     requirePause: 0
     ffScheduled: 1
     ifScrolling: 1
@@ -431,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: Y
-    dialogueLine: "<color=grey>\u5C06\u7EF3\u5B50\u63A7\u5236\u5728\u767D\u8272\u8303\u56F4\uFF0C\u8FC7\u7D27\u8FC7\u677E\u5219\u5931\u8D25"
+    dialogueLine: "<color=grey>\u5C06\u7EF3\u5B50\u63A7\u5236\u5728\u767D\u8272\u8303\u56F4\uFF0C\u7EA2\u8272\u4E3A\u8FC7\u77ED\u8981\u5411\u4E0A\u4F38\u957F\uFF0C\u84DD\u8272\u4E3A\u8FC7\u957F"
     requirePause: 0
     ffScheduled: 1
     ifScrolling: 1
@@ -584,7 +654,7 @@ MonoBehaviour:
     m_Start: 9.95
     m_ClipIn: 0
     m_Asset: {fileID: 6791647614418904877}
-    m_Duration: 24.066666666666666
+    m_Duration: 4.350000000000001
     m_TimeScale: 1
     m_ParentTrack: {fileID: -118609601033845902}
     m_EaseInDuration: 0
@@ -726,7 +796,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: T
-    dialogueLine: "\u5B8C\u7F8E\u7684\u8BA1\u5212\u5C31\u662F        <color=red><size=8>\u7528\u52FA\u5B50\u51FF\u7A7F\u8FD9\u9762\u5899</color>"
+    dialogueLine: "\u5B8C\u7F8E\u7684\u8BA1\u5212\u5C31\u662F        <color=red><size=8>\u51FF\u7A7F\u8FD9\u9762\u5899</color>"
     requirePause: 0
     ffScheduled: 1
     ifScrolling: 1
@@ -939,9 +1009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: Y
-    dialogueLine: "<size=6.6><color=grey>(\u5411\u524D/\u9006\u65F6\u9488 \u65CB\u8F6C\u63A7\u5236\u5668)</color>
-      \u6536\u7D27\u7EF3\u5B50\n<color=grey>(\u5411\u540E/\u987A\u65F6\u9488 \u65CB\u8F6C\u63A7\u5236\u5668)</color>
-      \u653E\u677E\u7EF3\u5B50"
+    dialogueLine: "<size=6.6><color=grey>\u65CB\u8F6C\u63A7\u5236\u5668\u4EE5\u64CD\u63A7\u7EA2\u8272\u6ED1\u5757\u4E0A\u4E0B\u79FB\u52A8"
     requirePause: 0
     ffScheduled: 1
     ifScrolling: 1
@@ -1103,7 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: Y
-    dialogueLine: "\u8BD5\u7740\u7EC3\u7EC3\u5427"
+    dialogueLine: "\u5148\u7EC3\u4E60\u4E0B\u5427"
     requirePause: 0
     ffScheduled: 1
     ifScrolling: 1

@@ -19,7 +19,16 @@ public class Timelinescene11 : MonoBehaviour
     public static bool isGameStart = false;
     public PlayableDirector playableDirector3;
     private bool isplayed3 = false;
+
+    public PlayableDirector playableDirector4_2lose;
+    private bool isplayed4 = false;
+
+
     public static bool isLose = false;
+    public static bool isLose1 = false;
+    public static bool isLose2 = false;
+
+
 
     public static int isWin_scene1 = 0;
 
@@ -37,10 +46,13 @@ public class Timelinescene11 : MonoBehaviour
     private bool isplayer2played = false;
     public static int isready = 0;
 
-
+    
 
     public GameObject player2;
     public GameObject player1;
+
+
+
     void Start()
     {
         if (playableDirector1 != null)
@@ -51,6 +63,8 @@ public class Timelinescene11 : MonoBehaviour
             player2Timeline.stopped += OnPlayableDirectorStopped;
 
         }
+       
+
         Line.SetActive(false);
 
         isWin_scene1 = 0;
@@ -59,6 +73,8 @@ public class Timelinescene11 : MonoBehaviour
         player1win = false;
         player2win = false;
         isLose = false;
+        isLose1 = false;
+        isLose2 = false;
         isready = 0;
     }
 
@@ -105,15 +121,26 @@ public class Timelinescene11 : MonoBehaviour
             isplayer2played = true;
             player2.SetActive(true);
         }
-        if (isLose && !isplayed3)
+        if (isLose1 && !isplayed3)
         {
            
             PlayTimeline(playableDirector3);
             isplayed3 = true;
             
         }
+        if (isLose2 && !isplayed4)
+        {
 
-        if(GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && isLose && isready == 2)
+            PlayTimeline(playableDirector4_2lose);
+            isplayed4 = true;
+
+        }
+
+
+
+
+
+        if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && isLose && isready == 2)
         {
 
 
