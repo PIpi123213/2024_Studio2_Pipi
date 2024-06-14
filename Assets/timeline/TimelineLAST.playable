@@ -504,25 +504,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -540,13 +522,13 @@ MonoBehaviour:
     m_Start: 0
     m_ClipIn: 0
     m_Asset: {fileID: -930140847018961253}
-    m_Duration: 20.016666666666666
+    m_Duration: 49.56666666666667
     m_TimeScale: 1
     m_ParentTrack: {fileID: -4342802756254562135}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
     m_BlendInDuration: 1.4209372997283936
-    m_BlendOutDuration: 3.7209754739577576
+    m_BlendOutDuration: 2.9166666666666714
     m_MixInCurve:
       serializedVersion: 2
       m_Curve:
@@ -606,7 +588,7 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: ScreenFaderClip
   - m_Version: 1
-    m_Start: 16.295691192708908
+    m_Start: 46.65
     m_ClipIn: 0
     m_Asset: {fileID: -6147904193387591176}
     m_Duration: 7.466666666666669
@@ -614,29 +596,11 @@ MonoBehaviour:
     m_ParentTrack: {fileID: -4342802756254562135}
     m_EaseInDuration: 0
     m_EaseOutDuration: 0
-    m_BlendInDuration: 3.7209754739577576
+    m_BlendInDuration: 2.9166666666666714
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+      m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -769,7 +733,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 21.2
-        value: 300
+        value: 547
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -886,7 +850,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 21.2
-        value: 300
+        value: 547
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1270,7 +1234,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 21.7
-        value: -342
+        value: -580
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1387,7 +1351,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 21.7
-        value: -342
+        value: -580
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -2391,7 +2355,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 16.5
+        time: 47.3
         value: 0.1
         inSlope: 0
         outSlope: 0
@@ -2400,7 +2364,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.583334
+        time: 50.383335
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2439,7 +2403,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 19.583334
+    m_StopTime: 50.383335
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -2478,7 +2442,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 16.5
+        time: 47.3
         value: 0.1
         inSlope: 0
         outSlope: 0
@@ -2487,7 +2451,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.583334
+        time: 50.383335
         value: 0
         inSlope: 0
         outSlope: 0
@@ -2716,7 +2680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
   m_Name: Signal Emitter
   m_EditorClassIdentifier: 
-  m_Time: 20.965514893271028
+  m_Time: 50.983333333333334
   m_Retroactive: 0
   m_EmitOnce: 0
   m_Asset: {fileID: 11400000, guid: 83e06ec588ce7ef40a4943127e015714, type: 2}
