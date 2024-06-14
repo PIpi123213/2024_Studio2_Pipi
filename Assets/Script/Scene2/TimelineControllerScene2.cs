@@ -119,6 +119,7 @@ public class TimelineControllerScene2 : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
         Timelinetrigger.Instance.clear();
+        SaveManager.Instance.ResetCheckpoints();
     }
 
 

@@ -20,6 +20,20 @@ public class PlayerController : MonoBehaviour
     private bool isHit=false;
 
     private GameObject childObject;
+
+    public Vector3 initialPosition;
+    
+    private void Awake()
+    {
+        SaveManager.Instance.initialPosition = initialPosition;
+        Vector3 respawnPosition = SaveManager.Instance.LoadNearestCheckpoint();
+        transform.position = respawnPosition;
+    }
+
+
+
+
+
     private void Start() {
         Transform childTransform = transform.Find("wave");
         childObject = childTransform.gameObject;

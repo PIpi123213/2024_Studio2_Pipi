@@ -138,6 +138,7 @@ public class TimelineScene21 : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
         Timelinetrigger.Instance.clear();
+        SaveManager.Instance.ResetCheckpoints();
     }
 
 

@@ -40,7 +40,7 @@ public class TimelineColl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player")||other.CompareTag("Player2"))
         {
             Debug.Log("play");
             play1Schel = true;

@@ -253,7 +253,12 @@ public class moveBoat : MonoBehaviour
             speedRate_Joystick = 3 * rspeedRate_Joystick;
         }
 
-
+        if (other.gameObject.CompareTag("END"))
+        {
+            Debug.Log("win");
+            waterfall.win = true;
+            GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
+        }
 
 
 

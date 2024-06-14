@@ -47,7 +47,7 @@ public class playerMovescene3 : MonoBehaviour
     {
         if (characterChoice == Char.Option1) {
             cspeed = arduino123.speed / speedRate;
-            horizontalInput1 = arduino123.direction;
+            horizontalInput1 = -arduino123.direction;
             
         }
         else {

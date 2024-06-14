@@ -22,6 +22,40 @@ public class AudioController : MonoBehaviour
     {
         if (GameManager.instance.scenename == "0" && !bool1)
         {
+           
+
+
+        }
+
+        if ((GameManager.instance.scenename == "2"|| GameManager.instance.scenename == "2.1"|| GameManager.instance.scenename == "2.2"||GameManager.instance.scenename == "2.3") && !bool2)
+        {
+            
+            bool2 = true;
+            musicTracks[1].Play();
+
+
+        }
+        else if((GameManager.instance.scenename != "2" && GameManager.instance.scenename != "2.1" && GameManager.instance.scenename != "2.2" && GameManager.instance.scenename!= "2.3"))
+        {
+            musicTracks[1].Stop();
+            bool2 = false;
+
+
+        }
+
+
+
+
+        if (GameManager.instance.scenename == "2.3" )
+        {
+           
+            musicTracks[0].Stop();
+            bool1 = false;
+
+
+        }
+        else if(GameManager.instance.scenename != "2.3" && !bool1)
+        {
             Debug.Log("play");
             foreach (AudioSource track in musicTracks)
             {
@@ -31,21 +65,9 @@ public class AudioController : MonoBehaviour
             musicTracks[0].Play();
 
 
-        }
-
-        if (GameManager.instance.scenename == "1" && !bool2)
-        {
-            foreach (AudioSource track in musicTracks)
-            {
-                track.Stop();
-            }
-            bool2 = true;
-            musicTracks[1].Play();
 
 
         }
-
-
 
     }
 

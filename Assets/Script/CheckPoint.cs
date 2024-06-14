@@ -30,6 +30,19 @@ public class CheckPoint : MonoBehaviour
             Debug.Log("save2");
             SaveManager.Instance.SaveCheckpoint(checkpointID, transform.position);
         }
+        if (GameManager.instance.scenename == "2" )
+        {
+            if (player1)
+            {
+                SaveManager.Instance.SaveCheckpoint(checkpointID, transform.position);
+            }
+
+
+        }
+
+
+
+
     }
 
 }

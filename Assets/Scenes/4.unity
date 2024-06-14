@@ -11583,6 +11583,8 @@ MonoBehaviour:
   playableDirector1: {fileID: 814387949}
   playableDirector2: {fileID: 1450554184}
   playableDirector3: {fileID: 52089905}
+  playableDirector4: {fileID: 0}
+  playableDirector5: {fileID: 0}
 --- !u!114 &441845576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24294,7 +24296,7 @@ Camera:
   far clip plane: 1000
   field of view: 28.8
   orthographic: 1
-  orthographic size: 3.42
+  orthographic size: 3.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

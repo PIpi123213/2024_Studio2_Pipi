@@ -12,6 +12,9 @@ public class waterfall : MonoBehaviour
     public GameObject point1;
     public Transform point;
     public Transform player;
+    public static bool win;
+
+
     private void OnTriggerStay2D(Collider2D other)
     {
         
@@ -38,6 +41,7 @@ public class waterfall : MonoBehaviour
     private void Start()
     {
         iswin = false;
+        win = false;
     }
 
 
@@ -60,10 +64,11 @@ public class waterfall : MonoBehaviour
     }
     private void Update()
     {
-        if (player.transform.position== point1.transform.position && Mathf.Abs(player.transform.rotation.eulerAngles.z - point1.transform.rotation.eulerAngles.z)<1f)
+        if (win )
         {
+            GameManager.instance.gameMode = GameManager.GameMode.CGMoment;
             TimelineControllerScene2.isWin = true;
-            Debug.Log("win");
+            //Debug.Log("win");
 
 
         }

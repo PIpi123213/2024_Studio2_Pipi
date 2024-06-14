@@ -126,14 +126,14 @@ public class PlayerScene11 : MonoBehaviour
         }
 
 
-        if (characterChoice == Char.Option1 && slider.value != 1)
+       /* if (characterChoice == Char.Option1 && slider.value != 1)
         {
 
 
             slider.value -= sliderRate / (cspeed * 10f + 1 + cspeed_Joystick);
 
 
-        }
+        }*/
 
         if(slider.value ==1 && !isWin)
         {

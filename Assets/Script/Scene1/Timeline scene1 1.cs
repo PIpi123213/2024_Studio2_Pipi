@@ -83,6 +83,11 @@ public class Timelinescene11 : MonoBehaviour
 
     void Update()
     {
+        isLose = isLose1 || isLose2;
+
+
+
+
         // Check the custom condition
         if (!isplayed1)
         {
@@ -126,6 +131,7 @@ public class Timelinescene11 : MonoBehaviour
            
             PlayTimeline(playableDirector3);
             isplayed3 = true;
+            isLose = true;
             
         }
         if (isLose2 && !isplayed4)
@@ -133,7 +139,7 @@ public class Timelinescene11 : MonoBehaviour
 
             PlayTimeline(playableDirector4_2lose);
             isplayed4 = true;
-
+            isLose = true;
         }
 
 

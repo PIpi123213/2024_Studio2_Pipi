@@ -371,7 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   template:
     characterName: T
-    dialogueLine: "\u611F\u89C9\u6CA1\u4EC0\u4E48\u96BE\u9053\u554A"
+    dialogueLine: "\u611F\u89C9\u6CA1\u4EC0\u4E48\u96BE\u5EA6\u554A"
     requirePause: 0
     ffScheduled: 1
     ifScrolling: 1

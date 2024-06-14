@@ -18,6 +18,7 @@ public class LoadScene : MonoBehaviour
     }
     public void SwitchToScene(string sceneName)
     {
+        SaveManager.Instance.ResetCheckpoints();
         SceneManager.LoadScene(sceneName);
     }
 }
