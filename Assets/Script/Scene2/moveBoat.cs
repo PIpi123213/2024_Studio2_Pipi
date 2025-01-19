@@ -174,7 +174,7 @@ public class moveBoat : MonoBehaviour
         leftforce = arduino123.speed / speedRate;
         rightforce = arduino123.speed2 / speedRate;
         leftdirection = arduino123.direction;
-        rightdirection = arduino123.direction2;
+        rightdirection = -arduino123.direction2;
 
 
         if (GameManager.instance.gameMode == GameManager.GameMode.DialogueMoment && TimelineControllerScene2.isLose)

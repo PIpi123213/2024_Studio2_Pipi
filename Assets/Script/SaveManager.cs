@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-
+using System.Threading.Tasks;
 public class SaveManager : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -62,9 +62,20 @@ public class SaveManager : MonoBehaviour
     // 重置存档点
     public void ResetCheckpoints()
     {
+        Debug.Log("clear");
         checkpoints.Clear();
+    }
+    public async Task ResetCheckpointsAsync()
+    {
+        // 模拟一段异步操作
+        await Task.Delay(1000); // 假设这是您的异步保存逻辑
+        //await Task.Delay(1000); // 假设这是您的异步保存逻辑
+
+        // 重置检查点的实际逻辑
+        checkpoints.Clear();
+        // 重置检查点的实际逻辑
+        // Debug.Log(&quot; Checkpoints Reset Finished & quot;);
     }
 
 
-   
 }

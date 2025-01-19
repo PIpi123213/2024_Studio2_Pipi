@@ -96,7 +96,7 @@ public class Line : MonoBehaviour
         {
             if (ropeLength - currentropeLength >= 0)
             {
-                if (startSaturation > 0.2f)
+                if (startSaturation > 0.18f)
                 {
                     currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
                     currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
@@ -129,7 +129,7 @@ public class Line : MonoBehaviour
             }
             else
             {
-                if (startSaturation > 0.2f)
+                if (startSaturation > 0.18f)
                 {
                     currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);
                     currentSaturation = Mathf.Clamp(currentSaturation, 0f, 1f);
@@ -210,14 +210,14 @@ public class Line : MonoBehaviour
 
         if (Timelinescene11.isGameStart  && score.value != 1)
         {
-            if (currentSaturation <= 0.2f)
+            if (currentSaturation <= 0.18f)
             {
                 score.value += 0.0008f;
 
             }
             else
             {
-                score.value -= 0.0005f;
+                score.value -= 0.0006f;
             }
         }
 

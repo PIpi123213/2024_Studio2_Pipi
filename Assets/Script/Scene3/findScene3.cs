@@ -161,7 +161,7 @@ public class findScene3 : MonoBehaviour
 
                         Color.RGBToHSV(originalColor, out float h, out float s, out float v);
 
-                        startSaturation += Rate * 0.05f;
+                        startSaturation += Rate * 0.03f;
                         startSaturation = Mathf.Clamp(startSaturation, 0f, 1f);
 
                         currentSaturation = Mathf.Lerp(s, startSaturation, 1f * Time.deltaTime);

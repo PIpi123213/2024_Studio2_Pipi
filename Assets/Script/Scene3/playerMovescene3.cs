@@ -74,7 +74,7 @@ public class playerMovescene3 : MonoBehaviour
             rb.velocity = Vector2.zero;
         }
       // Debug.Log(speed);
-        if (speed >=0.5f)
+        if (speed >=0.75f)
         {
             isMoving = true;
 

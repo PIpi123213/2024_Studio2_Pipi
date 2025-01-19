@@ -5471,6 +5471,8 @@ PlayableDirector:
     value: {fileID: 36376239}
   - key: {fileID: 5458924119153064500, guid: 6338c7383a3982b43a5de7db3e350103, type: 2}
     value: {fileID: 1638640953}
+  - key: {fileID: 8564975029995255806, guid: 6338c7383a3982b43a5de7db3e350103, type: 2}
+    value: {fileID: 1139281088}
   m_ExposedReferences:
     m_References:
     - c72197744b5b331408d995fc0e304e41: {fileID: 2132080446}
@@ -8177,6 +8179,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+--- !u!82 &1139281088 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 458561435320495811, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+  m_PrefabInstance: {fileID: 1139281087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1139445790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6953055206502512137, guid: 09bd736cc1773644eb70c2d030203afd, type: 3}
@@ -12288,7 +12295,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 0.6
+  orthographic size: 0.95
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
