@@ -10337,14 +10337,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 229555354192749236, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenuAsync
-      objectReference: {fileID: 0}
-    - target: {fileID: 2235089901737834633, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenuAsync
-      objectReference: {fileID: 0}
     - target: {fileID: 3941957193261290625, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.8135162
@@ -10385,37 +10377,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4534089442910556286, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenuAsync
-      objectReference: {fileID: 0}
     - target: {fileID: 4602442836334176811, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 4605077157479249460, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenuAsync
-      objectReference: {fileID: 0}
-    - target: {fileID: 5234537599182447290, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenuAsync
-      objectReference: {fileID: 0}
-    - target: {fileID: 8047694431797911071, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadMenuAsync
+    - target: {fileID: 8416812815356950917, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
+      propertyPath: ExpandConfig
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8416812815356950917, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: VendorID_string
-      value: 1A86
-      objectReference: {fileID: 0}
-    - target: {fileID: 8416812815356950917, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: ProductID_string
-      value: 7523
+      propertyPath: ExpandSPMonitor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8416812815356950917, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
       propertyPath: SerialNumber_search_string
-      value: 5&144DF3AA&0&2
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

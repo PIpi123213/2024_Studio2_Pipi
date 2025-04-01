@@ -391,7 +391,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5094352060479869232}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_MethodName: LoadMenuAsync
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -524,7 +524,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5094352060479869232}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_MethodName: LoadMenuAsync
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -793,7 +793,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5094352060479869232}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_MethodName: LoadMenuAsync
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1902,7 +1902,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5094352060479869232}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_MethodName: LoadMenuAsync
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2035,7 +2035,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5094352060479869232}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_MethodName: LoadMenuAsync
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2532,7 +2532,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5094352060479869232}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: LoadMenu
+        m_MethodName: LoadMenuAsync
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2804,9 +2804,9 @@ MonoBehaviour:
       m_Calls: []
   ExternalConfigPath: 1
   ExternalConfigFileName: serial_config.txt
-  VendorID_string: 0403
-  ProductID_string: 6001
-  SerialNumber_search_string: FTB6SPL3
+  VendorID_string: 1A86
+  ProductID_string: 7523
+  SerialNumber_search_string: 5&144DF3AA&0&2
   EnableTrans: 1
   DebugConsoleMonitor: 0
   ExternalConfig: 0
