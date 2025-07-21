@@ -6721,6 +6721,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6424340989493345140, guid: 11f3aae42c78e924f9b4cfe99a0c4bef, type: 3}
   m_PrefabInstance: {fileID: 6424340990550294913}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1134176262
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134176264}
+  m_Layer: 0
+  m_Name: Joycon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1134176264
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134176262}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -32.006634, y: 4.391502, z: -5.019909}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159064071
 GameObject:
   m_ObjectHideFlags: 0
@@ -10381,18 +10412,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 8416812815356950917, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: ExpandConfig
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8416812815356950917, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: ExpandSPMonitor
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8416812815356950917, guid: a06b19bda4ffce24caec370251a9c072, type: 3}
-      propertyPath: SerialNumber_search_string
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12654,3 +12673,4 @@ SceneRoots:
   - {fileID: 2117166896}
   - {fileID: 1066661463}
   - {fileID: 20365442}
+  - {fileID: 1134176264}

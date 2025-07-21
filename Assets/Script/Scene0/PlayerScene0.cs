@@ -87,7 +87,7 @@ public class PlayerScene0 : MonoBehaviour
         Debug.Log(cspeed_Joystick);
         if (slider.value < 1f)
         {
-            slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick  / speedRate_Joystick)*Time.deltaTime;
+            slider.value = slider.value + (cspeed / speedRate) + (cspeed_Joystick * speedRate_Joystick)*Time.deltaTime;
 
         }
         else

@@ -1516,6 +1516,7 @@ GameObject:
   - component: {fileID: 318756323253356379}
   - component: {fileID: 5094352060479869232}
   - component: {fileID: 4748565364473192700}
+  - component: {fileID: 6471244185688443757}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1645,6 +1646,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651bda1baf7e3eb4ba59a868c9a983db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6471244185688443757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602442836334176811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb0abd1798f9b344b327ff6b5042f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableIMU: 0
+  EnableLocalize: 0
+  isJoycon: 0
 --- !u!1 &4694111503770920087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2806,7 +2822,7 @@ MonoBehaviour:
   ExternalConfigFileName: serial_config.txt
   VendorID_string: 1A86
   ProductID_string: 7523
-  SerialNumber_search_string: 5&144DF3AA&0&2
+  SerialNumber_search_string: 
   EnableTrans: 1
   DebugConsoleMonitor: 0
   ExternalConfig: 0

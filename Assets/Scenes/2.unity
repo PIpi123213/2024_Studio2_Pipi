@@ -36571,7 +36571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 564823780, guid: 910b35a4d3f6d574ab53fd31cb27654b, type: 3}
       propertyPath: speedRate_Joystick
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1210091976, guid: 910b35a4d3f6d574ab53fd31cb27654b, type: 3}
       propertyPath: m_Enabled

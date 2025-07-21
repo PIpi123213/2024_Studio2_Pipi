@@ -17,31 +17,72 @@ public class input11 : MonoBehaviour
 
     public static float direction2;
     public static float speed2;
+    private List<Joycon> joycons;
 
+    //public JoyconDemo Left;
+    //public JoyconDemo Right;
     //public float deadZone = 0.1f;
 
     public float angleThreshold = 5f;
+    private float leftStickRotation;
+    private float rightStickRotation;
+    private float leftStickSpeed ;
+    private float rightStickSpeed;
+    void Start()
+    {
+      
+        joycons = JoyconManager.Instance.j;
+       
+    }
+
     void Update()
     {
-        leftStickInput = new Vector2(Input.GetAxis("LeftStickX"), Input.GetAxis("LeftStickY"));
-        rightStickInput = new Vector2(Input.GetAxis("RightStickX"), Input.GetAxis("RightStickY"));
-
-
-        // 获取左摇杆的旋转方向和速度
-        float leftStickRotation = GetStickRotation(leftStickInput, prevLeftStickInput);
-        float rightStickRotation = GetStickRotation(rightStickInput, prevRightStickInput);
-        float leftStickSpeed = GetStickSpeed(leftStickInput);
-        float rightStickSpeed = GetStickSpeed(rightStickInput);
-       /* if (leftStickInput.magnitude < deadZone)
+        // leftStickInput = new Vector2(Input.GetAxis("LeftStickX"), Input.GetAxis("LeftStickY"));
+        //rightStickInput = new Vector2(Input.GetAxis("RightStickX"), Input.GetAxis("RightStickY"));
+        if (JoyconManager.Instance.isJoycon)
         {
-            leftStickInput = Vector2.zero;
+            if (joycons[0].isLeft)
+            {
+                leftStickInput = new Vector2(joycons[0].stick[0], joycons[0].stick[1]);
+                rightStickInput = new Vector2(joycons[1].stick[0], joycons[1].stick[1]);
+            }
+            else
+            {
+                rightStickInput = new Vector2(joycons[0].stick[0], joycons[0].stick[1]);
+                leftStickInput = new Vector2(joycons[1].stick[0], joycons[1].stick[1]);
+            }
+            leftStickRotation = -GetStickRotation(leftStickInput, prevLeftStickInput);
+            rightStickRotation = -GetStickRotation(rightStickInput, prevRightStickInput);
+            leftStickSpeed = GetStickSpeed(leftStickInput) / 5.0f;
+            rightStickSpeed = GetStickSpeed(rightStickInput);
+        }
+        else
+        {
+            leftStickInput = new Vector2(Input.GetAxis("LeftStickX"), Input.GetAxis("LeftStickY"));
+            rightStickInput = new Vector2(Input.GetAxis("RightStickX"), Input.GetAxis("RightStickY"));
+
+            leftStickRotation = -GetStickRotation(leftStickInput, prevLeftStickInput);
+            rightStickRotation = -GetStickRotation(rightStickInput, prevRightStickInput);
+            leftStickSpeed = GetStickSpeed(leftStickInput);
+            rightStickSpeed = GetStickSpeed(rightStickInput);
+
+
+
         }
 
-        // Apply dead zone to right stick input
-        if (rightStickInput.magnitude < deadZone)
-        {
-            rightStickInput = Vector2.zero;
-        }*/
+    
+        // 获取左摇杆的旋转方向和速度
+
+        /* if (leftStickInput.magnitude < deadZone)
+         {
+             leftStickInput = Vector2.zero;
+         }
+
+         // Apply dead zone to right stick input
+         if (rightStickInput.magnitude < deadZone)
+         {
+             rightStickInput = Vector2.zero;
+         }*/
         // 打印左摇杆信息
         if (Mathf.Abs(leftStickRotation) >= angleThreshold)
         {

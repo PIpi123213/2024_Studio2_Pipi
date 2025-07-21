@@ -153,7 +153,7 @@ public class PlayerScene11 : MonoBehaviour
         {
             if (sliderLose.value < 1f)
             {
-                sliderLose.value = sliderLose.value + (cspeed*10f / speedRate) + (cspeed_Joystick * 5f / speedRate_Joystick) * Time.deltaTime;
+                sliderLose.value = sliderLose.value + (cspeed*10f / speedRate) + (cspeed_Joystick  *speedRate_Joystick / speedRate_Joystick) * Time.deltaTime;
 
             }
             else
